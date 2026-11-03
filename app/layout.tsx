@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import AnnouncementBar from "@/components/AnnouncementBar";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { StoreProvider } from "@/components/StoreProvider";
+import OfferPopup from "@/components/OfferPopup";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { TAGLINE } from "@/lib/brand";
 import "./globals.css";
 
 const serif = Playfair_Display({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-serif" });
@@ -21,11 +22,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body>
         <StoreProvider>
-          <div className="demo">{TAGLINE}</div>
+          <AnnouncementBar />
           <Header />
           <main>{children}</main>
           <Footer />
           <WhatsAppButton />
+          <OfferPopup />
         </StoreProvider>
       </body>
     </html>

@@ -2,78 +2,125 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/brand";
+import { useEffect, useRef, useState } from "react";
+import { BRAND, WHATSAPP_URL } from "@/lib/brand";
 import { mainNav } from "@/lib/navigation";
 import Icon from "./Icon";
 import { useStore } from "./StoreProvider";
 
+/** Pages whose first section is a full-bleed hero the header can sit on. */
+const OVERLAY_PAGES = new Set(["/"]);
+
 export default function Header() {
   const { cartCount, wishlist } = useStore();
-  const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [searching, setSearching] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const searchRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    setOpen(false);
+    setSearching(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (searching) searchRef.current?.focus();
+  }, [searching]);
+
+  const overlay = OVERLAY_PAGES.has(pathname) && !scrolled && !open && !searching;
+  const cls = ["site-header", overlay && "is-overlay", open && "menu-open"].filter(Boolean).join(" ");
 
   return (
-    <header className="top">
-      <div className="wrap">
-        <Link className="logo" href="/" aria-label="Al Musheer home">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="Al Musheer" width={354} height={593} />
-        </Link>
+    <header className={cls}>
+      <div className="hdr-inner">
+        <button
+          className="hdr-icon hdr-menu"
+          type="button"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          onClick={() => setOpen((o) => !o)}
+        >
+          <Icon name={open ? "close" : "menu"} size={22} />
+        </button>
+
         <nav
-          className={open ? "nav open" : "nav"}
+          className="hdr-nav"
           aria-label="Main"
           onClick={(e) => {
             if ((e.target as HTMLElement).closest("a")) setOpen(false);
           }}
         >
           {mainNav.map((item) => (
-            <div key={item.label}>
-              <Link href={item.href}>{item.label}</Link>
+            <div className="hdr-item" key={item.label}>
+              <Link href={item.href}>
+                {item.label}
+                {item.columns && <Icon name="chevron" size={14} />}
+              </Link>
               {item.columns && (
-                <div className="drop">
-                  {item.columns.map((col) => (
-                    <div key={col.heading}>
-                      <b>{col.heading}</b>
-                      {col.links.map((l) => (
-                        <Link key={l.href} href={l.href}>
-                          {l.label}
-                        </Link>
-                      ))}
-                    </div>
-                  ))}
+                <div className="mega">
+                  <div className="mega-inner">
+                    {item.columns.map((col) => (
+                      <div key={col.heading}>
+                        <b>{col.heading}</b>
+                        {col.links.map((l) => (
+                          <Link key={l.href} href={l.href}>
+                            {l.label}
+                          </Link>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
           ))}
         </nav>
-        <div className="icons">
-          <form action="/search">
-            <input name="q" type="search" placeholder="Search" aria-label="Search" />
-          </form>
-          <Link className="icon-search" href="/search" aria-label="Search">
-            Find
-          </Link>
-          <a className="icon-wa" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Al Musheer">
-            <Icon name="whatsapp" size={17} />
-            <span>{PHONE_DISPLAY}</span>
+
+        <Link className="hdr-logo" href="/" aria-label={`${BRAND} home`}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="logo-dark" src="/logo.png" alt={BRAND} width={354} height={593} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="logo-light" src="/logo-white.png" alt="" width={354} height={593} />
+        </Link>
+
+        <div className="hdr-icons">
+          <a className="hdr-icon hide-sm" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <Icon name="whatsapp" size={20} />
           </a>
-          <Link className="icon-account" href="/account">
-            Account
-          </Link>
-          <Link href="/wishlist">
-            Saved<span className="count">{wishlist.length}</span>
-          </Link>
-          <Link href="/cart">
-            Cart<span className="count">{cartCount}</span>
-          </Link>
-          <button className="menu-btn" type="button" aria-label="Menu" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
-            Menu
+          <button className="hdr-icon" type="button" aria-label="Search" aria-expanded={searching} onClick={() => setSearching((s) => !s)}>
+            <Icon name="search" size={21} />
           </button>
+          <Link className="hdr-icon hide-sm" href="/account" aria-label="Account">
+            <Icon name="user" size={21} />
+          </Link>
+          <Link className="hdr-icon hide-sm" href="/wishlist" aria-label={`Saved products (${wishlist.length})`}>
+            <Icon name="heart" size={21} />
+            {wishlist.length > 0 && <span className="badge">{wishlist.length}</span>}
+          </Link>
+          <Link className="hdr-icon" href="/cart" aria-label={`Cart (${cartCount})`}>
+            <Icon name="bag" size={22} />
+            <span className="badge">{cartCount}</span>
+          </Link>
         </div>
       </div>
+
+      {searching && (
+        <form className="hdr-search" action="/search">
+          <Icon name="search" size={18} />
+          <input ref={searchRef} name="q" type="search" placeholder="Search kanduras, ghutra, sandals…" aria-label="Search" />
+          <button type="button" aria-label="Close search" onClick={() => setSearching(false)}>
+            <Icon name="close" size={18} />
+          </button>
+        </form>
+      )}
     </header>
   );
 }

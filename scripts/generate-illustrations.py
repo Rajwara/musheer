@@ -777,10 +777,10 @@ def hero_adult(by):
     for i in range(5):
         x = 120 + i * 360
         body.append(f'<path d="M{x} 900 L{x + 220} 760 L{x + 330} 760 L{x + 110} 900Z" fill="#a88c60" opacity="0.18"/>')
-    d, b = rail_scene([(by["classic-round-collar-kandura-ivory"], "front")], W, H, 150, 0.72, 0, cx=800, rail=False, pid="h")
-    body.append(f'<path d="M800 150 V120" stroke="{BRASS}" stroke-width="8"/><circle cx="800" cy="116" r="10" fill="{BRASS}"/>')
+    d, b = rail_scene([(by["classic-round-collar-kandura-ivory"], "front")], W, H, 150, 0.72, 0, cx=1080, rail=False, pid="h")
+    body.append(f'<path d="M1080 150 V120" stroke="{BRASS}" stroke-width="8"/><circle cx="1080" cy="116" r="10" fill="{BRASS}"/>')
     body.append(b)
-    body.append(floor_shadow(800, 840, 160, 14, 0.12))
+    body.append(floor_shadow(1080, 840, 160, 14, 0.12))
     return svg(W, H, defs + d, "".join(body))
 
 
@@ -791,12 +791,12 @@ def hero_kids(by):
             f'<path d="M0 720 H{W}" stroke="#8ea4b6" stroke-width="6"/>']
     items = [(by["boys-round-collar-kandura-white"], "front"), (by["boys-stand-collar-thobe-cream"], "front"),
              (by["boys-occasion-kandura-sand"], "front")]
-    d, b = rail_scene(items, W, H, 120, 0.92, 260, cx=680, pid="k")
+    d, b = rail_scene(items, W, H, 120, 0.92, 260, cx=980, pid="k")
     body.append(b)
     hd = []
     dd, bb = product_art(by["kids-check-shimagh-red-and-white"], "side", "kh")
     hd.append(dd)
-    body.append(g(bb, 1000, 160, 0.9))
+    body.append(g(bb, 1240, 220, 0.7))
     return svg(W, H, defs + d + "".join(hd), "".join(body))
 
 
@@ -809,10 +809,12 @@ def hero_winter(by):
             f'<path d="M0 650 Q380 560 760 640 T1600 620 V900 H0Z" fill="#b5875a"/>',
             f'<path d="M0 760 Q420 690 880 750 T1600 730 V900 H0Z" fill="#9f7449"/>']
     # garment stand
-    body.append(f'<path d="M560 130 H1040 M600 130 V860 M1000 130 V860 M560 860 H640 M960 860 H1040" stroke="{BRASS}" stroke-width="12" stroke-linecap="round"/>')
+    shift = 300  # keep the left side clear for the headline
+    stand = [f'<path d="M560 130 H1040 M600 130 V860 M1000 130 V860 M560 860 H640 M960 860 H1040" stroke="{BRASS}" stroke-width="12" stroke-linecap="round"/>']
     d1, b1 = rail_scene([(by["tailored-layering-jacket-charcoal"], "front")], W, H, 130, 0.74, 0, cx=720, rail=False, pid="w1")
     d2, b2 = product_art(by["wool-blend-shawl-camel"], "front", "w2")
-    body.append(b1 + g(b2, 880 - 400 * 0.6, 110, 0.6))
+    stand.append(b1 + g(b2, 880 - 400 * 0.6, 110, 0.6))
+    body.append(g("".join(stand), shift, 0, 1))
     return svg(W, H, defs + d1 + d2, "".join(body))
 
 
@@ -822,7 +824,7 @@ def hero_new(by):
     body = [f'<rect width="{W}" height="{H}" fill="url(#wall)"/>', f'<rect y="790" width="{W}" height="110" fill="#bccddb"/>']
     slugs = ["tailored-tasselled-kandura-sand", "formal-cuffed-thobe-olive", "soft-weave-kandura-slate",
              "button-placket-thobe-stone", "heritage-cuff-kandura-taupe"]
-    d, b = rail_scene([(by[s], "front") for s in slugs], W, H, 120, 0.66, 220, cx=800, pid="n")
+    d, b = rail_scene([(by[s], "front") for s in slugs], W, H, 120, 0.66, 200, cx=1060, pid="n")
     body.append(b)
     return svg(W, H, defs + d, "".join(body))
 

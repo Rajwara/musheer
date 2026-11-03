@@ -139,3 +139,27 @@ export const BRANCHES: { emirate: string; branches: Branch[] }[] = [
 
 export const directions = (b: Branch, emirate: string) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Al Musheer ${b.name} ${b.area} ${emirate}`)}`;
+
+/** Sign-up popup with a countdown. Shown once per visitor until closed or joined. */
+export const OFFER = {
+  title: "Limited Time Offer",
+  text: "Sign up to get an exclusive discount on your order.",
+  minutes: 30, // countdown length; it keeps running across page refreshes
+  delaySeconds: 8, // wait before showing (leaving the page on desktop opens it sooner)
+  hideForDays: 3, // after "close", stay hidden this long
+  points: [
+    "Kandura tailoring since 1998",
+    "13 branches across 5 Emirates",
+    "Home tailoring visits at your door",
+    "Finest fabrics, precision fit",
+    "Order easily on WhatsApp",
+  ],
+};
+
+/** Rotating messages in the bar above the header. */
+export const ANNOUNCEMENTS: { icon: string; text: string; href?: string }[] = [
+  { icon: "check", text: "Kandura tailoring since 1998" },
+  { icon: "home", text: "Home tailoring: we come to you", href: "/#home-tailoring" },
+  { icon: "pin", text: "13 branches across 5 Emirates", href: "/branches" },
+  { icon: "whatsapp", text: `Order on WhatsApp ${PHONE_DISPLAY}`, href: WHATSAPP_URL },
+];
