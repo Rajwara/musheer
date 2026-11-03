@@ -28,7 +28,7 @@ export default async function PolicyPage({ params }: Props) {
   return (
     <TextPage title={title}>
       <p className="notice">
-        Draft placeholder. Have Musheer&apos;s adviser approve the final {title.toLowerCase()} before launch.
+        Draft placeholder. Have Al Musheer&apos;s adviser approve the final {title.toLowerCase()} before launch.
       </p>
     </TextPage>
   );

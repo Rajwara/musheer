@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export type Slide = { eyebrow: string; title: string; cta: string; href: string; image: string };
+export type Slide = { eyebrow: string; title: string; text?: string; cta: string; href: string; image: string };
 
 export default function HeroSlider({ slides }: { slides: Slide[] }) {
   const [at, setAt] = useState(0);
@@ -21,6 +21,7 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
           <div key={s.title} hidden={i !== at}>
             <span className="eyebrow">{s.eyebrow}</span>
             <h1 style={{ margin: "14px 0 22px" }}>{s.title}</h1>
+            {s.text && <p className="hero-text">{s.text}</p>}
             <Link className="btn" href={s.href}>
               {s.cta}
             </Link>

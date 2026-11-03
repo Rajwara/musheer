@@ -10,7 +10,9 @@ const nextConfig: NextConfig = {
       legacy("/category-:slug([a-z0-9-]+).html", "/category/:slug"),
       legacy("/product-:slug([a-z0-9-]+).html", "/product/:slug"),
       legacy("/policy-:slug([a-z0-9-]+).html", "/policies/:slug"),
-      legacy("/:page(about|account|cart|contact|journal|search|stores|wishlist).html", "/:page"),
+      legacy("/stores.html", "/branches"),
+      legacy("/stores", "/branches"),
+      legacy("/:page(about|account|cart|contact|journal|search|wishlist).html", "/:page"),
     ];
   },
 };

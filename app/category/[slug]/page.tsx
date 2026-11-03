@@ -14,7 +14,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = getCategory((await params).slug);
-  return c ? { title: c.title, description: `Shop ${c.title} at Musheer.` } : {};
+  return c ? { title: c.title, description: `Shop ${c.title} at Al Musheer.` } : {};
 }
 
 export default async function CategoryPage({ params }: Props) {

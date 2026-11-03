@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/brand";
 import { mainNav } from "@/lib/navigation";
+import Icon from "./Icon";
 import { useStore } from "./StoreProvider";
 
 export default function Header() {
@@ -16,8 +18,9 @@ export default function Header() {
   return (
     <header className="top">
       <div className="wrap">
-        <Link className="logo" href="/">
-          Musheer
+        <Link className="logo" href="/" aria-label="Al Musheer home">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="Al Musheer" width={354} height={593} />
         </Link>
         <nav
           className={open ? "nav open" : "nav"}
@@ -53,6 +56,10 @@ export default function Header() {
           <Link className="icon-search" href="/search" aria-label="Search">
             Find
           </Link>
+          <a className="icon-wa" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Al Musheer">
+            <Icon name="whatsapp" size={17} />
+            <span>{PHONE_DISPLAY}</span>
+          </a>
           <Link className="icon-account" href="/account">
             Account
           </Link>

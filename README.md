@@ -1,6 +1,6 @@
-# Musheer store
+# Al Musheer store
 
-Arabic menswear storefront built with Next.js (App Router, TypeScript). It was converted from the original static HTML template; the design, copy and behaviour are unchanged.
+Online store for Al Musheer, kandura tailoring since 1998, built with Next.js (App Router, TypeScript). The colours come from the Al Musheer logo, and the brand copy is adapted from the store's existing website.
 
 ## Run it
 
@@ -17,10 +17,12 @@ npm run build && npm start
 | `lib/data/products.json` | 76 sample products: name, colour, price, category, options (size, length…), description, related items |
 | `lib/data/categories.json` | 26 categories: title, sidebar group, product order |
 | `lib/data/home.json` | Home page "Best sellers" and "Featured" lists |
+| `lib/brand.ts` | Brand copy, WhatsApp number, social links, stats, services, home-tailoring steps and the **branch list** |
 | `lib/navigation.ts` | Header mega-menu and footer links |
-| `app/` | Routes: `/`, `/category/[slug]`, `/product/[slug]`, `/cart`, `/wishlist`, `/search`, `/policies/[slug]`, `/about`, `/contact`, `/stores`, `/journal`, `/account` |
+| `app/` | Routes: `/`, `/category/[slug]`, `/product/[slug]`, `/cart`, `/wishlist`, `/search`, `/policies/[slug]`, `/about`, `/branches`, `/contact`, `/journal`, `/account` |
 | `components/` | UI; `StoreProvider` keeps the cart and wishlist in `localStorage` |
-| `app/globals.css` | The original stylesheet |
+| `app/globals.css` | Styles; colour tokens (`--primary`, `--navy`, `--accent`…) are at the top |
+| `public/logo.png`, `public/logo-white.png`, `app/icon.png` | Logo for light backgrounds, dark backgrounds, and the favicon |
 | `public/images/` | SVG illustrations for every product view, category tile, hero banner and the story image |
 
 Old static URLs (`product-foo.html`, `category-bar.html`, `cart.html`, …) redirect to the new routes.
@@ -37,4 +39,5 @@ To use real photos, put a photo in `public/` at a path listed in `image-prompts.
 
 ## Before launch
 
-Replace the sample products, prices and text; connect checkout, accounts and the contact form; and finalise the policies.
+- Check the branch names and areas in `lib/brand.ts` and add each branch's phone number (the `phone` field); they were read from a small screenshot of the old site.
+- Replace the sample products and prices; connect checkout, accounts and the contact form; and finalise the policies.

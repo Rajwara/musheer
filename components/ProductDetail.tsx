@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { HOME_VISIT_URL } from "@/lib/brand";
 import { money } from "@/lib/format";
 import type { ProductOption } from "@/lib/types";
 import { useStore } from "./StoreProvider";
@@ -123,11 +124,16 @@ export default function ProductDetail({ slug, name, price, description, options,
           </details>
           <details>
             <summary>Shipping and returns</summary>
-            <p>Add Musheer&apos;s shipping rates, delivery times and return terms.</p>
+            <p>Add Al Musheer&apos;s shipping rates, delivery times and return terms.</p>
           </details>
           <details>
-            <summary>Book a tailor</summary>
-            <p>Add this only if Musheer offers tailoring, with booking steps and prices.</p>
+            <summary>Book a home tailoring visit</summary>
+            <p>
+              Prefer a made-to-measure fit? A tailor can visit your home or majlis with fabrics and take your measurements.{" "}
+              <a href={HOME_VISIT_URL} target="_blank" rel="noopener noreferrer" style={{ borderBottom: "1px solid" }}>
+                Book on WhatsApp
+              </a>
+            </p>
           </details>
         </div>
       </div>
@@ -143,7 +149,7 @@ export default function ProductDetail({ slug, name, price, description, options,
       {sizeGuide && (
         <dialog ref={chartRef}>
           <h3 style={{ marginBottom: 12 }}>Size guide</h3>
-          <p>Replace with Musheer&apos;s measurements.</p>
+          <p>Replace with Al Musheer&apos;s measurements.</p>
           <table>
             <tbody>
               <tr>

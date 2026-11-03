@@ -1,11 +1,13 @@
 import Link from "next/link";
+import { Branches, HomeVisit, Services, Stats, WhoWeAre } from "@/components/BrandSections";
 import HeroSlider, { type Slide } from "@/components/HeroSlider";
 import { ProductGrid } from "@/components/ProductCard";
+import { HERO, HOME_VISIT_URL } from "@/lib/brand";
 import { cards, home } from "@/lib/catalog";
 import { imageSrc } from "@/lib/images";
 
 const slides: Slide[] = [
-  { eyebrow: "Kandura and thobes", title: "Everyday tradition, finely made", cta: "Shop kandura and thobes", href: "/category/kandura-thobes", image: imageSrc("images/hero/hero-adult") },
+  { eyebrow: HERO.eyebrow, title: HERO.title, text: HERO.text, cta: "Shop kanduras", href: "/category/kandura-thobes", image: imageSrc("images/hero/hero-adult") },
   { eyebrow: "Kids clothing", title: "Occasion wear for young gentlemen", cta: "Shop kids clothing", href: "/category/kids-clothing", image: imageSrc("images/hero/hero-kids") },
   { eyebrow: "Outerwear", title: "Warm layers for cooler evenings", cta: "Shop outerwear", href: "/category/kandura-jackets", image: imageSrc("images/hero/hero-winter") },
   { eyebrow: "New arrivals", title: "New season colours", cta: "Shop new arrivals", href: "/category/adult-thobes", image: imageSrc("images/hero/hero-new") },
@@ -22,16 +24,11 @@ const tiles = [
   { slug: "wallets", label: "Wallets" },
 ];
 
-const ribbon = [
-  { title: "Delivery", text: "Add Musheer's delivery times here." },
-  { title: "Returns", text: "Add Musheer's return terms here." },
-  { title: "Support", text: "Add Musheer's contact hours here." },
-];
-
 export default function HomePage() {
   return (
     <>
       <HeroSlider slides={slides} />
+      <Stats />
       <section>
         <div className="wrap">
           <div className="head">
@@ -51,12 +48,18 @@ export default function HomePage() {
       </section>
       <div className="ribbon">
         <div className="wrap">
-          {ribbon.map((r) => (
-            <div key={r.title}>
-              <b>{r.title}</b>
-              <small>{r.text}</small>
-            </div>
-          ))}
+          <a href={HOME_VISIT_URL} target="_blank" rel="noopener noreferrer">
+            <b>Home tailoring</b>
+            <small>We measure you at home or in your majlis.</small>
+          </a>
+          <Link href="/branches">
+            <b>13 branches</b>
+            <small>Across Abu Dhabi, Dubai, Sharjah, Ajman and Ras Al Khaimah.</small>
+          </Link>
+          <Link href="/about">
+            <b>Since 1998</b>
+            <small>A family craft, grown into a national name.</small>
+          </Link>
         </div>
       </div>
       <section>
@@ -68,23 +71,9 @@ export default function HomePage() {
           <ProductGrid products={cards(home.bestSellers)} />
         </div>
       </section>
-      <section style={{ background: "var(--sand)" }}>
-        <div className="wrap story">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={imageSrc("images/content/story")} alt="Tailor measuring fabric" loading="lazy" />
-          <div>
-            <span className="eyebrow">Our story</span>
-            <h2 style={{ margin: "12px 0 16px" }}>Made for how you dress</h2>
-            <p>
-              Replace this with Musheer&apos;s own story: who founded the store, where it began and what makes its
-              garments different.
-            </p>
-            <Link className="btn ghost" href="/about">
-              About Musheer
-            </Link>
-          </div>
-        </div>
-      </section>
+      <WhoWeAre />
+      <Services />
+      <HomeVisit />
       <section>
         <div className="wrap">
           <div className="head">
@@ -93,6 +82,7 @@ export default function HomePage() {
           <ProductGrid products={cards(home.featured)} />
         </div>
       </section>
+      <Branches />
     </>
   );
 }

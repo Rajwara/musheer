@@ -25,6 +25,8 @@ COLOURS = {
     "Black and White": "#2b2b29",
 }
 BRASS = "#a07a3f"
+NAVY = "#0f2537"
+LOGO_BLUE = "#3a8cbc"
 BRASS_LIGHT = "#d3b273"
 INK = "#23261f"
 WOOD = "#8a6844"
@@ -74,7 +76,7 @@ def svg(w, h, defs, body):
             f"<defs>{defs}</defs>{body}</svg>")
 
 
-def studio(w, h, top="#f0e9db", bottom="#e2d7c1", pid="bg"):
+def studio(w, h, top="#eef3f7", bottom="#d6e2ec", pid="bg"):
     defs = (f'<linearGradient id="{pid}" x1="0" y1="0" x2="0" y2="1">'
             f'<stop offset="0" stop-color="{top}"/><stop offset="1" stop-color="{bottom}"/></linearGradient>'
             f'<radialGradient id="{pid}-glow" cx="0.5" cy="0.38" r="0.65">'
@@ -602,13 +604,13 @@ def gift_card(fill, view="front"):
     card = (f'<rect x="-280" y="-176" width="560" height="352" rx="24" fill="{fill}" stroke="#d1c3a3" stroke-width="2.5"/>'
             f'<rect x="-252" y="-148" width="504" height="296" rx="14" fill="none" stroke="{BRASS}" stroke-width="2"/>')
     if view == "back":
-        card += (f'<rect x="-280" y="-120" width="560" height="64" fill="#3f4a36"/>'
+        card += (f'<rect x="-280" y="-120" width="560" height="64" fill="{NAVY}"/>'
                  f'<rect x="-230" y="10" width="300" height="40" rx="4" fill="#fff" stroke="#d1c3a3"/>'
                  f'<path d="M-230 90 H120" stroke="{BRASS}" stroke-width="3"/>')
     else:
-        card += (f'<path d="M-280 70 Q0 10 280 90 V152 Q280 176 256 176 H-256 Q-280 176 -280 152Z" fill="#3f4a36"/>'
-                 f'<text x="0" y="-30" text-anchor="middle" font-family="Georgia,serif" font-size="58" letter-spacing="14" fill="#3f4a36">MUSHEER</text>'
-                 f'<text x="0" y="12" text-anchor="middle" font-family="Georgia,serif" font-size="20" letter-spacing="6" fill="{BRASS}">GIFT CARD</text>')
+        card += (f'<path d="M-280 70 Q0 10 280 90 V152 Q280 176 256 176 H-256 Q-280 176 -280 152Z" fill="{NAVY}"/>'
+                 f'<text x="0" y="-30" text-anchor="middle" font-family="Georgia,serif" font-size="50" letter-spacing="10" fill="{NAVY}">AL MUSHEER</text>'
+                 f'<text x="0" y="12" text-anchor="middle" font-family="Georgia,serif" font-size="20" letter-spacing="6" fill="{LOGO_BLUE}">GIFT CARD</text>')
     if view == "side":
         env = (f'<rect x="-300" y="-150" width="600" height="380" rx="10" fill="#e9dfca" stroke="#cdbfa3" stroke-width="2"/>'
                + f'<path d="M-300 -150 L0 60 L300 -150" fill="none" stroke="#cdbfa3" stroke-width="2"/>')
@@ -716,7 +718,7 @@ def product_art(p, view, pid="p"):
 HANGING = {"kandura-thobes", "adult-thobes", "traditional-kandura", "summer-thobes", "kids-clothing",
            "jalabiya", "arabian-casuals", "faneela", "kandura-jackets", "saderi", "bisht", "trunks-salwar"}
 
-TILE_TONES = [("#efe7d6", "#ddd0b6"), ("#ece6da", "#d6ccb9"), ("#f0e8dc", "#dfd1bd"), ("#e9e3d3", "#d3c8b1")]
+TILE_TONES = [("#eef3f7", "#d6e2ec"), ("#f1f4f7", "#dbe3ea"), ("#edf2f6", "#d2dfe9"), ("#f2f5f8", "#dde5ec")]
 
 
 def rail_scene(items, w, h, rail_y, scale, spacing, cx=None, rail=True, pid="r"):
@@ -784,9 +786,9 @@ def hero_adult(by):
 
 def hero_kids(by):
     W, H = 1600, 900
-    defs = '<linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efe3cb"/><stop offset="1" stop-color="#e1d0b0"/></linearGradient>'
-    body = [f'<rect width="{W}" height="{H}" fill="url(#wall)"/>', f'<rect y="720" width="{W}" height="180" fill="#b89568"/>',
-            f'<path d="M0 720 H{W}" stroke="#9c7b53" stroke-width="6"/>']
+    defs = '<linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#edf2f6"/><stop offset="1" stop-color="#d6e2eb"/></linearGradient>'
+    body = [f'<rect width="{W}" height="{H}" fill="url(#wall)"/>', f'<rect y="720" width="{W}" height="180" fill="#a9bccb"/>',
+            f'<path d="M0 720 H{W}" stroke="#8ea4b6" stroke-width="6"/>']
     items = [(by["boys-round-collar-kandura-white"], "front"), (by["boys-stand-collar-thobe-cream"], "front"),
              (by["boys-occasion-kandura-sand"], "front")]
     d, b = rail_scene(items, W, H, 120, 0.92, 260, cx=680, pid="k")
@@ -816,8 +818,8 @@ def hero_winter(by):
 
 def hero_new(by):
     W, H = 1600, 900
-    defs = '<linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ece4d4"/><stop offset="1" stop-color="#ddd1bb"/></linearGradient>'
-    body = [f'<rect width="{W}" height="{H}" fill="url(#wall)"/>', f'<rect y="790" width="{W}" height="110" fill="#d2c3a6"/>']
+    defs = '<linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaf0f5"/><stop offset="1" stop-color="#d3dfe9"/></linearGradient>'
+    body = [f'<rect width="{W}" height="{H}" fill="url(#wall)"/>', f'<rect y="790" width="{W}" height="110" fill="#bccddb"/>']
     slugs = ["tailored-tasselled-kandura-sand", "formal-cuffed-thobe-olive", "soft-weave-kandura-slate",
              "button-placket-thobe-stone", "heritage-cuff-kandura-taupe"]
     d, b = rail_scene([(by[s], "front") for s in slugs], W, H, 120, 0.66, 220, cx=800, pid="n")
@@ -854,7 +856,7 @@ def story():
     for k in range(7):
         a = k * 0.9
         out.append(f'<path d="M{1020 + 30 * (k % 3 - 1)} {735 + 6 * (k % 2)} l{-10 + k * 4} -38" stroke="#b9bcc0" stroke-width="3"/>'
-                   f'<circle cx="{1020 + 30 * (k % 3 - 1) - 10 + k * 4}" cy="{697 + 6 * (k % 2)}" r="6" fill="{BRASS if k % 2 else "#3f4a36"}"/>')
+                   f'<circle cx="{1020 + 30 * (k % 3 - 1) - 10 + k * 4}" cy="{697 + 6 * (k % 2)}" r="6" fill="{BRASS if k % 2 else NAVY}"/>')
     return svg(W, H, defs, "".join(out))
 
 

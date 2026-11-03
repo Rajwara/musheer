@@ -78,8 +78,9 @@ export const mainNav: NavItem[] = [
       },
     ],
   },
-  { label: "Gift Card", href: "/product/digital-gift-card-ivory" },
-  { label: "Journal", href: "/journal" },
+  { label: "Home Tailoring", href: "/#home-tailoring" },
+  { label: "Branches", href: "/branches" },
+  { label: "About", href: "/about" },
 ];
 
 export const footerNav: Column[] = [
@@ -98,10 +99,11 @@ export const footerNav: Column[] = [
     heading: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "Contact", href: "/contact" },
-      { label: "Stores", href: "/stores" },
+      { label: "Branches", href: "/branches" },
+      { label: "Home Tailoring", href: "/#home-tailoring" },
+      { label: "Gift Card", href: "/product/digital-gift-card-ivory" },
       { label: "Journal", href: "/journal" },
-      { label: "Account", href: "/account" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {
