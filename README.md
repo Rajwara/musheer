@@ -42,6 +42,7 @@ To use real photos, put a photo in `public/` at a path listed in `image-prompts.
 
 - `/test-mock`: the Milano category and features sections, inside the store layout.
 - `/test-mock-2`: the Fieldworn homepage, a complete standalone page. It lives in `app/(mock)/` with its **own root layout**, so none of the store's styles, header or footer load there (their class names overlap). Its placeholder images are mapped to store images in `app/(mock)/test-mock-2/page.tsx`.
+- `/test-mock-3`: the Logotype homepage, also standalone in `app/(mock)/`. It shows grey placeholders until images are uploaded: put a file named after its slot (e.g. `hero-1b.webp`) in `public/images/test-mock-3/` and rebuild. The slot list and sizes are in `public/images/test-mock-3/README.md`.
 
 Because the app now has two root layouts, unmatched URLs are served by `app/global-not-found.tsx` (enabled with `experimental.globalNotFound` in `next.config.ts`). Moving between the store and `/test-mock-2` is a full page load.
 
