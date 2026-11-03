@@ -23,7 +23,8 @@ npm run build && npm start
 | `components/` | UI; `StoreProvider` keeps the cart and wishlist in `localStorage` |
 | `app/globals.css` | Styles; colour tokens (`--primary`, `--navy`, `--accent`…) are at the top |
 | `public/logo.png`, `public/logo-white.png`, `app/icon.png` | Logo for light backgrounds, dark backgrounds, and the favicon |
-| `public/images/` | SVG illustrations for every product view, category tile, hero banner and the story image |
+| `public/images/` | Photos (WebP) in `categories/`, `hero/`, `content/`, `pages/` (page banners) and `community/` (video posters); SVG illustrations are the fallback, and are still used for product views |
+| `public/videos/community/` | The short vertical videos on the home page (540x960 MP4) |
 
 Old static URLs (`product-foo.html`, `category-bar.html`, `cart.html`, …) redirect to the new routes.
 
@@ -41,13 +42,11 @@ To use real photos, put a photo in `public/` at a path listed in `image-prompts.
 
 The home page has a swipeable row of 9:16 videos. Each has the poster's handle, play/pause and mute buttons, and a "Shop the Look" button that lists the products worn. Visible clips autoplay muted, and the row has arrows and a progress bar.
 
-The six clips there now are **samples** made from the store's illustrations, all under the store's own @almusheer handle. To add real customer videos, edit `COMMUNITY` in `lib/brand.ts`:
+It currently shows the store's own craft clips under @almusheer. To add customer videos, edit `COMMUNITY` in `lib/brand.ts`:
 
 1. Put the video in `public/videos/community/` (MP4, H.264, 9:16, ideally under 3 MB) and a poster image in `public/images/community/`.
 2. Add an entry with the customer's handle, the file paths, and the product slugs they are wearing.
 3. Set `verified: true` only for accounts that Instagram has actually verified.
-
-`node scripts/make-community-clips.mjs` rebuilds the sample clips (it needs ffmpeg).
 
 ## Sign-up popup
 
@@ -58,6 +57,5 @@ Sign-ups go to `POST /api/subscribe`. Set the `SUBSCRIBE_WEBHOOK_URL` environmen
 ## Before launch
 
 - Check the branch names and areas in `lib/brand.ts` and add each branch's phone number (the `phone` field); they were read from a small screenshot of the old site.
-- Replace the sample community clips with real customer videos (with their permission).
 - Set `SUBSCRIBE_WEBHOOK_URL` so popup sign-ups are saved, and decide what discount subscribers receive.
 - Replace the sample products and prices; connect checkout, accounts and the contact form; and finalise the policies.

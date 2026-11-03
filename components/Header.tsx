@@ -10,7 +10,7 @@ import MegaMenu from "./MegaMenu";
 import { useStore } from "./StoreProvider";
 
 /** Pages whose first section is a full-bleed hero the header can sit on. */
-const OVERLAY_PAGES = new Set(["/"]);
+const OVERLAY_PAGES = new Set(["/", "/about", "/branches", "/contact", "/journal"]);
 
 export default function Header({ images }: { images: Record<string, string> }) {
   const { cartCount, wishlist } = useStore();

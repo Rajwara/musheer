@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import TextPage from "@/components/TextPage";
+import PageBanner from "@/components/PageBanner";
 
 export const metadata: Metadata = { title: "Journal" };
 
 export default function JournalPage() {
   return (
-    <TextPage title="Journal">
+    <>
+      <PageBanner image="images/pages/journal" eyebrow="Style and care" title="Journal" />
+      <div className="wrap narrow">
       <p>Publish style guides and care articles here. Suggested first topics:</p>
       <ul>
         <li>How to choose a kandura size</li>
@@ -13,6 +15,7 @@ export default function JournalPage() {
         <li>How to care for white garments</li>
         <li>What to wear for Eid</li>
       </ul>
-    </TextPage>
+      </div>
+    </>
   );
 }

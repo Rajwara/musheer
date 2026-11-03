@@ -3,14 +3,16 @@ import Link from "next/link";
 import { Socials } from "@/components/Footer";
 import Icon from "@/components/Icon";
 import PlaceholderForm from "@/components/PlaceholderForm";
-import TextPage from "@/components/TextPage";
+import PageBanner from "@/components/PageBanner";
 import { HOME_VISIT_URL, PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "@/lib/brand";
 
 export const metadata: Metadata = { title: "Contact" };
 
 export default function ContactPage() {
   return (
-    <TextPage title="Contact">
+    <>
+      <PageBanner image="images/pages/contact" eyebrow="We are here to help" title="Contact us" />
+      <div className="wrap narrow">
       <div className="contact-list">
         <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
           <Icon name="whatsapp" /> <span>WhatsApp {PHONE_DISPLAY}</span>
@@ -35,6 +37,7 @@ export default function ContactPage() {
         <textarea rows={5} placeholder="Message" aria-label="Message" required />
         <button className="btn">Send message</button>
       </PlaceholderForm>
-    </TextPage>
+      </div>
+    </>
   );
 }

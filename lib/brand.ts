@@ -165,29 +165,33 @@ export const ANNOUNCEMENTS: { icon: string; text: string; href?: string }[] = [
 ];
 
 /**
- * "From the community" video section on the home page.
- * The entries below are SAMPLE clips made from the store's illustrations
- * (scripts/make-community-clips.mjs). Replace them with real customer videos:
- * put the .mp4 in public/videos/community/, a poster image in
- * public/images/community/, and list the products worn in the clip.
- * Only set `verified: true` for accounts Instagram has actually verified.
+ * Short vertical videos on the home page ("Shop the Look" row).
+ * Files live in public/videos/community/ (MP4, 540x960) with a poster frame of
+ * the same name in public/images/community/. List the products that appear in
+ * each clip. Only set `verified: true` for accounts Instagram has verified.
  */
 export const COMMUNITY = {
-  eyebrow: "From the community",
-  text: "Tag @almusheer on Instagram while wearing Al Musheer to become part of our community showcase.",
+  eyebrow: "Behind the craft",
+  text: "Follow @almusheer on Instagram for more, and tag us wearing Al Musheer to be featured in our community showcase.",
   instagram: "https://www.instagram.com/almusheer",
   clips: [
-    { handle: "@almusheer", video: "/videos/community/look-1.mp4", poster: "images/community/look-1", verified: false,
-      products: ["classic-round-collar-kandura-ivory", "crisp-cotton-ghutra-white", "classic-braided-egal-black", "classic-leather-sandal-brown"] },
-    { handle: "@almusheer", video: "/videos/community/look-2.mp4", poster: "images/community/look-2", verified: false,
-      products: ["occasion-bisht-black", "heritage-tassel-kandura-white", "double-strap-sandal-black"] },
-    { handle: "@almusheer", video: "/videos/community/look-3.mp4", poster: "images/community/look-3", verified: false,
-      products: ["tailored-layering-jacket-charcoal", "wool-blend-shawl-camel"] },
-    { handle: "@almusheer", video: "/videos/community/look-4.mp4", poster: "images/community/look-4", verified: false,
-      products: ["boys-occasion-kandura-sand", "boys-round-collar-kandura-white", "kids-check-shimagh-red-and-white"] },
-    { handle: "@almusheer", video: "/videos/community/look-5.mp4", poster: "images/community/look-5", verified: false,
-      products: ["oud-reserve-eau-de-parfum-amber", "leather-bifold-wallet-brown", "slim-braided-egal-black", "knit-kufi-white"] },
-    { handle: "@almusheer", video: "/videos/community/look-6.mp4", poster: "images/community/look-6", verified: false,
-      products: ["tailored-tasselled-kandura-sand", "classic-check-shimagh-red-and-white", "classic-braided-egal-black"] },
+    { handle: "@almusheer", video: "/videos/community/desert-walk.mp4", poster: "images/community/desert-walk", verified: false,
+      products: ["classic-round-collar-kandura-ivory", "crisp-cotton-ghutra-white", "classic-braided-egal-black"] },
+    { handle: "@almusheer", video: "/videos/community/bisht-trim.mp4", poster: "images/community/bisht-trim", verified: false,
+      products: ["occasion-bisht-black", "formal-trim-bisht-dark-brown", "lightweight-bisht-camel"] },
+    { handle: "@almusheer", video: "/videos/community/perfume-blending.mp4", poster: "images/community/perfume-blending", verified: false,
+      products: ["oud-reserve-eau-de-parfum-amber", "citrus-musk-eau-de-parfum-gold", "rose-amber-eau-de-parfum-rose"] },
+    { handle: "@almusheer", video: "/videos/community/sandal-making.mp4", poster: "images/community/sandal-making", verified: false,
+      products: ["classic-leather-sandal-brown", "hand-stitched-sandal-tan", "double-strap-sandal-black"] },
+    { handle: "@almusheer", video: "/videos/community/shopping-day.mp4", poster: "images/community/shopping-day", verified: false,
+      products: ["heritage-tassel-kandura-white", "plain-everyday-ghutra-white", "digital-gift-card-ivory"] },
+    { handle: "@almusheer", video: "/videos/community/wallet-stitching.mp4", poster: "images/community/wallet-stitching", verified: false,
+      products: ["leather-bifold-wallet-brown", "travel-zip-wallet-dark-brown"] },
+    { handle: "@almusheer", video: "/videos/community/sandal-strap.mp4", poster: "images/community/sandal-strap", verified: false,
+      products: ["hand-stitched-sandal-tan", "kids-leather-sandal-tan"] },
+    { handle: "@almusheer", video: "/videos/community/leather-roll.mp4", poster: "images/community/leather-roll", verified: false,
+      products: ["classic-leather-sandal-brown", "leather-bifold-wallet-brown"] },
+    { handle: "@almusheer", video: "/videos/community/wallet-assembly.mp4", poster: "images/community/wallet-assembly", verified: false,
+      products: ["slim-card-wallet-black", "leather-bifold-wallet-brown"] },
   ],
 };
