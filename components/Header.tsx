@@ -6,12 +6,13 @@ import { useEffect, useRef, useState } from "react";
 import { BRAND, WHATSAPP_URL } from "@/lib/brand";
 import { mainNav } from "@/lib/navigation";
 import Icon from "./Icon";
+import MegaMenu from "./MegaMenu";
 import { useStore } from "./StoreProvider";
 
 /** Pages whose first section is a full-bleed hero the header can sit on. */
 const OVERLAY_PAGES = new Set(["/"]);
 
-export default function Header() {
+export default function Header({ images }: { images: Record<string, string> }) {
   const { cartCount, wishlist } = useStore();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -22,6 +23,9 @@ export default function Header() {
   useEffect(() => {
     setOpen(false);
     setSearching(false);
+    // A clicked menu link keeps focus, which would hold its dropdown open (:focus-within).
+    const el = document.activeElement as HTMLElement | null;
+    if (el?.closest(".site-header")) el.blur();
   }, [pathname]);
 
   useEffect(() => {
@@ -64,22 +68,7 @@ export default function Header() {
                 {item.label}
                 {item.columns && <Icon name="chevron" size={14} />}
               </Link>
-              {item.columns && (
-                <div className="mega">
-                  <div className="mega-inner">
-                    {item.columns.map((col) => (
-                      <div key={col.heading}>
-                        <b>{col.heading}</b>
-                        {col.links.map((l) => (
-                          <Link key={l.href} href={l.href}>
-                            {l.label}
-                          </Link>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+              {item.columns && <MegaMenu item={{ ...item, columns: item.columns }} images={images} />}
             </div>
           ))}
         </nav>

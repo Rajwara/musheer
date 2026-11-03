@@ -6,6 +6,8 @@ import Header from "@/components/Header";
 import { StoreProvider } from "@/components/StoreProvider";
 import OfferPopup from "@/components/OfferPopup";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { categories } from "@/lib/catalog";
+import { imageSrc } from "@/lib/images";
 import "./globals.css";
 
 const serif = Playfair_Display({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-serif" });
@@ -17,13 +19,15 @@ export const metadata: Metadata = {
     "Al Musheer: the UAE's trusted name in kandura textile and tailoring since 1998. Bespoke kanduras, home tailoring visits, headwear, sandals and accessories across 13 branches in 5 Emirates.",
 };
 
+const categoryImages = Object.fromEntries(categories.map((c) => [c.slug, imageSrc(`images/categories/${c.slug}`)]));
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body>
         <StoreProvider>
           <AnnouncementBar />
-          <Header />
+          <Header images={categoryImages} />
           <main>{children}</main>
           <Footer />
           <WhatsAppButton />
