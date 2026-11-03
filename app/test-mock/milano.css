@@ -1,0 +1,89 @@
+/* Scoped to .ml-page so it can be dropped into an existing site */
+body { margin: 0; }
+.ml-page {
+  --ml-bg: #e2dfdc; --ml-ink: #1a1a1a; --ml-grey: #888;
+  position: relative; isolation: isolate; background: var(--ml-bg); color: var(--ml-ink);
+  font-family: var(--font-archivo), "Archivo", sans-serif; font-stretch: 125%;
+}
+.ml-page *, .ml-page *::before, .ml-page *::after { box-sizing: border-box; }
+
+/* Cursor glow: sits behind all content and trails the mouse */
+.ml-glow {
+  position: fixed; left: 0; top: 0; width: 350px; height: 350px; margin: -175px 0 0 -175px;
+  z-index: -1; pointer-events: none; opacity: 0; transition: opacity .4s; will-change: transform;
+  background: radial-gradient(circle, rgba(191,140,78,.85) 0%, rgba(191,140,78,.45) 35%, rgba(191,140,78,0) 70%);
+}
+
+/* ---------- Section 1: categories ---------- */
+.ml-cats { padding: 70px 24px; }
+.ml-cat-row { display: flex; justify-content: space-between; gap: 8px; padding: 99px 0; }
+.ml-cat-col { flex: 1 1 0; min-width: 0; transform: translate3d(0, calc(var(--ml-y, 0) * 1px), 0); will-change: transform; }
+.ml-cat-col:nth-child(even) { transform: translate3d(0, calc(var(--ml-y, 0) * 2px), 0); }
+.ml-cat-card { position: relative; display: block; height: 800px; border-radius: 4px; overflow: hidden; text-decoration: none; }
+.ml-cat-img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ml-cat-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.5); transition: opacity .4s ease; }
+.ml-cat-name {
+  position: absolute; right: 16px; bottom: 72px; margin: 0;
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  font-size: 64px; line-height: 1.2; font-weight: 400; color: #fff; white-space: nowrap;
+  opacity: .7; transition: opacity .4s ease;
+}
+.ml-cat-card:hover .ml-cat-overlay, .ml-cat-card:focus-visible .ml-cat-overlay { opacity: 0; }
+.ml-cat-card:hover .ml-cat-name, .ml-cat-card:focus-visible .ml-cat-name { opacity: 1; }
+
+/* ---------- Section 2: features ---------- */
+.ml-features { max-width: 1350px; margin: 0 auto; padding: 70px 28px 0; }
+.ml-features h2 { margin: 0 0 10px; font-size: 64px; line-height: 1.2; font-weight: 400; }
+.ml-feat-holder { --ml-p: 0; height: 230vh; }
+.ml-feat-sticky { position: sticky; top: 5vh; height: 95vh; padding: 50px 0; }
+.ml-feat-card { display: flex; height: 100%; overflow: hidden; }
+.ml-feat-side { flex: 1 1 50%; min-width: 0; height: 100%; }
+.ml-feat-panel { height: 100%; will-change: transform; }
+/* Left column travels up, right column travels down: they swap in opposite directions */
+.ml-feat-left .ml-feat-panel { transform: translate3d(0, calc(var(--ml-p) * -100%), 0); }
+.ml-feat-right .ml-feat-panel { transform: translate3d(0, calc((var(--ml-p) - 1) * 100%), 0); }
+.ml-feat-text { display: flex; flex-direction: column; justify-content: space-between; padding: 40px; }
+.ml-feat-text.dark { background: var(--ml-ink); color: #fff; }
+.ml-feat-text.dark p { color: var(--ml-grey); }
+.ml-feat-text.light { background: #fff; color: var(--ml-ink); }
+.ml-feat-text h3 { margin: 0; font-size: 36px; line-height: 1.2; font-weight: 400; }
+.ml-feat-text p { margin: 0; font-size: 18px; line-height: 1.4; font-weight: 300; letter-spacing: .7px; }
+.ml-feat-right img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Fade + rise, plays once on entering the viewport */
+.ml-js .ml-fade { opacity: 0; transform: translateY(50px); transition: opacity .9s ease, transform .9s ease; }
+.ml-js .ml-fade.is-in { opacity: 1; transform: none; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991px) {
+  .ml-cat-card { height: 560px; }
+  .ml-cat-name { font-size: 40px; right: 8px; bottom: 40px; }
+  .ml-features h2 { font-size: 44px; }
+  .ml-feat-text h3 { font-size: 28px; }
+  .ml-feat-text p { font-size: 16px; }
+}
+@media (max-width: 767px) {
+  /* Categories become a swipeable strip; parallax is switched off in JS */
+  .ml-cats { padding: 40px 0; }
+  .ml-cat-row { padding: 0 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .ml-cat-row::-webkit-scrollbar { display: none; }
+  .ml-cat-col { flex: 0 0 68vw; scroll-snap-align: center; }
+  .ml-cat-card { height: 440px; }
+  .ml-features { padding: 40px 16px 0; }
+  .ml-features h2 { font-size: 32px; }
+  .ml-feat-sticky { padding: 16px 0; }
+  .ml-feat-card { flex-direction: column; }
+  .ml-feat-side { flex: 0 0 50%; height: 50%; overflow: hidden; }
+  .ml-feat-text { padding: 20px; }
+  .ml-feat-text h3 { font-size: 22px; }
+  .ml-feat-text p { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ml-js .ml-fade { opacity: 1; transform: none; transition: none; }
+  .ml-cat-overlay, .ml-cat-name { transition: none; }
+  .ml-glow { display: none; }
+}
+@media (hover: none) { .ml-glow { display: none; } }
+
+/* Site integration: stop the store's global heading styles leaking in */
+.ml-page h2, .ml-page h3 { font-family: inherit; letter-spacing: normal; }
