@@ -102,7 +102,7 @@ export const footerNav: Column[] = [
       { label: "Branches", href: "/branches" },
       { label: "Home Tailoring", href: "/#home-tailoring" },
       { label: "Gift Card", href: "/product/digital-gift-card-ivory" },
-      { label: "Journal", href: "/journal" },
+      { label: "Blog", href: "/blog" },
       { label: "Contact", href: "/contact" },
     ],
   },

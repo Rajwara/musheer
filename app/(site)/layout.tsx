@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -11,9 +11,10 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { categories } from "@/lib/catalog";
 import { imageSrc } from "@/lib/images";
 import "./globals.css";
+import "./blog-layout.css";
 
-const serif = Playfair_Display({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-serif" });
-const sans = Inter({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-sans" });
+const serif = Plus_Jakarta_Sans({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-serif" });
+const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: { default: "Al Musheer | Kandura Tailoring Since 1998", template: "%s | Al Musheer" },
@@ -26,7 +27,7 @@ const categoryImages = Object.fromEntries(categories.map((c) => [c.slug, imageSr
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
-      <body>
+      <body id="top">
         <StoreProvider>
           <AnnouncementBar />
           <QuickViewProvider>

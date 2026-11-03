@@ -38,6 +38,13 @@ python3 scripts/generate-illustrations.py
 
 To use real photos, put a photo in `public/` at a path listed in `image-prompts.csv` (for example `public/images/hero/hero-adult.jpg`). `.jpg`, `.jpeg`, `.webp` and `.png` all take priority over the `.svg` with the same name. The CSV also has a generation prompt for each image. The lookup runs at build time, so rebuild after adding photos.
 
+## Blog, contact and footer
+
+- **Blog** (`/blog`) and posts (`/blog/<slug>`): content is in `lib/blog.ts` (starter articles written for Al Musheer; edit or replace them). Each post has a title, excerpt, category, date, image and a body made of paragraphs, headings, a quote, lists and figures. Read time is calculated automatically. The featured post is the one with `featured: true`.
+- **Contact** (`/contact`): the form validates, then opens WhatsApp with the message filled in. The map shows every branch from `BRANCHES`.
+- **Footer**: the newsletter box uses the same `/api/subscribe` endpoint as the popup.
+- Layout and styles come from the blog/contact design (`app/(site)/blog-layout.css`, scoped under `.bl`), recoloured to the Al Musheer palette. Fonts across the store: **Plus Jakarta Sans** for headings and **Inter** for text.
+
 ## Test pages
 
 - `/test-mock`: the Milano category and features sections and the "Where we operate" markets section, inside the store layout.

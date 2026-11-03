@@ -14,7 +14,9 @@ const nextConfig: NextConfig = {
       legacy("/policy-:slug([a-z0-9-]+).html", "/policies/:slug"),
       legacy("/stores.html", "/branches"),
       legacy("/stores", "/branches"),
-      legacy("/:page(about|account|cart|contact|journal|search|wishlist).html", "/:page"),
+      legacy("/journal", "/blog"),
+      legacy("/journal.html", "/blog"),
+      legacy("/:page(about|account|cart|contact|search|wishlist).html", "/:page"),
     ];
   },
 };

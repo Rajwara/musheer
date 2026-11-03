@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import Link from "next/link";
 import "./(site)/globals.css";
 
 // Unmatched URLs. The app has two root layouts (the store and the test mock),
 // so this page brings its own <html>, styles and fonts.
-const serif = Playfair_Display({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-serif", preload: false });
-const sans = Inter({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-sans", preload: false });
+const serif = Plus_Jakarta_Sans({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-serif", preload: false });
+const sans = Inter({ subsets: ["latin"], variable: "--font-sans", preload: false });
 
 export const metadata: Metadata = { title: "Page not found | Al Musheer" };
 
