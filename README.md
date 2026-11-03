@@ -19,9 +19,9 @@ npm run build && npm start
 | `lib/data/home.json` | Home page "Best sellers" and "Featured" lists |
 | `lib/brand.ts` | Brand copy, WhatsApp number, social links, stats, services, home-tailoring steps, the **branch list**, announcement-bar messages (`ANNOUNCEMENTS`) and the sign-up popup settings (`OFFER`) |
 | `lib/navigation.ts` | Header mega-menu and footer links |
-| `app/` | Routes: `/`, `/category/[slug]`, `/product/[slug]`, `/cart`, `/wishlist`, `/search`, `/policies/[slug]`, `/about`, `/branches`, `/contact`, `/journal`, `/account` |
+| `app/(site)/` | Store routes (one root layout with the header, footer and `globals.css`): `/`, `/category/[slug]`, `/product/[slug]`, `/cart`, `/wishlist`, `/search`, `/policies/[slug]`, `/about`, `/branches`, `/contact`, `/journal`, `/account` |
 | `components/` | UI; `StoreProvider` keeps the cart and wishlist in `localStorage`, `Motion` holds all GSAP animations, `QuickView` is the product pop-up, `BranchLocator` is the store finder |
-| `app/globals.css` | Styles; colour tokens (`--primary`, `--navy`, `--accent`…) are at the top |
+| `app/(site)/globals.css` | Styles; colour tokens (`--primary`, `--navy`, `--accent`…) are at the top |
 | `public/logo.png`, `public/logo-white.png`, `app/icon.png` | Logo for light backgrounds, dark backgrounds, and the favicon |
 | `public/images/` | Photos (WebP) in `categories/`, `hero/`, `content/`, `pages/` (page banners) and `community/` (video posters); SVG illustrations are the fallback, and are still used for product views |
 | `public/videos/community/` | The short vertical videos on the home page (540x960 MP4) |
@@ -37,6 +37,13 @@ python3 scripts/generate-illustrations.py
 ```
 
 To use real photos, put a photo in `public/` at a path listed in `image-prompts.csv` (for example `public/images/hero/hero-adult.jpg`). `.jpg`, `.jpeg`, `.webp` and `.png` all take priority over the `.svg` with the same name. The CSV also has a generation prompt for each image. The lookup runs at build time, so rebuild after adding photos.
+
+## Test pages
+
+- `/test-mock`: the Milano category and features sections, inside the store layout.
+- `/test-mock-2`: the Fieldworn homepage, a complete standalone page. It lives in `app/(mock)/` with its **own root layout**, so none of the store's styles, header or footer load there (their class names overlap). Its placeholder images are mapped to store images in `app/(mock)/test-mock-2/page.tsx`.
+
+Because the app now has two root layouts, unmatched URLs are served by `app/global-not-found.tsx` (enabled with `experimental.globalNotFound` in `next.config.ts`). Moving between the store and `/test-mock-2` is a full page load.
 
 ## Branch finder
 

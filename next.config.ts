@@ -4,6 +4,8 @@ import type { NextConfig } from "next";
 const legacy = (source: string, destination: string) => ({ source, destination, permanent: true });
 
 const nextConfig: NextConfig = {
+  // Two root layouts (store and test mock) need a shared 404: app/global-not-found.tsx
+  experimental: { globalNotFound: true },
   async redirects() {
     return [
       legacy("/index.html", "/"),
