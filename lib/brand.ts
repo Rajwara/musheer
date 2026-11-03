@@ -100,45 +100,58 @@ export const HOME_VISIT = {
   ],
 };
 
-export type Branch = { name: string; area: string; phone?: string };
+export type Branch = {
+  id: string;
+  name: string;
+  area: string;
+  /** Map position. APPROXIMATE (placed by area); replace with each store's exact pin. */
+  lat: number;
+  lng: number;
+  phone?: string;
+};
 
 /**
  * Branch names and areas as read from the existing website.
- * Check them and add each branch's phone number before launch.
+ * Before launch: check them, add each phone number, and set exact lat/lng
+ * (in Google Maps, right-click the store and copy the coordinates).
+ * A photo at public/images/branches/<id>.webp is shown when the pin is hovered.
  */
 export const BRANCHES: { emirate: string; branches: Branch[] }[] = [
   {
     emirate: "Abu Dhabi",
     branches: [
-      { name: "Al Falah Central Mall", area: "Al Falah" },
-      { name: "Bani Yas Community Market", area: "Bani Yas" },
+      { id: "al-falah-central-mall", name: "Al Falah Central Mall", area: "Al Falah", lat: 24.44, lng: 54.712 },
+      { id: "bani-yas-community-market", name: "Bani Yas Community Market", area: "Bani Yas", lat: 24.312, lng: 54.629 },
     ],
   },
   {
     emirate: "Dubai",
     branches: [
-      { name: "Jumeirah Road", area: "Umm Suqeim 1" },
-      { name: "Umm Suqeim Road", area: "Al Barsha 2" },
-      { name: "Arabian Center", area: "Al Khawaneej" },
-      { name: "Al Mizhar", area: "Al Mizhar 1" },
+      { id: "jumeirah-road", name: "Jumeirah Road", area: "Umm Suqeim 1", lat: 25.155, lng: 55.215 },
+      { id: "umm-suqeim-road", name: "Umm Suqeim Road", area: "Al Barsha 2", lat: 25.104, lng: 55.206 },
+      { id: "arabian-center", name: "Arabian Center", area: "Al Khawaneej", lat: 25.237, lng: 55.437 },
+      { id: "al-mizhar", name: "Al Mizhar", area: "Al Mizhar 1", lat: 25.244, lng: 55.419 },
     ],
   },
   {
     emirate: "Sharjah",
     branches: [
-      { name: "Nasiri Street", area: "Sharjah" },
-      { name: "Al Wahda Street", area: "Bu Daniq" },
-      { name: "University City Road", area: "Muwaileh" },
-      { name: "Sharjah Co-op", area: "Al Qarayen" },
-      { name: "Maliha Road", area: "Sharjah" },
+      { id: "nasiri-street", name: "Nasiri Street", area: "Sharjah", lat: 25.357, lng: 55.398 },
+      { id: "al-wahda-street", name: "Al Wahda Street", area: "Bu Daniq", lat: 25.322, lng: 55.398 },
+      { id: "university-city-road", name: "University City Road", area: "Muwaileh", lat: 25.3, lng: 55.455 },
+      { id: "sharjah-co-op", name: "Sharjah Co-op", area: "Al Qarayen", lat: 25.293, lng: 55.476 },
+      { id: "maliha-road", name: "Maliha Road", area: "Sharjah", lat: 25.262, lng: 55.52 },
     ],
   },
-  { emirate: "Ajman", branches: [{ name: "Sheikh Zayed Street", area: "Ajman" }] },
-  { emirate: "Ras Al Khaimah", branches: [{ name: "Sheikh Mohamed Bin Salem Road", area: "Ras Al Khaimah" }] },
+  { emirate: "Ajman", branches: [{ id: "ajman-sheikh-zayed-street", name: "Sheikh Zayed Street", area: "Ajman", lat: 25.4, lng: 55.48 }] },
+  {
+    emirate: "Ras Al Khaimah",
+    branches: [{ id: "rak-sheikh-mohamed-bin-salem-road", name: "Sheikh Mohamed Bin Salem Road", area: "Ras Al Khaimah", lat: 25.752, lng: 55.965 }],
+  },
 ];
 
-export const directions = (b: Branch, emirate: string) =>
-  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Al Musheer ${b.name} ${b.area} ${emirate}`)}`;
+export const directions = (b: Pick<Branch, "lat" | "lng">, from?: { lat: number; lng: number }) =>
+  `https://www.google.com/maps/dir/?api=1&destination=${b.lat},${b.lng}${from ? `&origin=${from.lat},${from.lng}` : ""}`;
 
 /** Sign-up popup with a countdown. Shown once per visitor until closed or joined. */
 export const OFFER = {

@@ -1,5 +1,6 @@
 "use client";
 
+import Icon from "./Icon";
 import { useStore } from "./StoreProvider";
 
 export default function HeartButton({ slug, name }: { slug: string; name: string }) {
@@ -13,7 +14,7 @@ export default function HeartButton({ slug, name }: { slug: string; name: string
       aria-pressed={on}
       onClick={() => toggleWish(slug)}
     >
-      {on ? "♥" : "♡"}
+      <Icon name="heart" size={18} />
     </button>
   );
 }

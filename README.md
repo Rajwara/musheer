@@ -20,7 +20,7 @@ npm run build && npm start
 | `lib/brand.ts` | Brand copy, WhatsApp number, social links, stats, services, home-tailoring steps, the **branch list**, announcement-bar messages (`ANNOUNCEMENTS`) and the sign-up popup settings (`OFFER`) |
 | `lib/navigation.ts` | Header mega-menu and footer links |
 | `app/` | Routes: `/`, `/category/[slug]`, `/product/[slug]`, `/cart`, `/wishlist`, `/search`, `/policies/[slug]`, `/about`, `/branches`, `/contact`, `/journal`, `/account` |
-| `components/` | UI; `StoreProvider` keeps the cart and wishlist in `localStorage` |
+| `components/` | UI; `StoreProvider` keeps the cart and wishlist in `localStorage`, `Motion` holds all GSAP animations, `QuickView` is the product pop-up, `BranchLocator` is the store finder |
 | `app/globals.css` | Styles; colour tokens (`--primary`, `--navy`, `--accent`…) are at the top |
 | `public/logo.png`, `public/logo-white.png`, `app/icon.png` | Logo for light backgrounds, dark backgrounds, and the favicon |
 | `public/images/` | Photos (WebP) in `categories/`, `hero/`, `content/`, `pages/` (page banners) and `community/` (video posters); SVG illustrations are the fallback, and are still used for product views |
@@ -37,6 +37,18 @@ python3 scripts/generate-illustrations.py
 ```
 
 To use real photos, put a photo in `public/` at a path listed in `image-prompts.csv` (for example `public/images/hero/hero-adult.jpg`). `.jpg`, `.jpeg`, `.webp` and `.png` all take priority over the `.svg` with the same name. The CSV also has a generation prompt for each image. The lookup runs at build time, so rebuild after adding photos.
+
+## Branch finder
+
+The Branches page has a map with a pin per branch, a search box (area or city, e.g. "Mirdif"), "Use my location", and the nearest branches listed with distances and **Get directions** links. Hovering a pin shows a photo of that branch.
+
+- Branch details live in `BRANCHES` in `lib/brand.ts`. The `lat`/`lng` values are **approximate** (placed by area); set each store's exact coordinates before launch (in Google Maps, right-click the store and copy the numbers).
+- Add a photo per branch at `public/images/branches/<id>.webp` (the `id` is in the same list). Until then the hover card shows one of the store photos.
+- Common UAE areas resolve instantly from `lib/places.ts`; anything else is looked up with OpenStreetMap's free search. The map uses CARTO's free basemap; keep the attribution.
+
+## Animations
+
+All motion is in `components/Motion.tsx` (GSAP + ScrollTrigger): hero intro and parallax, section reveals, staggered product cards, wipe-in category tiles and images, counting stats. It switches off automatically for visitors who prefer reduced motion.
 
 ## Video testimonials ("From the community")
 

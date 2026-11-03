@@ -4,7 +4,9 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { StoreProvider } from "@/components/StoreProvider";
+import Motion from "@/components/Motion";
 import OfferPopup from "@/components/OfferPopup";
+import { QuickViewProvider } from "@/components/QuickView";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { categories } from "@/lib/catalog";
 import { imageSrc } from "@/lib/images";
@@ -27,11 +29,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <StoreProvider>
           <AnnouncementBar />
-          <Header images={categoryImages} />
-          <main>{children}</main>
-          <Footer />
-          <WhatsAppButton />
-          <OfferPopup />
+          <QuickViewProvider>
+            <Header images={categoryImages} />
+            <main>{children}</main>
+            <Footer />
+            <WhatsAppButton />
+            <OfferPopup />
+          </QuickViewProvider>
+          <Motion />
         </StoreProvider>
       </body>
     </html>

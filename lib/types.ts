@@ -28,8 +28,13 @@ export type CardProduct = {
   name: string;
   colour: string;
   category: string;
+  categorySlug: string;
   price: number;
   image: string;
+  /** front, side and back views; the second is shown on hover */
+  images: string[];
+  badge?: string;
+  options: ProductOption[];
 };
 
 export type CartLine = { slug: string; options: string; qty: number };

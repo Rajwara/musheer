@@ -1,13 +1,27 @@
 import type { Metadata } from "next";
-import { Branches, HomeVisit } from "@/components/BrandSections";
+import BranchLocator, { type LocatorBranch } from "@/components/BranchLocator";
+import { HomeVisit } from "@/components/BrandSections";
 import PageBanner from "@/components/PageBanner";
+import { BRANCHES } from "@/lib/brand";
+import { imageSrc } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Branches",
-  description: "Find an Al Musheer branch: 13 kandura tailoring stores across Abu Dhabi, Dubai, Sharjah, Ajman and Ras Al Khaimah.",
+  description: "Find your nearest Al Musheer branch: 13 kandura tailoring stores across Abu Dhabi, Dubai, Sharjah, Ajman and Ras Al Khaimah.",
 };
 
+// Shown on hover until a photo of the branch itself is added at public/images/branches/<id>.webp.
+const FALLBACKS = ["images/pages/branches", "images/pages/about", "images/hero/hero-new", "images/pages/contact", "images/content/story"];
+
 export default function BranchesPage() {
+  let i = 0;
+  const branches: LocatorBranch[] = BRANCHES.flatMap((e) =>
+    e.branches.map((b) => {
+      const own = imageSrc(`images/branches/${b.id}`);
+      const image = own.endsWith(".svg") ? imageSrc(FALLBACKS[i++ % FALLBACKS.length]) : own;
+      return { ...b, emirate: e.emirate, image };
+    }),
+  );
   return (
     <>
       <PageBanner
@@ -16,7 +30,7 @@ export default function BranchesPage() {
         title="Our branches"
         text="Visit any of our branches across the Emirates to choose fabrics and be measured, or book a tailor to come to you."
       />
-      <Branches />
+      <BranchLocator branches={branches} />
       <HomeVisit />
     </>
   );

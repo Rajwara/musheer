@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { Branches, HomeVisit, Services, Stats, WhoWeAre } from "@/components/BrandSections";
+import { HomeVisit, Services, Stats, WhoWeAre } from "@/components/BrandSections";
+import Marquee from "@/components/Marquee";
 import CommunityVideos from "@/components/CommunityVideos";
 import HeroSlider, { type Slide } from "@/components/HeroSlider";
 import { ProductGrid } from "@/components/ProductCard";
 import { COMMUNITY, HERO, HOME_VISIT_URL } from "@/lib/brand";
-import { cards, home } from "@/lib/catalog";
+import { cards, getCategory, home } from "@/lib/catalog";
 import { imageSrc } from "@/lib/images";
 
 const slides: Slide[] = [
@@ -31,6 +32,7 @@ export default function HomePage() {
     <>
       <HeroSlider slides={slides} />
       <Stats />
+      <Marquee />
       <section>
         <div className="wrap">
           <div className="head">
@@ -38,13 +40,22 @@ export default function HomePage() {
             <Link href="/category/kandura-thobes">View all</Link>
           </div>
           <div className="mosaic">
-            {tiles.map((t) => (
-              <Link className="tile" key={t.slug} href={`/category/${t.slug}`}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={imageSrc(`images/categories/${t.slug}`)} alt={t.label} loading="lazy" />
-                <span>{t.label}</span>
-              </Link>
-            ))}
+            {tiles.map((t) => {
+              const count = getCategory(t.slug)?.products.length ?? 0;
+              return (
+                <Link className="tile" key={t.slug} href={`/category/${t.slug}`}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={imageSrc(`images/categories/${t.slug}`)} alt="" loading="lazy" />
+                  <span className="tile-caption">
+                    <small>{count} {count === 1 ? "style" : "styles"}</small>
+                    <b>{t.label}</b>
+                    <span className="tile-cta">
+                      Shop now <span aria-hidden="true">→</span>
+                    </span>
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -85,7 +96,6 @@ export default function HomePage() {
         </div>
       </section>
       <CommunityVideos eyebrow={COMMUNITY.eyebrow} text={COMMUNITY.text} instagram={COMMUNITY.instagram} clips={clips} />
-      <Branches />
     </>
   );
 }

@@ -76,7 +76,7 @@ def svg(w, h, defs, body):
             f"<defs>{defs}</defs>{body}</svg>")
 
 
-def studio(w, h, top="#eef3f7", bottom="#d6e2ec", pid="bg"):
+def studio(w, h, top="#f4ede1", bottom="#e3d4bd", pid="bg"):
     defs = (f'<linearGradient id="{pid}" x1="0" y1="0" x2="0" y2="1">'
             f'<stop offset="0" stop-color="{top}"/><stop offset="1" stop-color="{bottom}"/></linearGradient>'
             f'<radialGradient id="{pid}-glow" cx="0.5" cy="0.38" r="0.65">'
@@ -718,7 +718,7 @@ def product_art(p, view, pid="p"):
 HANGING = {"kandura-thobes", "adult-thobes", "traditional-kandura", "summer-thobes", "kids-clothing",
            "jalabiya", "arabian-casuals", "faneela", "kandura-jackets", "saderi", "bisht", "trunks-salwar"}
 
-TILE_TONES = [("#eef3f7", "#d6e2ec"), ("#f1f4f7", "#dbe3ea"), ("#edf2f6", "#d2dfe9"), ("#f2f5f8", "#dde5ec")]
+TILE_TONES = [("#f4ede1", "#e3d4bd"), ("#f2ebdf", "#dfcfb6"), ("#f5efe5", "#e6d9c4"), ("#f1e9dc", "#ddcbb0")]
 
 
 def rail_scene(items, w, h, rail_y, scale, spacing, cx=None, rail=True, pid="r"):

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  BRANCHES,
   HOME_VISIT,
   HOME_VISIT_URL,
   PHONE_DISPLAY,
@@ -9,7 +8,6 @@ import {
   STATS,
   STORY,
   WHO_WE_ARE,
-  directions,
 } from "@/lib/brand";
 import { imageSrc } from "@/lib/images";
 import Icon from "./Icon";
@@ -131,46 +129,6 @@ export function HomeVisit() {
           <p className="small-note">
             Or call or WhatsApp us directly at <a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a>
           </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function Branches() {
-  const total = BRANCHES.reduce((n, e) => n + e.branches.length, 0);
-  return (
-    <section className="dark deep" id="branches">
-      <div className="wrap">
-        <div className="center-head light">
-          <span className="rule" aria-hidden="true" />
-          <b className="big-number">{total}</b>
-          <span className="eyebrow">Branches across {BRANCHES.length} Emirates</span>
-        </div>
-        <div className="branches">
-          {BRANCHES.map((e) => (
-            <div className="emirate" key={e.emirate}>
-              <h3>
-                {e.emirate} <small>{String(e.branches.length).padStart(2, "0")}</small>
-              </h3>
-              {e.branches.map((b) => (
-                <div className="branch" key={b.name}>
-                  <b>{b.name}</b>
-                  <small>{b.area}</small>
-                  <span>
-                    {b.phone && (
-                      <>
-                        <a href={`tel:${b.phone.replace(/\s/g, "")}`}>{b.phone}</a> ·{" "}
-                      </>
-                    )}
-                    <a href={directions(b, e.emirate)} target="_blank" rel="noopener noreferrer">
-                      Get directions
-                    </a>
-                  </span>
-                </div>
-              ))}
-            </div>
-          ))}
         </div>
       </div>
     </section>
