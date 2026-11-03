@@ -163,3 +163,31 @@ export const ANNOUNCEMENTS: { icon: string; text: string; href?: string }[] = [
   { icon: "pin", text: "13 branches across 5 Emirates", href: "/branches" },
   { icon: "whatsapp", text: `Order on WhatsApp ${PHONE_DISPLAY}`, href: WHATSAPP_URL },
 ];
+
+/**
+ * "From the community" video section on the home page.
+ * The entries below are SAMPLE clips made from the store's illustrations
+ * (scripts/make-community-clips.mjs). Replace them with real customer videos:
+ * put the .mp4 in public/videos/community/, a poster image in
+ * public/images/community/, and list the products worn in the clip.
+ * Only set `verified: true` for accounts Instagram has actually verified.
+ */
+export const COMMUNITY = {
+  eyebrow: "From the community",
+  text: "Tag @almusheer on Instagram while wearing Al Musheer to become part of our community showcase.",
+  instagram: "https://www.instagram.com/almusheer",
+  clips: [
+    { handle: "@almusheer", video: "/videos/community/look-1.mp4", poster: "images/community/look-1", verified: false,
+      products: ["classic-round-collar-kandura-ivory", "crisp-cotton-ghutra-white", "classic-braided-egal-black", "classic-leather-sandal-brown"] },
+    { handle: "@almusheer", video: "/videos/community/look-2.mp4", poster: "images/community/look-2", verified: false,
+      products: ["occasion-bisht-black", "heritage-tassel-kandura-white", "double-strap-sandal-black"] },
+    { handle: "@almusheer", video: "/videos/community/look-3.mp4", poster: "images/community/look-3", verified: false,
+      products: ["tailored-layering-jacket-charcoal", "wool-blend-shawl-camel"] },
+    { handle: "@almusheer", video: "/videos/community/look-4.mp4", poster: "images/community/look-4", verified: false,
+      products: ["boys-occasion-kandura-sand", "boys-round-collar-kandura-white", "kids-check-shimagh-red-and-white"] },
+    { handle: "@almusheer", video: "/videos/community/look-5.mp4", poster: "images/community/look-5", verified: false,
+      products: ["oud-reserve-eau-de-parfum-amber", "leather-bifold-wallet-brown", "slim-braided-egal-black", "knit-kufi-white"] },
+    { handle: "@almusheer", video: "/videos/community/look-6.mp4", poster: "images/community/look-6", verified: false,
+      products: ["tailored-tasselled-kandura-sand", "classic-check-shimagh-red-and-white", "classic-braided-egal-black"] },
+  ],
+};

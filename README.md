@@ -37,6 +37,18 @@ python3 scripts/generate-illustrations.py
 
 To use real photos, put a photo in `public/` at a path listed in `image-prompts.csv` (for example `public/images/hero/hero-adult.jpg`). `.jpg`, `.jpeg`, `.webp` and `.png` all take priority over the `.svg` with the same name. The CSV also has a generation prompt for each image. The lookup runs at build time, so rebuild after adding photos.
 
+## Video testimonials ("From the community")
+
+The home page has a swipeable row of 9:16 videos. Each has the poster's handle, play/pause and mute buttons, and a "Shop the Look" button that lists the products worn. Visible clips autoplay muted, and the row has arrows and a progress bar.
+
+The six clips there now are **samples** made from the store's illustrations, all under the store's own @almusheer handle. To add real customer videos, edit `COMMUNITY` in `lib/brand.ts`:
+
+1. Put the video in `public/videos/community/` (MP4, H.264, 9:16, ideally under 3 MB) and a poster image in `public/images/community/`.
+2. Add an entry with the customer's handle, the file paths, and the product slugs they are wearing.
+3. Set `verified: true` only for accounts that Instagram has actually verified.
+
+`node scripts/make-community-clips.mjs` rebuilds the sample clips (it needs ffmpeg).
+
 ## Sign-up popup
 
 A "Limited Time Offer" popup asks visitors for their email. It opens 8 seconds after arrival (or sooner when a desktop visitor moves to leave), shows a 30-minute countdown that survives refreshes, and stays hidden for 3 days after it is closed, or for good once someone signs up. Change the wording, timings and the trust points in `OFFER` in `lib/brand.ts`.
@@ -46,5 +58,6 @@ Sign-ups go to `POST /api/subscribe`. Set the `SUBSCRIBE_WEBHOOK_URL` environmen
 ## Before launch
 
 - Check the branch names and areas in `lib/brand.ts` and add each branch's phone number (the `phone` field); they were read from a small screenshot of the old site.
+- Replace the sample community clips with real customer videos (with their permission).
 - Set `SUBSCRIBE_WEBHOOK_URL` so popup sign-ups are saved, and decide what discount subscribers receive.
 - Replace the sample products and prices; connect checkout, accounts and the contact form; and finalise the policies.

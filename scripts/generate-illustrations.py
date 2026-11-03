@@ -862,6 +862,64 @@ def story():
     return svg(W, H, defs, "".join(out))
 
 
+
+# ---------------------------------------------------------------- community looks (9:16)
+def _look(by, bg, items, floor=None, extra=""):
+    """Portrait 720x1280 scene; items are (slug, view, x, y, scale)."""
+    W, H = 720, 1280
+    defs, body = [], [bg]
+    if floor:
+        body.append(floor)
+    body.append(extra)
+    for i, (slug, view, x, y, s) in enumerate(items):
+        d, b = product_art(by[slug], view, f"l{i}")
+        defs.append(d)
+        body.append(g(b, x - 400 * s, y, s))
+    return svg(W, H, "".join(defs), "".join(body))
+
+
+def community_looks(by):
+    W, H = 720, 1280
+    wall = lambda a, b: (f'<defs><linearGradient id="lw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{a}"/>'
+                         f'<stop offset="1" stop-color="{b}"/></linearGradient></defs><rect width="{W}" height="{H}" fill="url(#lw)"/>')
+    looks = []
+    # 1. courtyard: ivory kandura, ghutra, egal, sandals
+    looks.append(_look(by, wall("#e9dcc2", "#d8c6a4"),
+        [("classic-round-collar-kandura-ivory", "front", 360, 110, 0.92),
+         ("crisp-cotton-ghutra-white", "front", 175, 40, 0.3), ("classic-braided-egal-black", "front", 545, 20, 0.3),
+         ("classic-leather-sandal-brown", "front", 360, 860, 0.42)],
+        floor=f'<rect y="1000" width="{W}" height="280" fill="#cbb48c"/>',
+        extra=arches(W, 1000, 2, 300, "#c4ad84", "#f6ead0")))
+    # 2. dusk dunes: black bisht over a white kandura
+    looks.append(_look(by, wall("#7c7686", "#e0b48a") +
+        f'<path d="M0 880 Q240 800 460 860 T720 840 V1280 H0Z" fill="#c79a6c"/><path d="M0 1010 Q300 930 720 990 V1280 H0Z" fill="#a8794c"/>'
+        '<circle cx="560" cy="720" r="60" fill="#f6dcb0" opacity="0.9"/>',
+        [("heritage-tassel-kandura-white", "front", 360, 140, 0.9), ("occasion-bisht-black", "front", 360, 120, 0.94),
+         ("double-strap-sandal-black", "side", 560, 870, 0.36)]))
+    # 3. majlis: layering jacket and camel shawl
+    looks.append(_look(by, wall("#1d3a54", "#0f2537") +
+        f'<rect y="960" width="{W}" height="320" fill="#7a2f2c"/><path d="M0 960 H{W}" stroke="#a07a3f" stroke-width="8"/>'
+        + "".join(f'<rect x="{40 + i * 230}" y="880" width="190" height="120" rx="24" fill="#93403c" stroke="#6a2623" stroke-width="3"/>' for i in range(3)),
+        [("tailored-layering-jacket-charcoal", "front", 270, 120, 0.82), ("wool-blend-shawl-camel", "front", 520, 140, 0.62)]))
+    # 4. kids: occasion kandura and kids shimagh
+    looks.append(_look(by, wall("#edf2f6", "#d3dfe9"),
+        [("boys-occasion-kandura-sand", "front", 260, 200, 0.9), ("boys-round-collar-kandura-white", "front", 480, 230, 0.86),
+         ("kids-check-shimagh-red-and-white", "side", 360, 860, 0.6)],
+        floor=f'<rect y="1040" width="{W}" height="240" fill="#bccddb"/>'))
+    # 5. flat lay on wood: oud, wallet, egal, prayer cap
+    wood = (f'<rect width="{W}" height="{H}" fill="#8f6a46"/>'
+            + "".join(f'<path d="M0 {y} Q360 {y + 14} 720 {y - 8}" stroke="#6b4c31" stroke-width="2" opacity="0.3" fill="none"/>' for y in range(40, 1280, 90)))
+    looks.append(_look(by, wood,
+        [("oud-reserve-eau-de-parfum-amber", "front", 230, 60, 0.7), ("leather-bifold-wallet-brown", "front", 500, 300, 0.62),
+         ("slim-braided-egal-black", "front", 260, 600, 0.6), ("knit-kufi-white", "front", 510, 640, 0.55)]))
+    # 6. shimagh look: sand kandura with red check shimagh
+    looks.append(_look(by, wall("#e6eef5", "#c9d9e6"),
+        [("tailored-tasselled-kandura-sand", "front", 360, 190, 0.88), ("classic-check-shimagh-red-and-white", "front", 360, -30, 0.42),
+         ("classic-braided-egal-black", "front", 360, -40, 0.28)],
+        floor=f'<rect y="1060" width="{W}" height="220" fill="#b3c6d6"/>'))
+    return looks
+
+
 # ---------------------------------------------------------------- main
 def write(rel, content):
     path = os.path.join(OUT, rel)
@@ -893,6 +951,9 @@ def main():
     write("hero/hero-winter.svg", hero_winter(by))
     write("hero/hero-new.svg", hero_new(by))
     write("content/story.svg", story())
+    for i, look in enumerate(community_looks(by), 1):
+        write(f"community/look-{i}.svg", look)
+        n += 1
     print(f"wrote {n + 5} illustrations to {os.path.relpath(OUT, ROOT)}")
 
 

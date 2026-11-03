@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { Branches, HomeVisit, Services, Stats, WhoWeAre } from "@/components/BrandSections";
+import CommunityVideos from "@/components/CommunityVideos";
 import HeroSlider, { type Slide } from "@/components/HeroSlider";
 import { ProductGrid } from "@/components/ProductCard";
-import { HERO, HOME_VISIT_URL } from "@/lib/brand";
+import { COMMUNITY, HERO, HOME_VISIT_URL } from "@/lib/brand";
 import { cards, home } from "@/lib/catalog";
 import { imageSrc } from "@/lib/images";
 
@@ -25,6 +26,7 @@ const tiles = [
 ];
 
 export default function HomePage() {
+  const clips = COMMUNITY.clips.map((c) => ({ ...c, poster: imageSrc(c.poster), products: cards(c.products) }));
   return (
     <>
       <HeroSlider slides={slides} />
@@ -82,6 +84,7 @@ export default function HomePage() {
           <ProductGrid products={cards(home.featured)} />
         </div>
       </section>
+      <CommunityVideos eyebrow={COMMUNITY.eyebrow} text={COMMUNITY.text} instagram={COMMUNITY.instagram} clips={clips} />
       <Branches />
     </>
   );

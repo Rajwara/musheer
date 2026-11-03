@@ -52,6 +52,13 @@ const PATHS: Record<string, React.ReactNode> = {
   right: <path d="m9 6 6 6-6 6" />,
   menu: <path d="M4 7h16M4 12h16M4 17h16" />,
   close: <path d="M6 6l12 12M18 6 6 18" />,
+  play: <path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor" stroke="none" />,
+  pause: <path d="M8 5v14M16 5v14" strokeWidth="3" />,
+  sound: <path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4Z M15.5 9a4 4 0 0 1 0 6 M18 6.5a7.5 7.5 0 0 1 0 11" />,
+  muted: <path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4Z M16 9.5l5 5M21 9.5l-5 5" />,
+  arrowLeft: <path d="M19 12H5m6-6-6 6 6 6" />,
+  arrowRight: <path d="M5 12h14m-6-6 6 6-6 6" />,
+  verified: <path d="M12 2.5 14.4 4.3l3-.2.9 2.9 2.5 1.7-1 2.8 1 2.8-2.5 1.7-.9 2.9-3-.2L12 21.5l-2.4-1.8-3 .2-.9-2.9-2.5-1.7 1-2.8-1-2.8 2.5-1.7.9-2.9 3 .2Z" fill="currentColor" stroke="none" />,
   phone: (
     <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" />
   ),
