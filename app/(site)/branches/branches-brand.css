@@ -105,3 +105,4 @@
 .fwb .fw .banner-in.bar { display: block; height: auto; min-height: 88px; }
 @media (max-width: 767px) { .fwb .fw .banner-in.bar { min-height: 72px; } }
 .fwb .fw .banner-in.bar { padding: 0; border-bottom: 0; margin-bottom: 0; color: #fff; gap: normal; }
+.fwb .page-banner { width: auto; }
