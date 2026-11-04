@@ -219,7 +219,7 @@ export default function BranchGlobe({ branches, emirates }: { branches: GlobeBra
                   </>
                 ) : (
                   <span className="bg-search-empty">
-                    No branch found for “{query}”. Try an area such as Mirdif, or <a href="#branches">use the full finder</a>.
+                    No branch found for “{query}”. Try an area such as Mirdif, or <a href="/contact#branches">use the full branch finder</a>.
                   </span>
                 )}
               </div>

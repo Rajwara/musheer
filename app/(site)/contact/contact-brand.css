@@ -11,8 +11,5 @@
 .fwb .bl .field input:focus, .fwb .bl .field select:focus, .fwb .bl .field textarea:focus { border-color: #000; box-shadow: 0 0 0 3px rgba(0,0,0,.08); }
 .fwb .bl .form-privacy .icon { color: #000; }
 .fwb .bl .form-status { background: #fff; border: 1px solid var(--line); }
-.fwb .bl .map-card h3 { font-family: var(--fw-display); font-weight: 500; text-transform: uppercase; letter-spacing: -.04em; font-size: 40px; line-height: 1.05; }
-.fwb .bl .map-hours .icon { color: #000; }
-.fwb .bl .map-wrap { background: #e9e9e9; }
 .fwb .bl .pin svg path { fill: #000; }
 .fwb .bl .pin-icon:hover .pin svg path { fill: #3c3c3c; }

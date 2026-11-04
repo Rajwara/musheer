@@ -58,3 +58,29 @@
   .fw-overlay .page-banner h1 { font-size: clamp(64px, 20vw, 96px); }
   .fw-overlay .page-banner-copy { padding-bottom: 32px; }
 }
+
+/* ---- Branch finder ("Find your nearest branch", on Contact) ---- */
+.fwb .locator { border-bottom: 0; }
+.fwb .locator-panel { background: var(--fw-white); }
+.fwb .locator-panel h2 { font-size: clamp(38px, 3.6vw, 56px); margin: 6px 0 22px; }
+.fwb .locator-search { border-radius: 99px; border-color: var(--fw-line); background: var(--fw-grey); padding: 4px 4px 4px 18px; }
+.fwb .locator-search:focus-within { border-color: var(--fw-black); }
+.fwb .locator-search .btn { padding: 10px 20px; }
+.fwb .link-btn { color: var(--fw-black); font-weight: 500; }
+.fwb .locator-status { color: var(--fw-muted); }
+.fwb .locator-list { border-color: var(--fw-line); }
+.fwb .locator-list li { border-color: var(--fw-line); border-radius: var(--fw-radius); }
+.fwb .locator-list li.on { background: var(--fw-grey); }
+.fwb .locator-n { background: var(--fw-black); }
+.fwb .locator-list li.on .locator-n { background: var(--fw-black); box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--fw-black); }
+.fwb .locator-item b { font-weight: 500; letter-spacing: -.02em; }
+.fwb .locator-dist em { color: var(--fw-black); font-family: var(--fw-display); font-size: 12px; letter-spacing: .04em; }
+.fwb .locator-map { border-radius: var(--fw-radius); overflow: hidden; margin: 12px 12px 12px 0; background: #e9e9e9; }
+.fwb .pin svg path { fill: var(--fw-black); }
+.fwb .pin-icon.on .pin svg path, .fwb .pin-icon:hover .pin svg path { fill: #3c3c3c; }
+.fwb .origin-icon span { background: var(--fw-black); box-shadow: 0 0 0 7px rgba(0,0,0,.18); }
+.fwb .pin-card { border-radius: var(--fw-radius); overflow: hidden; }
+.fwb .pin-card b { font-family: var(--fw-body); font-weight: 500; letter-spacing: -.02em; }
+.fwb .leaflet-container { font-family: var(--fw-body); }
+@media (max-width: 900px) { .fwb .locator-map { margin: 0 12px; } }
+

@@ -3,10 +3,11 @@ import FieldwornShell from "@/components/FieldwornShell";
 import "../blog/blog-brand.css";
 import "./contact-brand.css";
 import Link from "next/link";
-import BranchesMap from "@/components/blog/BranchesMap";
+import BranchLocator from "@/components/BranchLocator";
 import ContactForm from "@/components/blog/ContactForm";
 import DIcon, { type IconName } from "@/components/blog/Icons";
-import { BRANCHES, HOME_VISIT_URL, PHONE_DISPLAY, PHONE_TEL, SOCIALS, WHATSAPP_URL } from "@/lib/brand";
+import { locatorBranches } from "@/lib/branch-list";
+import { HOME_VISIT_URL, PHONE_DISPLAY, PHONE_TEL, SOCIALS, WHATSAPP_URL } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -16,7 +17,6 @@ export const metadata: Metadata = {
 const SOCIAL_ICON: Record<string, IconName> = { instagram: "instagram", tiktok: "tiktok", whatsapp: "whatsapp" };
 
 export default function ContactPage() {
-  const pins = BRANCHES.flatMap((e) => e.branches.map((b) => ({ name: b.name, area: b.area, lat: b.lat, lng: b.lng })));
   const rows: { icon: IconName; label: string; value: string; href?: string; external?: boolean }[] = [
     { icon: "whatsapp", label: "WhatsApp us", value: PHONE_DISPLAY, href: WHATSAPP_URL, external: true },
     { icon: "phone", label: "Call us", value: PHONE_DISPLAY, href: `tel:${PHONE_TEL}` },
@@ -79,29 +79,8 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
-      <section className="section section-tight-top">
-        <div className="container">
-          <div className="map-wrap">
-            <div className="map-slot">
-              <BranchesMap pins={pins} />
-            </div>
-            <div className="map-card">
-              <span className="eyebrow eyebrow-dot">Visit us</span>
-              <h3>13 branches across the UAE</h3>
-              <p>Abu Dhabi, Dubai, Sharjah, Ajman and Ras Al Khaimah. Find the one nearest you.</p>
-              <div className="map-hours">
-                <DIcon name="clock" />
-                Home tailoring visits by appointment
-              </div>
-              <Link className="btn" href="/branches">
-                Find a branch <DIcon name="upRight" small />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
+      <BranchLocator branches={locatorBranches()} />
     </FieldwornShell>
   );
 }
