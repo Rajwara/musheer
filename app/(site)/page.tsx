@@ -5,9 +5,10 @@ import CommunityVideos from "@/components/CommunityVideos";
 import HeroSlider, { type Slide } from "@/components/HeroSlider";
 import MostWanted from "@/components/home/MostWanted";
 import FindYourFit from "@/components/home/FindYourFit";
+import FeaturedLooks, { type Look } from "@/components/home/FeaturedLooks";
 import { ProductGrid } from "@/components/ProductCard";
 import { COMMUNITY, HERO, HOME_VISIT_URL } from "@/lib/brand";
-import { cards, getCategory, home } from "@/lib/catalog";
+import { cards, getCategory, getProduct, home } from "@/lib/catalog";
 import { imageSrc } from "@/lib/images";
 
 const slides: Slide[] = [
@@ -28,6 +29,14 @@ const tiles = [
   { slug: "wallets", label: "Wallets" },
 ];
 
+/** Pinned photo stack after "Find Your Fit": same photos and products as /test-mock-2, thobes first. */
+const LOOKS = [
+  { photo: "images/hero/hero-adult", slug: "breathable-cotton-thobe-white", pill: "Thobes", image: "images/categories/summer-thobes" },
+  { photo: "images/hero/hero-new", slug: "stitched-saderi-olive", pill: "Saderi", image: "images/categories/saderi" },
+  { photo: "images/hero/hero-kids", slug: "tailored-layering-jacket-charcoal", pill: "Jackets", image: "images/categories/kandura-jackets" },
+  { photo: "images/pages/about", slug: "occasion-bisht-black", pill: "Bisht", image: "images/categories/bisht" },
+];
+
 export default function HomePage() {
   const clips = COMMUNITY.clips.map((c) => ({ ...c, poster: imageSrc(c.poster), products: cards(c.products) }));
   return (
@@ -35,6 +44,12 @@ export default function HomePage() {
       <HeroSlider slides={slides} />
       <MostWanted />
       <FindYourFit />
+      <FeaturedLooks
+        looks={LOOKS.flatMap((l): Look[] => {
+          const p = getProduct(l.slug);
+          return p ? [{ ...l, photo: imageSrc(l.photo), image: imageSrc(l.image), name: p.name, price: p.price }] : [];
+        })}
+      />
       <Stats />
       <Marquee />
       <section>

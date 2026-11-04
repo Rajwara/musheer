@@ -1,0 +1,37 @@
+/* =====================================================================
+   Pinned photo stack ("Featured looks"), copied from /test-mock-2
+   (fieldworn.css .stack / .panel / .stack-card) and scoped to .fl. The
+   stage pins below the sticky store header.
+   ===================================================================== */
+.fl {
+  --fl-body: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --fl-ease: cubic-bezier(.215,.61,.355,1);
+  position: relative; height: 500vh; margin: 0 12px; font: 400 16px/24px var(--fl-body); color: #000;
+}
+.fl-sticky { position: sticky; top: var(--hdr-h, 0px); height: calc(100vh - var(--hdr-h, 0px)); overflow: hidden; border-radius: 12px; background: #000; }
+.fl-panel { position: absolute; inset: 0; }
+.fl-panel img { width: 100%; height: 100%; object-fit: cover; }
+.fl-panel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.7)); }
+
+.fl-card-wrap { position: absolute; inset: auto 0 56px; z-index: 5; pointer-events: none; }
+.fl-container { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 24px; }
+.fl-card { width: 300px; height: 320px; overflow: hidden; border-radius: 12px; background: #fff; pointer-events: auto; }
+.fl-track { height: calc(var(--fl-n) * 100%); }
+.fl-product { display: flex; flex-direction: column; height: calc(100% / var(--fl-n)); padding: 14px; color: #000; }
+.fl-pill { align-self: flex-start; display: inline-block; padding: 4px 12px; border-radius: 99px; background: #f6f6f6; color: #111; font-size: 14px; line-height: 22px; }
+.fl-thumb { position: relative; flex: 1; min-height: 0; margin: 6px 0 8px; }
+.fl-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: transform .6s var(--fl-ease); }
+.fl-product:hover .fl-thumb img { transform: scale(1.14); }
+.fl-name { font-size: 18px; line-height: 24px; font-weight: 500; letter-spacing: -.03em; }
+.fl-price { font-weight: 700; letter-spacing: -.03em; }
+
+@media (max-width: 767px) {
+  .fl { height: 400vh; margin: 0 8px; }
+  .fl-card { width: 240px; height: 270px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fl { height: auto; }
+  .fl-sticky { position: static; height: auto; overflow: visible; background: none; }
+  .fl-panel { position: relative; inset: auto; height: 80vh; margin-bottom: 12px; overflow: hidden; border-radius: 12px; }
+  .fl-card-wrap { display: none; }
+}
