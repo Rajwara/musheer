@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import BranchLocator, { type LocatorBranch } from "@/components/BranchLocator";
 import BranchMarkets, { type EmirateCard } from "@/components/branches/BranchMarkets";
 import PageBanner from "@/components/PageBanner";
-import StoreCartLink from "@/components/StoreCartLink";
-import { FieldwornChromeBehavior, FieldwornFooter, FieldwornHeader } from "../../(mock)/test-mock-3/FieldwornChrome";
+import FieldwornShell from "@/components/FieldwornShell";
 import { BRANCHES } from "@/lib/brand";
 import { imageSrc } from "@/lib/images";
 import "./branches-brand.css";
 
-// Branding of /test-mock-2: Big Shoulders for headings, Space Grotesk for text.
-const bigShoulders = localFont({ src: "../../(mock)/test-mock-2/fonts/big-shoulders.woff2", weight: "100 900", display: "swap", variable: "--font-big-shoulders" });
-const spaceGrotesk = localFont({ src: "../../(mock)/test-mock-2/fonts/space-grotesk.woff2", weight: "300 700", display: "swap", variable: "--font-space-grotesk" });
 
 export const metadata: Metadata = {
   title: "Branches",
@@ -43,8 +38,7 @@ export default function BranchesPage() {
   }));
 
   return (
-    <div className={`fwb ${bigShoulders.variable} ${spaceGrotesk.variable}`}>
-      <FieldwornHeader cart={<StoreCartLink />} />
+    <FieldwornShell>
       <PageBanner
         image="images/pages/branches"
         eyebrow="*13 branches · 5 Emirates"
@@ -53,8 +47,6 @@ export default function BranchesPage() {
       />
       <BranchMarkets cards={cards} total={branches.length} />
       <BranchLocator branches={branches} />
-      <FieldwornFooter image={imageSrc("images/content/story")} />
-      <FieldwornChromeBehavior />
-    </div>
+    </FieldwornShell>
   );
 }

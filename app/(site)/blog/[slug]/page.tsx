@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import FieldwornShell from "@/components/FieldwornShell";
+import "../blog-brand.css";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import DIcon from "@/components/blog/Icons";
@@ -66,6 +68,7 @@ export default async function BlogPostPage({ params }: Props) {
   }));
 
   return (
+    <FieldwornShell>
     <div className="bl">
       <section className="page-hero page-hero-post">
         <span className="eyebrow eyebrow-dot">{post.category}</span>
@@ -128,5 +131,6 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </section>
     </div>
+    </FieldwornShell>
   );
 }

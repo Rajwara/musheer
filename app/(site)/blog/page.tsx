@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import FieldwornShell from "@/components/FieldwornShell";
+import "./blog-brand.css";
 import Link from "next/link";
 import BlogList from "@/components/blog/BlogList";
 import DIcon from "@/components/blog/Icons";
@@ -29,6 +31,7 @@ export default function BlogPage() {
   const f = summary(featured);
 
   return (
+    <FieldwornShell>
     <div className="bl">
       <section className="page-hero">
         <span className="eyebrow eyebrow-dot">From the blog</span>
@@ -71,5 +74,6 @@ export default function BlogPage() {
         </div>
       </section>
     </div>
+    </FieldwornShell>
   );
 }
