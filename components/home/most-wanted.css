@@ -1,0 +1,54 @@
+/* =====================================================================
+   "Most Wanted Right Now" section, copied from /test-mock-2 (fieldworn.css
+   .coll-grid / .products / .product) and scoped to .mw for the home page.
+   ===================================================================== */
+.mw {
+  --mw-display: var(--font-big-shoulders), "Big Shoulders", sans-serif;
+  --mw-body: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --mw-ease: cubic-bezier(.215,.61,.355,1);
+  margin: 12px; padding: 100px 0; border-radius: 12px; background: #f6f6f6; color: #000;
+  font: 400 16px/24px var(--mw-body);
+}
+.mw-container { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 24px; }
+.mw-grid { display: grid; grid-template-columns: 260px 1fr; gap: 40px; }
+.mw-side { position: relative; display: flex; flex-direction: column; }
+.mw-label { display: block; margin-bottom: 12px; font: 500 16px/24px var(--mw-display); text-transform: uppercase; letter-spacing: .01em; color: #000; }
+.mw h2 { margin: 0; font: 500 56px/1.14 var(--mw-display); text-transform: uppercase; letter-spacing: -.04em; color: #000; }
+.mw-end { margin-top: auto; }
+.mw-end p { margin: 0 0 20px; color: #666; }
+
+/* Black pill button with a white round arrow and a text roll on hover */
+.mw-btn { display: inline-flex; align-items: center; gap: 12px; padding: 8px 8px 8px 22px; border-radius: 99px; background: #000; color: #fff; font-weight: 500; letter-spacing: -.02em; transition: background .3s, color .3s; }
+.mw-btn:hover { background: #2b2b2b; color: #fff; }
+.mw-roll { display: inline-block; height: 1.25em; overflow: hidden; line-height: 1.25; vertical-align: middle; }
+.mw-roll > span { position: relative; display: block; transition: transform .45s var(--mw-ease); }
+.mw-roll > span::after { content: attr(data-t); position: absolute; left: 0; top: 100%; white-space: nowrap; }
+.mw-btn:hover .mw-roll > span { transform: translateY(-100%); }
+.mw-ico { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #fff; color: #000; transition: transform .45s var(--mw-ease); }
+.mw-ico svg { width: 15px; height: 15px; }
+.mw-btn:hover .mw-ico { transform: rotate(-45deg); }
+
+/* Product cards */
+.mw-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.mw-product { display: block; padding: 16px; border-radius: 12px; background: #fff; color: #000; }
+.mw-pill { display: inline-block; padding: 4px 12px; border-radius: 99px; background: #f6f6f6; color: #111; font-size: 14px; line-height: 22px; }
+.mw-thumb { position: relative; height: 190px; margin: 6px 0 16px; }
+.mw-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: transform .6s var(--mw-ease); }
+.mw-product:hover .mw-thumb img { transform: scale(1.14); }
+.mw-name { font-size: 20px; line-height: 28px; font-weight: 500; letter-spacing: -.03em; }
+.mw-price { font-weight: 700; letter-spacing: -.03em; }
+
+@media (max-width: 991px) {
+  .mw { padding: 72px 0; }
+  .mw-grid { grid-template-columns: 1fr; gap: 32px; }
+  .mw-end { margin-top: 20px; }
+  .mw-products { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 767px) {
+  .mw { margin: 8px; }
+  .mw h2 { font-size: 40px; }
+  .mw-products { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mw-roll > span, .mw-ico, .mw-thumb img { transition: none; }
+}
