@@ -3,12 +3,35 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef, useState } from "react";
 import pan from "@/lib/data/uae-globe-pan.json";
+import { PLACES, normalise } from "@/lib/places";
 import "./branch-globe.css";
 
-export type GlobeBranch = { id: string; name: string; area: string; emirate: string; image: string; directions: string };
+export type GlobeBranch = { id: string; name: string; area: string; emirate: string; image: string; directions: string; lat: number; lng: number };
 
 const FOCUS = { x: 500, y: 360 }; // where the active branch sits on the globe (1000-unit box)
 const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
+const km = (a: { lat: number; lng: number }, b: { lat: number; lng: number }) => {
+  const r = Math.PI / 180;
+  const h = Math.sin(((b.lat - a.lat) * r) / 2) ** 2 + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(((b.lng - a.lng) * r) / 2) ** 2;
+  return 12742 * Math.asin(Math.sqrt(h));
+};
+type Hit = { i: number; note?: string };
+
+/** Branches matching a name, area or emirate; otherwise the nearest to a known UAE place. */
+function searchBranches(branches: GlobeBranch[], q: string): { hits: Hit[]; title: string } {
+  const n = normalise(q);
+  if (!n) return { hits: [], title: "" };
+  const direct = branches.map((b, i) => ({ b, i })).filter(({ b }) => normalise(`${b.name} ${b.area} ${b.emirate}`).includes(n));
+  if (direct.length) return { hits: direct.map(({ i }) => ({ i })), title: `${direct.length} ${direct.length === 1 ? "branch" : "branches"}` };
+  const place = PLACES.find((p) => normalise(p.name) === n) ?? PLACES.find((p) => normalise(p.name).includes(n) || n.includes(normalise(p.name)));
+  if (!place) return { hits: [], title: "" };
+  const near = branches
+    .map((b, i) => ({ i, d: km(place, b) }))
+    .sort((a, b) => a.d - b.d)
+    .slice(0, 3)
+    .map(({ i, d }) => ({ i, note: `${d < 10 ? d.toFixed(1) : Math.round(d)} km` }));
+  return { hits: near, title: `Nearest to ${place.name}` };
+}
 
 /**
  * "Where we tailor" scroll story. The section pins while a row of cards (one
@@ -25,6 +48,10 @@ export default function BranchGlobe({ branches, emirates }: { branches: GlobeBra
   const [active, setActive] = useState(0);
   const [hover, setHover] = useState<{ i: number; x: number; y: number; flip: boolean } | null>(null);
   const [reduced, setReduced] = useState(false);
+  const [query, setQuery] = useState("");
+  const [open, setOpen] = useState(false);
+  const [sel, setSel] = useState(0);
+  const result = searchBranches(branches, query);
 
   const points = branches.map((b) => pan.branches.find((p) => p.id === b.id)!);
 
@@ -94,6 +121,17 @@ export default function BranchGlobe({ branches, emirates }: { branches: GlobeBra
     window.scrollTo({ top: top + (total * i) / (branches.length - 1), behavior: "smooth" });
   };
 
+  const pick = (i: number) => {
+    setOpen(false);
+    setQuery(branches[i].name);
+    setActive(i);
+    if (reduced) {
+      track.current?.children[i]?.scrollIntoView({ behavior: "auto", inline: "center", block: "nearest" });
+      return;
+    }
+    goTo(i);
+  };
+
   const onPinMove = (i: number) => (e: React.PointerEvent) => {
     const r = section.current!.querySelector(".bg-sticky")!.getBoundingClientRect();
     const x = e.clientX - r.left;
@@ -108,9 +146,80 @@ export default function BranchGlobe({ branches, emirates }: { branches: GlobeBra
           <h2 className="mk__title" id="bg-title">
             Where we tailor: {branches.length} branches across {emirates} Emirates.
           </h2>
-          <a className="mk__btn" href="#branches">
-            Find your nearest branch
-          </a>
+          <form
+            className="bg-search"
+            role="search"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const h = result.hits[sel] ?? result.hits[0];
+              if (h) pick(h.i);
+            }}
+            onBlur={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpen(false);
+            }}
+          >
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5" />
+              <path d="m16 16 4.5 4.5" />
+            </svg>
+            <input
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setOpen(true);
+                setSel(0);
+              }}
+              onFocus={() => setOpen(true)}
+              onKeyDown={(e) => {
+                if (e.key === "ArrowDown") { e.preventDefault(); setSel((s) => Math.min(s + 1, result.hits.length - 1)); }
+                if (e.key === "ArrowUp") { e.preventDefault(); setSel((s) => Math.max(s - 1, 0)); }
+                if (e.key === "Escape") setOpen(false);
+              }}
+              placeholder="Search a branch, area or emirate"
+              aria-label="Search branches"
+              role="combobox"
+              aria-expanded={open && query.trim().length > 0}
+              aria-controls="bg-search-list"
+              aria-autocomplete="list"
+            />
+            <button type="submit">Search</button>
+            {open && query.trim() && (
+              <div className="bg-search-list" id="bg-search-list" role="listbox">
+                {result.hits.length ? (
+                  <>
+                    <span className="bg-search-title">{result.title}</span>
+                    {result.hits.map((h, n) => {
+                      const b = branches[h.i];
+                      return (
+                        <button
+                          type="button"
+                          role="option"
+                          aria-selected={n === sel}
+                          key={b.id}
+                          className={n === sel ? "on" : undefined}
+                          onMouseEnter={() => setSel(n)}
+                          onClick={() => pick(h.i)}
+                        >
+                          <span className="bg-search-n">{String(h.i + 1).padStart(2, "0")}</span>
+                          <span>
+                            <b>{b.name}</b>
+                            <small>
+                              {b.area} · {b.emirate}
+                            </small>
+                          </span>
+                          {h.note && <em>{h.note}</em>}
+                        </button>
+                      );
+                    })}
+                  </>
+                ) : (
+                  <span className="bg-search-empty">
+                    No branch found for “{query}”. Try an area such as Mirdif, or <a href="#branches">use the full finder</a>.
+                  </span>
+                )}
+              </div>
+            )}
+          </form>
         </div>
 
         <div className="bg-globe">

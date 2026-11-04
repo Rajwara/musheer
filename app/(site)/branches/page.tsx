@@ -31,6 +31,8 @@ export default function BranchesPage() {
     emirate: b.emirate,
     image: b.image,
     directions: directions(b),
+    lat: b.lat,
+    lng: b.lng,
   }));
 
   return (
