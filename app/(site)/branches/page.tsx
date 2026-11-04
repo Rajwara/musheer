@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import BranchLocator, { type LocatorBranch } from "@/components/BranchLocator";
 import { HomeVisit } from "@/components/BrandSections";
+import BranchMarkets, { type EmirateCard } from "@/components/branches/BranchMarkets";
 import PageBanner from "@/components/PageBanner";
 import { BRANCHES } from "@/lib/brand";
 import { imageSrc } from "@/lib/images";
+import "./branches-brand.css";
+
+// Branding of /test-mock-2: Big Shoulders for headings, Space Grotesk for text.
+const bigShoulders = localFont({ src: "../../(mock)/test-mock-2/fonts/big-shoulders.woff2", weight: "100 900", display: "swap", variable: "--font-big-shoulders" });
+const spaceGrotesk = localFont({ src: "../../(mock)/test-mock-2/fonts/space-grotesk.woff2", weight: "300 700", display: "swap", variable: "--font-space-grotesk" });
 
 export const metadata: Metadata = {
   title: "Branches",
@@ -12,6 +19,10 @@ export const metadata: Metadata = {
 
 // Shown on hover until a photo of the branch itself is added at public/images/branches/<id>.webp.
 const FALLBACKS = ["images/pages/branches", "images/pages/about", "images/hero/hero-new", "images/pages/contact", "images/content/story"];
+// Photo revealed when hovering an emirate card.
+const EMIRATE_PHOTOS = ["images/hero/hero-adult", "images/pages/branches", "images/hero/hero-new", "images/pages/about", "images/hero/hero-winter"];
+
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
 export default function BranchesPage() {
   let i = 0;
@@ -22,16 +33,25 @@ export default function BranchesPage() {
       return { ...b, emirate: e.emirate, image };
     }),
   );
+  const cards: EmirateCard[] = BRANCHES.map((e, n) => ({
+    emirate: e.emirate,
+    slug: slug(e.emirate),
+    count: e.branches.length,
+    areas: e.branches.map((b) => b.name),
+    photo: imageSrc(EMIRATE_PHOTOS[n % EMIRATE_PHOTOS.length]),
+  }));
+
   return (
-    <>
+    <div className={`fwb ${bigShoulders.variable} ${spaceGrotesk.variable}`}>
       <PageBanner
         image="images/pages/branches"
-        eyebrow="13 branches · 5 Emirates"
+        eyebrow="*13 branches · 5 Emirates"
         title="Our branches"
         text="Visit any of our branches across the Emirates to choose fabrics and be measured, or book a tailor to come to you."
       />
+      <BranchMarkets cards={cards} total={branches.length} />
       <BranchLocator branches={branches} />
       <HomeVisit />
-    </>
+    </div>
   );
 }

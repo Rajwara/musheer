@@ -143,6 +143,29 @@ export default function BranchLocator({ branches }: { branches: LocatorBranch[] 
     }
   }, [origin, filter, list]);
 
+  // "#find-<emirate>" (from the emirate cards above) shows that emirate's branches.
+  useEffect(() => {
+    const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    const apply = () => {
+      const m = window.location.hash.match(/^#find-([a-z0-9-]+)$/);
+      if (!m) return;
+      const ids = numbered.filter((b) => slug(b.emirate) === m[1]).map((b) => b.id);
+      if (!ids.length) return;
+      const name = numbered.find((b) => b.id === ids[0])!.emirate;
+      setOrigin(null);
+      setQuery("");
+      setFilter(ids);
+      setActive(ids[0]);
+      setStatus(`${ids.length} ${ids.length === 1 ? "branch" : "branches"} in ${name}`);
+      document.getElementById("branches")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Clear the hash so clicking the same card again still works.
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    };
+    apply();
+    window.addEventListener("hashchange", apply);
+    return () => window.removeEventListener("hashchange", apply);
+  }, [numbered]);
+
   const search = async (e: React.FormEvent) => {
     e.preventDefault();
     const n = normalise(query);
