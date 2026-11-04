@@ -12,8 +12,8 @@ const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-serif"
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Fieldworn | Clothing Store",
-  description: "Placeholder homepage for a clothing store. Replace with your own description.",
+  title: "Al Musheer | Kandura Tailoring Since 1998",
+  description: "Al Musheer: kandura tailoring since 1998, with 13 branches across the UAE and home tailoring visits.",
   robots: { index: false, follow: false },
 };
 
