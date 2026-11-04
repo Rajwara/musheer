@@ -10,7 +10,7 @@ import { FieldwornChromeBehavior, FieldwornFooter } from "@/app/(mock)/test-mock
 import { fieldwornFonts } from "@/lib/fieldworn-fonts";
 import "./fieldworn-site.css";
 import { HERO, PHONE_DISPLAY } from "@/lib/brand";
-import { getProduct, home } from "@/lib/catalog";
+import { getProduct, home, toCard } from "@/lib/catalog";
 import { imageSrc, productImage } from "@/lib/images";
 
 const slides: Slide[] = [
@@ -49,13 +49,13 @@ export default function HomePage() {
       <FeaturedLooks
         looks={LOOKS.flatMap((l): Look[] => {
           const p = getProduct(l.slug);
-          return p ? [{ ...l, photo: imageSrc(l.photo), image: imageSrc(l.image), name: p.name, price: p.price }] : [];
+          return p ? [{ ...l, photo: imageSrc(l.photo), image: imageSrc(l.image), name: p.name, price: p.price, card: toCard(p) }] : [];
         })}
       />
       <NewArrivals
         items={home.newArrivals.flatMap((slug) => {
           const p = getProduct(slug);
-          return p ? [{ slug, name: p.name, price: p.price, colour: p.colour, category: p.category, image: productImage(slug) }] : [];
+          return p ? [{ slug, name: p.name, price: p.price, colour: p.colour, category: p.category, image: productImage(slug), card: toCard(p) }] : [];
         })}
       />
       <WhatWeStandFor items={PROMISES.map((p) => ({ ...p, image: imageSrc(p.image) }))} />

@@ -5,9 +5,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import { money } from "@/lib/format";
+import type { CardProduct } from "@/lib/types";
+import QuickViewArea from "../QuickViewArea";
 import "./featured-looks.css";
 
-export type Look = { photo: string; slug: string; pill: string; name: string; price: number; image: string };
+export type Look = { photo: string; slug: string; pill: string; name: string; price: number; image: string; card: CardProduct };
 
 /**
  * Pinned photo stack from /test-mock-2 ("Featured looks"): as you scroll,
@@ -55,10 +57,10 @@ export default function FeaturedLooks({ looks }: { looks: Look[] }) {
                 {looks.map((l) => (
                   <Link className="fl-product" key={l.slug} href={`/product/${l.slug}`}>
                     <span className="fl-pill">{l.pill}</span>
-                    <div className="fl-thumb">
+                    <QuickViewArea className="fl-thumb" product={l.card}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={l.image} alt="" loading="lazy" />
-                    </div>
+                    </QuickViewArea>
                     <div className="fl-name">{l.name}</div>
                     <div className="fl-price">{money(l.price)}</div>
                   </Link>

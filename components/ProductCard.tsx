@@ -4,6 +4,7 @@ import { money } from "@/lib/format";
 import type { CardProduct } from "@/lib/types";
 import HeartButton from "./HeartButton";
 import { QuickViewButton } from "./QuickView";
+import QuickViewArea from "./QuickViewArea";
 
 /** "Classic Round-Collar Kandura, Ivory" -> "Classic Round-Collar Kandura" (the colour is shown separately). */
 const baseName = (p: CardProduct) => p.name.replace(new RegExp(`,\\s*${p.colour}$`, "i"), "");
@@ -12,7 +13,7 @@ export default function ProductCard({ product: p }: { product: CardProduct }) {
   const href = `/product/${p.slug}`;
   return (
     <article className="pcard" data-color={p.colour} data-price={p.price}>
-      <div className="pcard-media">
+      <QuickViewArea className="pcard-media" product={p}>
         <Link className="pcard-img" href={href} aria-label={p.name}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={p.images[0]} alt={p.name} loading="lazy" />
@@ -24,7 +25,7 @@ export default function ProductCard({ product: p }: { product: CardProduct }) {
         {p.badge && <span className="pcard-badge">{p.badge}</span>}
         <HeartButton slug={p.slug} name={p.name} />
         <QuickViewButton product={p} />
-      </div>
+      </QuickViewArea>
       <div className="pcard-body">
         <span className="pcard-cat">{p.category}</span>
         <h3>

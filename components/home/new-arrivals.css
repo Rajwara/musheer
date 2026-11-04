@@ -51,3 +51,5 @@
   .na-marquee { animation: none; left: 0; }
   .na-bg img, .na-go { transition: none; }
 }
+.qva.na-area { position: absolute; inset: 0; }
+.na-card::after { pointer-events: none; }

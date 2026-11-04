@@ -5,9 +5,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import { money } from "@/lib/format";
+import type { CardProduct } from "@/lib/types";
+import QuickViewArea from "../QuickViewArea";
 import "./new-arrivals.css";
 
-export type Arrival = { slug: string; name: string; price: number; colour: string; category: string; image: string };
+export type Arrival = { slug: string; name: string; price: number; colour: string; category: string; image: string; card: CardProduct };
 
 const Arrow = ({ back }: { back?: boolean }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -72,15 +74,17 @@ export default function NewArrivals({ items }: { items: Arrival[] }) {
               aria-hidden={i !== at}
               tabIndex={i === at ? 0 : -1}
             >
-              <div className="na-bg">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={it.image} alt="" loading="lazy" />
-              </div>
-              <span className="na-pill">New · {it.category.replace(/^All /, "")}</span>
-              <div className="na-txt">
-                <b>{it.name}</b>
-                {money(it.price)} &nbsp;|&nbsp; {it.colour}
-              </div>
+              <QuickViewArea className="na-area" product={it.card}>
+                <div className="na-bg">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={it.image} alt="" loading="lazy" />
+                </div>
+                <span className="na-pill">New · {it.category.replace(/^All /, "")}</span>
+                <div className="na-txt">
+                  <b>{it.name}</b>
+                  {money(it.price)} &nbsp;|&nbsp; {it.colour}
+                </div>
+              </QuickViewArea>
               <span className="na-go">
                 <Arrow />
               </span>

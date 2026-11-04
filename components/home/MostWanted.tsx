@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { getProduct } from "@/lib/catalog";
+import QuickViewArea from "@/components/QuickViewArea";
+import { getProduct, toCard } from "@/lib/catalog";
 import { money } from "@/lib/format";
 import { imageSrc, productImage } from "@/lib/images";
 import "./most-wanted.css";
@@ -18,7 +19,7 @@ const ITEMS = [
 export default function MostWanted() {
   const items = ITEMS.flatMap((it: { slug: string; pill: string; image?: string }) => {
     const p = getProduct(it.slug);
-    return p ? [{ ...it, name: p.name, price: p.price }] : [];
+    return p ? [{ ...it, name: p.name, price: p.price, card: toCard(p) }] : [];
   });
 
   return (
@@ -47,10 +48,10 @@ export default function MostWanted() {
               <span className="mw-pill">
                 <i aria-hidden="true">★</i> Best seller · {it.pill}
               </span>
-              <div className="mw-thumb">
+              <QuickViewArea className="mw-thumb" product={it.card}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={it.image ? imageSrc(it.image) : productImage(it.slug)} alt={it.name} loading="lazy" />
-              </div>
+              </QuickViewArea>
               <div className="mw-name">{it.name}</div>
               <div className="mw-price">{money(it.price)}</div>
             </Link>
