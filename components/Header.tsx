@@ -3,14 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { BRAND, WHATSAPP_URL } from "@/lib/brand";
+import { BRAND } from "@/lib/brand";
 import { mainNav } from "@/lib/navigation";
 import Icon from "./Icon";
 import MegaMenu from "./MegaMenu";
+import "./header-brand.css";
 import { useStore } from "./StoreProvider";
-
-/** Pages whose first section is a full-bleed hero the header can sit on. */
-const OVERLAY_PAGES = new Set(["/", "/about", "/branches"]);
 
 export default function Header({ images }: { images: Record<string, string> }) {
   const { cartCount, wishlist } = useStore();
@@ -39,8 +37,7 @@ export default function Header({ images }: { images: Record<string, string> }) {
     if (searching) searchRef.current?.focus();
   }, [searching]);
 
-  const overlay = OVERLAY_PAGES.has(pathname) && !scrolled && !open && !searching;
-  const cls = ["site-header", overlay && "is-overlay", open && "menu-open"].filter(Boolean).join(" ");
+  const cls = ["site-header", "hb", scrolled && "is-scrolled", open && "menu-open"].filter(Boolean).join(" ");
 
   return (
     <header className={cls}>
@@ -74,17 +71,15 @@ export default function Header({ images }: { images: Record<string, string> }) {
         </nav>
 
         <Link className="hdr-logo" href="/" aria-label={`${BRAND} home`}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="logo-dark" src="/logo.png" alt={BRAND} width={354} height={593} />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="logo-light" src="/logo-white.png" alt="" width={354} height={593} />
+          AL MUSHEER
         </Link>
 
         <div className="hdr-icons">
-          <a className="hdr-icon hide-sm" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-            <Icon name="whatsapp" size={20} />
-          </a>
-          <button className="hdr-icon" type="button" aria-label="Search" aria-expanded={searching} onClick={() => setSearching((s) => !s)}>
+          <form className="hb-search" action="/search" role="search">
+            <Icon name="search" size={18} />
+            <input name="q" type="search" placeholder="I'm looking for…" aria-label="Search products" />
+          </form>
+          <button className="hdr-icon hb-search-btn" type="button" aria-label="Search" aria-expanded={searching} onClick={() => setSearching((s) => !s)}>
             <Icon name="search" size={21} />
           </button>
           <Link className="hdr-icon hide-sm" href="/account" aria-label="Account">

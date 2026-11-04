@@ -1,0 +1,65 @@
+/* =====================================================================
+   Store header in the /test-mock-2 branding: a solid white bar with the
+   links on the left, the AL MUSHEER wordmark in the centre, and a search
+   pill and icons on the right. Big Shoulders wordmark, Space Grotesk links,
+   black badges. Also restyles the announcement bar above it.
+   ===================================================================== */
+:root:root { --hdr-h: 72px; }
+@media (max-width: 1020px) { :root:root { --hdr-h: 64px; } }
+
+/* Announcement bar */
+body .announce { height: 38px; background: #000; color: #fff; border-bottom: 0; font: 500 13px/1 var(--font-space-grotesk), "Space Grotesk", sans-serif; letter-spacing: -.01em; text-transform: none; }
+body .announce button { color: #fff; }
+
+.site-header.hb {
+  --hb-display: var(--font-big-shoulders), "Big Shoulders", sans-serif;
+  --hb-body: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  background: #fff; backdrop-filter: none; color: #000; border-bottom: 1px solid #ececec;
+  font-family: var(--hb-body); transition: box-shadow .3s;
+}
+.site-header.hb.is-scrolled { box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+.site-header.hb .hdr-inner { max-width: none; padding: 0 32px; gap: 24px; }
+
+/* Links */
+.site-header.hb .hdr-nav { gap: 22px; font: 500 14px/1 var(--hb-body); letter-spacing: -.02em; }
+.site-header.hb .hdr-item > a { padding: 28px 0; letter-spacing: -.02em; background-position: 0 calc(50% + 11px); }
+.site-header.hb .hdr-item > a svg { opacity: .6; }
+
+/* Wordmark: centred on wide screens, first on the left below 1540px */
+@media (min-width: 1540px) {
+  .site-header.hb .hdr-inner { position: relative; grid-template-columns: 1fr 1fr; }
+  .site-header.hb .hdr-logo { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+}
+@media (min-width: 1021px) and (max-width: 1539px) {
+  .site-header.hb .hdr-inner { grid-template-columns: auto 1fr auto; gap: 36px; }
+  .site-header.hb .hdr-logo { order: -1; justify-self: start; }
+}
+.site-header.hb .hdr-logo { font: 600 34px/1 var(--hb-display); text-transform: uppercase; letter-spacing: -.02em; color: #000; white-space: nowrap; }
+
+/* Right side: search pill and icons */
+.site-header.hb .hdr-icons { gap: 4px; }
+.hb-search { display: flex; align-items: center; gap: 10px; width: 260px; height: 44px; margin-right: 10px; padding: 0 18px; border: 1px solid #e4e4e4; border-radius: 99px; background: #fff; color: #888; transition: border-color .2s, background .2s; }
+.hb-search:focus-within { border-color: #000; color: #000; }
+.hb-search input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; font: 400 14px/1 var(--font-space-grotesk), "Space Grotesk", sans-serif; letter-spacing: -.01em; color: #000; }
+.hb-search input::placeholder { color: #8a8a8a; }
+.hb-search input::-webkit-search-cancel-button { display: none; }
+.site-header.hb .hb-search-btn { display: none; }
+.site-header.hb .hdr-icon { width: 42px; height: 42px; color: #000; }
+.site-header.hb .hdr-icon:hover { background: #f2f2f2; }
+.site-header.hb .badge { top: 3px; right: 1px; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 99px; background: #000; color: #fff; font: 500 10px/17px var(--hb-body); box-shadow: 0 0 0 2px #fff; }
+
+/* Search panel (phone) */
+.site-header.hb .hdr-search { font-family: var(--hb-body); }
+
+@media (min-width: 1600px) { .site-header.hb .hdr-nav { gap: 28px; font-size: 15px; } }
+@media (max-width: 1280px) { .hb-search { width: 200px; } }
+@media (max-width: 1120px) {
+  .hb-search { display: none; }
+  .site-header.hb .hb-search-btn { display: grid; }
+}
+@media (max-width: 1020px) {
+  .site-header.hb .hdr-inner { padding: 0 12px; }
+  .site-header.hb .hdr-logo { font-size: 28px; }
+  .site-header.hb .hdr-nav { font-size: 16px; color: #000; background: #fff; }
+  .site-header.hb .hdr-item > a { padding: 16px 0; border-bottom-color: #ececec; }
+}
