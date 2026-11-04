@@ -10,6 +10,7 @@ import OfferPopup from "@/components/OfferPopup";
 import { QuickViewProvider } from "@/components/QuickView";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { categories } from "@/lib/catalog";
+import { fieldwornFonts } from "@/lib/fieldworn-fonts";
 import { imageSrc } from "@/lib/images";
 import "./globals.css";
 import "./blog-layout.css";
@@ -27,7 +28,7 @@ const categoryImages = Object.fromEntries(categories.map((c) => [c.slug, imageSr
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${fieldwornFonts}`}>
       <body id="top">
         <StoreProvider>
           <HideOnPaths>
