@@ -26,9 +26,9 @@ export const STATS = [
 ];
 
 export const HERO = {
-  eyebrow: "Est. 1998 · United Arab Emirates",
+  eyebrow: "Est. 1998 · UAE",
   title: "The Art of the Kandura, Perfected.",
-  text: "Since 1998, Al Musheer has dressed the men of the UAE in kanduras cut with precision and finished to a standard we have spent a generation refining. Today we are proud to be one of the UAE's leading names in kandura textile and tailoring.",
+  text: "Precision-cut kanduras, tailored in the UAE since 1998.",
 };
 
 export const WHO_WE_ARE = {
