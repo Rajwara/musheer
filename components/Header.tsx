@@ -60,7 +60,7 @@ export default function Header({ images }: { images: Record<string, string> }) {
           }}
         >
           {mainNav.map((item) => (
-            <div className="hdr-item" key={item.label}>
+            <div className={item.button ? "hdr-item hdr-item-btn" : "hdr-item"} key={item.label}>
               <Link href={item.href}>
                 {item.label}
                 {item.columns && <Icon name="chevron" size={14} />}

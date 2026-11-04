@@ -63,3 +63,10 @@ body .announce button { color: #fff; }
   .site-header.hb .hdr-nav { font-size: 16px; color: #000; background: #fff; }
   .site-header.hb .hdr-item > a { padding: 16px 0; border-bottom-color: #ececec; }
 }
+
+/* "Shop All Categories" as a black pill in the nav */
+.site-header.hb .hdr-item-btn > a { padding: 9px 16px; margin: 17px 0; border-radius: 99px; background: #000; color: #fff; background-image: none; transition: background .25s; }
+.site-header.hb .hdr-item-btn > a:hover { background: #2b2b2b; }
+@media (max-width: 1020px) {
+  .site-header.hb .hdr-item-btn > a { justify-content: center; margin: 16px 0 4px; padding: 14px 16px; border-bottom: 0; }
+}

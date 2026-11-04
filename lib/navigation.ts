@@ -1,6 +1,6 @@
 type Link = { label: string; href: string };
 type Column = { heading: string; links: Link[] };
-export type NavItem = { label: string; href: string; columns?: Column[] };
+export type NavItem = { label: string; href: string; columns?: Column[]; button?: boolean };
 
 const cat = (slug: string) => `/category/${slug}`;
 
@@ -80,7 +80,7 @@ export const mainNav: NavItem[] = [
   },
   { label: "Home Tailoring", href: "/#home-tailoring" },
   { label: "Branches", href: "/branches" },
-  { label: "About", href: "/about" },
+  { label: "Shop All Categories", href: "/shop", button: true },
 ];
 
 export const footerNav: Column[] = [

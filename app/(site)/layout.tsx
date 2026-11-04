@@ -9,6 +9,7 @@ import Motion from "@/components/Motion";
 import OfferPopup from "@/components/OfferPopup";
 import { QuickViewProvider } from "@/components/QuickView";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ScrollToTop from "@/components/ScrollToTop";
 import { categories } from "@/lib/catalog";
 import { fieldwornFonts } from "@/lib/fieldworn-fonts";
 import { imageSrc } from "@/lib/images";
@@ -28,8 +29,9 @@ const categoryImages = Object.fromEntries(categories.map((c) => [c.slug, imageSr
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${fieldwornFonts}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${serif.variable} ${sans.variable} ${fieldwornFonts}`}>
       <body id="top">
+        <ScrollToTop />
         <StoreProvider>
           <AnnouncementBar />
           <QuickViewProvider>
