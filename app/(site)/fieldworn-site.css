@@ -35,3 +35,31 @@
 .fwb .fw .banner-in.bar { display: block; height: auto; min-height: 88px; }
 @media (max-width: 767px) { .fwb .fw .banner-in.bar { min-height: 72px; } }
 .fwb .fw .banner-in.bar { padding: 0; border-bottom: 0; margin-bottom: 0; color: #fff; gap: normal; }
+
+/* ---- Photo banner (Branches, About) ---- */
+.fwb .page-banner { border-radius: 0 0 var(--fw-radius) var(--fw-radius); }
+.fwb .page-banner::after { background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.05) 40%, rgba(0,0,0,.92) 100%); }
+.fwb .page-banner .eyebrow { color: #fff; }
+.fwb .page-banner h1 { font-size: clamp(56px, 9vw, 140px); line-height: .95; color: #fff; }
+.fwb .page-banner p { color: #ddd; font-size: 18px; line-height: 26px; }
+
+/* ---- Transparent header over a tall banner, as on /test-mock-2 (add className="fw-overlay" to FieldwornShell) ---- */
+.fw-overlay { position: relative; }
+.fw-overlay .fw-head { position: absolute; left: 0; right: 0; top: 0; z-index: 30; }
+.fw-overlay .fw .banner { padding: 12px; }
+.fw-overlay .fw .banner-in.bar { background: transparent; border-radius: 12px; }
+.fw-overlay .fw .banner-in.bar .nav-row { padding-inline: 12px; }
+.fw-overlay .page-banner {
+  margin: 12px; min-height: 0; aspect-ratio: auto;
+  height: calc(100vh - 24px); height: calc(100svh - 24px); max-height: 980px; min-height: 620px;
+}
+.fw-overlay .page-banner::after { background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.15) 55%, rgba(0,0,0,.92) 100%); }
+.fw-overlay .page-banner img { object-position: 50% 40%; }
+.fw-overlay .page-banner-copy { padding-top: 0; padding-bottom: 56px; }
+.fw-overlay .page-banner h1 { font-size: clamp(72px, 13vw, 210px); line-height: .9; }
+@media (max-width: 767px) {
+  .fw-overlay .fw .banner { padding: 8px; }
+  .fw-overlay .page-banner { margin: 8px; height: calc(100svh - 16px); min-height: 560px; }
+  .fw-overlay .page-banner h1 { font-size: clamp(64px, 20vw, 96px); }
+  .fw-overlay .page-banner-copy { padding-bottom: 32px; }
+}
