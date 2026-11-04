@@ -1,0 +1,45 @@
+/* =====================================================================
+   "Find Your Fit" section, copied from /test-mock-2 (fieldworn.css
+   .cat-head / .tabs / .cat-grid / .cat-card) and scoped to .fyf.
+   ===================================================================== */
+.fyf {
+  --fyf-display: var(--font-big-shoulders), "Big Shoulders", sans-serif;
+  --fyf-body: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --fyf-ease: cubic-bezier(.215,.61,.355,1);
+  margin: 12px; padding: 100px 0; border-radius: 12px; background: #000; color: #fff;
+  font: 400 16px/24px var(--fyf-body);
+}
+.fyf-container { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 24px; }
+.fyf-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 32px; }
+.fyf-label { display: block; margin-bottom: 12px; font: 500 16px/24px var(--fyf-display); text-transform: uppercase; letter-spacing: .01em; color: #fff; }
+.fyf h2 { margin: 0; font: 500 56px/1.14 var(--fyf-display); text-transform: uppercase; letter-spacing: -.04em; color: #fff; }
+.fyf-head p { max-width: 380px; margin: 0; font-size: 18px; line-height: 26px; color: #fff; }
+
+.fyf-tabs { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 28px; }
+.fyf-tab { padding: 5px 12px; border: 1px solid #555; border-radius: 99px; background: none; color: #ddd; font: 400 15px/24px var(--fyf-body); cursor: pointer; transition: .3s; }
+.fyf-tab:hover { border-color: #fff; color: #fff; }
+.fyf-tab.on { background: #fff; border-color: #fff; color: #000; }
+
+.fyf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; row-gap: 28px; }
+.fyf-card { display: block; color: #fff; }
+.fyf-card[hidden] { display: none; }
+.fyf-im { position: relative; aspect-ratio: 330 / 422; margin-bottom: 14px; overflow: hidden; border-radius: 12px; background: #151515; }
+.fyf-im img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--fyf-ease); }
+.fyf-card:hover .fyf-im img { transform: scale(1.08); }
+.fyf-pill { position: absolute; z-index: 2; top: 12px; right: 12px; display: inline-block; padding: 4px 12px; border-radius: 99px; background: #fff; color: #111; font-size: 14px; line-height: 22px; }
+.fyf-card h3 { margin: 0; font: 500 20px/28px var(--fyf-body); letter-spacing: -.04em; color: #fff; }
+.fyf-price { font-weight: 700; letter-spacing: -.03em; }
+
+@media (max-width: 991px) {
+  .fyf { padding: 72px 0; }
+  .fyf-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 767px) {
+  .fyf { margin: 8px; }
+  .fyf h2 { font-size: 40px; }
+  .fyf-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .fyf-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fyf-im img { transition: none; }
+}

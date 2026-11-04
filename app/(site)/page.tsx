@@ -4,6 +4,7 @@ import Marquee from "@/components/Marquee";
 import CommunityVideos from "@/components/CommunityVideos";
 import HeroSlider, { type Slide } from "@/components/HeroSlider";
 import MostWanted from "@/components/home/MostWanted";
+import FindYourFit from "@/components/home/FindYourFit";
 import { ProductGrid } from "@/components/ProductCard";
 import { COMMUNITY, HERO, HOME_VISIT_URL } from "@/lib/brand";
 import { cards, getCategory, home } from "@/lib/catalog";
@@ -33,6 +34,7 @@ export default function HomePage() {
     <>
       <HeroSlider slides={slides} />
       <MostWanted />
+      <FindYourFit />
       <Stats />
       <Marquee />
       <section>
