@@ -281,10 +281,116 @@ export const POLICIES: Policy[] = [
     slug: "terms",
     tab: "Terms",
     title: "Terms of Service",
-    intro: "Our full terms of service are being finalised. If you have any question about ordering, tailoring or delivery in the meantime, our team is happy to help.",
+    intro: "These terms apply when you shop with Al Musheer on our website, on WhatsApp, in our branches or through a home tailoring visit. Please read them before placing an order.",
     updated: "2026-11-04",
-    points: [],
-    sections: [],
+    points: [
+      { icon: "tailor", title: "Made for you", text: "Tailored orders start once your measurements and fabric are confirmed." },
+      { icon: "shield", title: "Fair and clear", text: "Prices are in AED and confirmed with you before your order is placed." },
+      { icon: "user", title: "Your rights protected", text: "Nothing here affects your rights under UAE consumer protection law." },
+    ],
+    sections: [
+      {
+        id: "about",
+        title: "About these terms",
+        body: [
+          "These terms are an agreement between you and Al Musheer, a kandura tailoring business in the United Arab Emirates. By placing an order or using our website you agree to them.",
+          "They should be read together with our Returns & Refunds, Shipping & Delivery and Privacy policies. Nothing in these terms limits any rights you have under UAE law.",
+        ],
+      },
+      {
+        id: "orders",
+        title: "Placing an order",
+        body: [
+          "You can order on our website, by WhatsApp, in any branch or during a home tailoring visit. An order is accepted when we confirm it to you by message, email or receipt.",
+          "We may decline or cancel an order, for example if an item is unavailable, a price was shown incorrectly or we cannot deliver to your address. If we cancel, we refund anything you have paid in full.",
+        ],
+      },
+      {
+        id: "made-to-measure",
+        title: "Made-to-measure orders",
+        body: [
+          {
+            list: [
+              "We start tailoring once your measurements, fabric and style details are confirmed with you.",
+              "Please check the details we read back to you. Where you provide your own measurements, we make the piece to those measurements.",
+              "A deposit may be required for made-to-measure orders. We'll tell you the amount before we begin.",
+              "Delivery dates are estimates and can be longer at busy times, such as before Eid. We'll keep you updated.",
+            ],
+          },
+          "Because tailored pieces are made only for you, they cannot be cancelled once cutting has started, and cannot be returned for a change of mind. If the fit isn't right, we will adjust it as set out in our Returns & Refunds policy.",
+        ],
+      },
+      {
+        id: "prices",
+        title: "Prices and payment",
+        body: [
+          "Prices are shown in UAE dirhams (AED) and include VAT where it applies. Any delivery charge is shown before you confirm your order.",
+          "We accept the payment methods shown at checkout or in branch, which may include card, cash and cash on delivery. Card payments are handled securely by our payment provider.",
+          "We try to keep every price and description accurate. If we find a mistake in the price of something you have ordered, we will contact you before it is sent, and you can choose to continue at the correct price or cancel for a full refund.",
+        ],
+      },
+      {
+        id: "products",
+        title: "Products, fabrics and colours",
+        body: [
+          "We describe and photograph our products as accurately as we can. Natural fabrics vary slightly from one roll to the next, and colours can look different on screens, so small differences in shade and texture are normal and not a fault.",
+          "Measurements in our size guide are a guide only. If you're unsure, ask us, visit a branch or book a home visit.",
+        ],
+      },
+      {
+        id: "home-visits",
+        title: "Home tailoring visits",
+        body: [
+          "Home visits are booked by WhatsApp and are subject to availability in your area. Please make sure someone is available at the agreed time and place.",
+          "If you need to change or cancel a visit, let us know as early as you can, ideally at least 24 hours in advance.",
+        ],
+      },
+      {
+        id: "delivery-returns",
+        title: "Delivery and returns",
+        body: [
+          "Delivery, collection from a branch and returns are covered by our Shipping & Delivery and Returns & Refunds policies, which form part of these terms.",
+        ],
+      },
+      {
+        id: "gift-cards",
+        title: "Gift cards",
+        body: [
+          "Gift cards can be used towards purchases from Al Musheer and cannot be exchanged for cash. Please keep your gift card code safe, as we cannot replace a code that is lost or used by someone else.",
+        ],
+      },
+      {
+        id: "website",
+        title: "Using our website",
+        body: [
+          "All content on our website, including text, photographs, logos and designs, belongs to Al Musheer or is used with permission. You may not copy or reuse it for commercial purposes without our written consent.",
+          "Please don't misuse the website, for example by attempting to access it without authorisation or interfering with how it works.",
+        ],
+      },
+      {
+        id: "liability",
+        title: "Our responsibility to you",
+        body: [
+          "We are responsible for loss or damage you suffer that is a foreseeable result of us breaking these terms or failing to use reasonable care and skill. We are not responsible for loss that was not foreseeable, or for delays or failures caused by events outside our reasonable control.",
+          "Nothing in these terms excludes or limits our liability where it would be unlawful to do so.",
+        ],
+      },
+      {
+        id: "law",
+        title: "Governing law",
+        body: [
+          "These terms are governed by the laws of the United Arab Emirates. If a dispute arises, please contact us first so we can try to resolve it; otherwise it will be handled by the competent courts of the UAE.",
+        ],
+      },
+      {
+        id: "changes",
+        title: "Changes and contact",
+        body: [
+          "We may update these terms from time to time. The version that applies to your order is the one shown when you placed it; the date at the top shows when they last changed.",
+          `If you have any question about these terms, message us on ${WHATSAPP} or visit any branch.`,
+        ],
+      },
+    ],
   },
 ];
 
