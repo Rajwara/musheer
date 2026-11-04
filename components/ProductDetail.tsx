@@ -6,6 +6,7 @@ import { HOME_VISIT_URL, whatsapp } from "@/lib/brand";
 import Icon from "./Icon";
 import { money } from "@/lib/format";
 import type { ProductOption } from "@/lib/types";
+import SizeGuideDialog from "./size-guide/SizeGuide";
 import { useStore } from "./StoreProvider";
 
 type Props = {
@@ -18,8 +19,6 @@ type Props = {
   images: { view: string; src: string }[];
   children?: React.ReactNode;
 };
-
-const SIZE_ROWS = ["S", "M", "L", "XL", "XXL"];
 
 export default function ProductDetail({ slug, name, price, description, options, sizeGuide, images, children }: Props) {
   const { addToCart } = useStore();
@@ -176,31 +175,7 @@ export default function ProductDetail({ slug, name, price, description, options,
           Add to cart
         </button>
       </div>
-      {sizeGuide && (
-        <dialog ref={chartRef}>
-          <h3 style={{ marginBottom: 12 }}>Size guide</h3>
-          <p>Replace with Al Musheer&apos;s measurements.</p>
-          <table>
-            <tbody>
-              <tr>
-                <th>Size</th>
-                <th>Chest (in)</th>
-                <th>Shoulder (in)</th>
-              </tr>
-              {SIZE_ROWS.map((s) => (
-                <tr key={s}>
-                  <td>{s}</td>
-                  <td>TBC</td>
-                  <td>TBC</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <button className="btn" type="button" style={{ marginTop: 16 }} onClick={() => chartRef.current?.close()}>
-            Close
-          </button>
-        </dialog>
-      )}
+      {sizeGuide && <SizeGuideDialog ref={chartRef} />}
     </>
   );
 }

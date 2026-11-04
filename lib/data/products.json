@@ -1963,7 +1963,7 @@
         ]
       }
     ],
-    "sizeGuide": false,
+    "sizeGuide": true,
     "description": "Sample description for classic leather sandal, brown. Replace with the real fabric, fit and care details.",
     "metaDescription": "Classic Leather Sandal, Brown at Musheer.",
     "related": [
@@ -1991,7 +1991,7 @@
         ]
       }
     ],
-    "sizeGuide": false,
+    "sizeGuide": true,
     "description": "Sample description for double strap sandal, black. Replace with the real fabric, fit and care details.",
     "metaDescription": "Double Strap Sandal, Black at Musheer.",
     "related": [
@@ -2019,7 +2019,7 @@
         ]
       }
     ],
-    "sizeGuide": false,
+    "sizeGuide": true,
     "description": "Sample description for hand-stitched sandal, tan. Replace with the real fabric, fit and care details.",
     "metaDescription": "Hand-Stitched Sandal, Tan at Musheer.",
     "related": [
