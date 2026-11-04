@@ -155,8 +155,10 @@ export const directions = (b: Pick<Branch, "lat" | "lng">, from?: { lat: number;
 
 /** Sign-up popup with a countdown. Shown once per visitor until closed or joined. */
 export const OFFER = {
-  title: "Limited Time Offer",
-  text: "Sign up to get an exclusive discount on your order.",
+  eyebrow: "Members only",
+  title: "Unlock your welcome offer",
+  text: "Join the Al Musheer list for an exclusive discount on your first order, plus early access to new fabrics and seasonal edits.",
+  teaser: "Get your welcome offer",
   minutes: 30, // countdown length; it keeps running across page refreshes
   delaySeconds: 8, // wait before showing (leaving the page on desktop opens it sooner)
   hideForDays: 3, // after "close", stay hidden this long

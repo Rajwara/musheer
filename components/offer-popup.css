@@ -1,0 +1,101 @@
+/* =====================================================================
+   Welcome-offer popup in the /test-mock-2 branding: black, white and
+   #f6f6f6, Big Shoulders uppercase headings, Space Grotesk text, 12px
+   corners and black pill buttons. Split layout (photo + offer) on desktop,
+   a bottom sheet on phones, and a small reopen tab after closing.
+   ===================================================================== */
+dialog.op {
+  --op-display: var(--font-big-shoulders), "Big Shoulders", sans-serif;
+  --op-body: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  width: min(920px, calc(100% - 32px)); max-width: none; max-height: calc(100dvh - 32px);
+  padding: 0; border: 0; border-radius: 12px; overflow: hidden;
+  background: #fff; color: #000; font: 400 16px/24px var(--op-body);
+  box-shadow: 0 40px 100px rgba(0,0,0,.35);
+}
+dialog.op[open] { display: grid; grid-template-columns: 1fr 1.08fr; animation: op-in .5s cubic-bezier(.215,.61,.355,1); }
+dialog.op::backdrop { background: rgba(0,0,0,.6); backdrop-filter: blur(3px); animation: op-fade .4s ease; }
+@keyframes op-in { from { opacity: 0; transform: translateY(24px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes op-fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* Photo panel */
+.op-media { position: relative; min-height: 560px; margin: 8px; border-radius: 8px; overflow: hidden; background: #f6f6f6; }
+.op-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 12% 30%; transform: scale(1.06); transition: transform 1.6s cubic-bezier(.215,.61,.355,1); }
+dialog.op[open] .op-media img { transform: scale(1); }
+.op-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,.7) 100%); }
+.op-media-tag { position: absolute; z-index: 1; top: 18px; left: 18px; padding: 4px 12px; border-radius: 99px; background: #fff; color: #000; font: 500 15px/22px var(--op-display); text-transform: uppercase; letter-spacing: .01em; }
+.op-media-mark { position: absolute; z-index: 1; left: 18px; right: 18px; bottom: 14px; font: 600 clamp(48px, 7vw, 76px)/.9 var(--op-display); text-transform: uppercase; letter-spacing: -.03em; color: #fff; }
+
+/* Offer panel */
+.op-body { position: relative; display: flex; flex-direction: column; justify-content: center; padding: 56px 48px 40px 40px; }
+.op-close { position: absolute; top: 16px; right: 16px; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: #f6f6f6; color: #000; cursor: pointer; transition: background .3s, color .3s; }
+.op-close:hover { background: #000; color: #fff; }
+.op-close svg { transition: transform .3s; }
+.op-close:hover svg { transform: rotate(90deg); }
+.op-eyebrow { display: block; margin-bottom: 10px; font: 500 16px/24px var(--op-display); text-transform: uppercase; letter-spacing: .01em; color: #000; }
+dialog.op h2 { margin: 0 0 14px; font: 500 clamp(44px, 5vw, 64px)/.95 var(--op-display); text-transform: uppercase; letter-spacing: -.04em; color: #000; }
+.op-text { margin: 0 0 20px; color: #666; font-size: 16px; line-height: 24px; letter-spacing: -.01em; }
+
+.op-timer { display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; margin-bottom: 20px; padding: 6px 14px 6px 12px; border-radius: 99px; background: #f6f6f6; color: #555; font-size: 14px; line-height: 20px; }
+.op-timer b { font: 600 18px/20px var(--op-display); letter-spacing: .04em; color: #000; font-variant-numeric: tabular-nums; }
+.op-live { position: relative; width: 8px; height: 8px; border-radius: 50%; background: #000; flex: none; }
+.op-live::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1.5px solid #000; animation: op-pulse 1.8s ease-out infinite; }
+@keyframes op-pulse { from { opacity: .7; transform: scale(.6); } to { opacity: 0; transform: scale(1.6); } }
+
+/* Email field with the button inside the pill */
+.op-form { display: flex; align-items: center; gap: 6px; padding: 5px 5px 5px 20px; border: 1px solid #d9d9d9; border-radius: 99px; background: #fff; transition: border-color .2s, box-shadow .2s; }
+.op-form:focus-within { border-color: #000; box-shadow: 0 0 0 3px rgba(0,0,0,.06); }
+.op-form input { flex: 1; min-width: 0; padding: 10px 0; border: 0; outline: 0; background: none; font: 400 15px/1 var(--op-body); letter-spacing: -.01em; color: #000; }
+.op-form input::placeholder { color: #8a8a8a; }
+.op-btn { display: inline-flex; flex: none; align-items: center; justify-content: center; gap: 8px; padding: 14px 22px; border: 0; border-radius: 99px; background: #000; color: #fff; font: 500 15px/1 var(--op-body); letter-spacing: -.02em; cursor: pointer; transition: background .3s; }
+.op-btn:hover { background: #2b2b2b; }
+.op-btn:disabled { opacity: .6; cursor: default; }
+.op-btn svg { transition: transform .3s; }
+.op-btn:hover svg { transform: translate(2px, -2px); }
+.op-error { margin: 10px 0 0 20px; font-size: 13px; color: #b3261e; }
+
+.op-points { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0; padding: 0; list-style: none; }
+.op-points li { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 99px; background: #f6f6f6; color: #444; font-size: 13px; line-height: 20px; letter-spacing: -.01em; }
+.op-points li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #000; }
+
+.op-skip { align-self: flex-start; margin-top: 22px; padding: 0; border: 0; background: none; color: #888; font: 400 13px/1 var(--op-body); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.op-skip:hover { color: #000; }
+
+/* Thank-you state */
+.op-done { display: flex; flex-direction: column; align-items: flex-start; }
+.op-check { display: grid; place-items: center; width: 56px; height: 56px; margin-bottom: 22px; border-radius: 50%; background: #000; color: #fff; }
+.op-done p { margin: 0 0 24px; color: #666; }
+.op-done p b { color: #000; font-weight: 500; }
+
+/* Reopen tab (bottom left, clear of the Chat button) */
+.op-teaser { position: fixed; z-index: 40; left: 20px; bottom: 20px; display: flex; align-items: center; gap: 2px; padding: 4px; border-radius: 99px; background: #000; color: #fff; box-shadow: 0 12px 30px rgba(0,0,0,.22); font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif; animation: op-teaser-in .5s cubic-bezier(.215,.61,.355,1); }
+@keyframes op-teaser-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.op-teaser .op-live { background: #fff; }
+.op-teaser .op-live::after { border-color: #fff; }
+.op-teaser-open { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px 0 18px; border: 0; border-radius: 99px; background: none; color: #fff; font: 500 15px/1 inherit; font-family: inherit; letter-spacing: -.01em; cursor: pointer; }
+.op-teaser-x { display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50%; background: #222; color: #fff; cursor: pointer; transition: background .2s; }
+.op-teaser-x:hover { background: #444; }
+
+/* Phones: bottom sheet with a short photo band */
+@media (max-width: 720px) {
+  dialog.op { width: 100%; max-width: 100%; max-height: calc(100dvh - 24px); margin: auto 0 0; border-radius: 16px 16px 0 0; overflow-y: auto; }
+  dialog.op[open] { grid-template-columns: 1fr; animation: op-up .45s cubic-bezier(.215,.61,.355,1); }
+  @keyframes op-up { from { transform: translateY(100%); } to { transform: none; } }
+  .op-media { min-height: 0; height: 190px; }
+  .op-media-mark { font-size: 44px; }
+  .op-body { position: static; padding: 24px 20px 28px; }
+  .op-close { top: 16px; right: 16px; background: #fff; }
+  dialog.op h2 { font-size: 44px; }
+  .op-text { font-size: 15px; line-height: 22px; margin-bottom: 16px; }
+  .op-form { flex-direction: column; align-items: stretch; gap: 8px; padding: 0; border: 0; box-shadow: none; }
+  .op-form:focus-within { box-shadow: none; }
+  .op-form input { padding: 15px 20px; border: 1px solid #d9d9d9; border-radius: 99px; }
+  .op-form input:focus { border-color: #000; }
+  .op-btn { width: 100%; padding: 16px 22px; }
+  .op-teaser { left: 12px; bottom: 12px; }
+  .op-teaser-open { font-size: 14px; padding: 0 10px 0 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  dialog.op[open], dialog.op::backdrop, .op-teaser { animation: none; }
+  .op-media img { transition: none; transform: none; }
+  .op-live::after { animation: none; }
+}

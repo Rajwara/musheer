@@ -43,7 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Footer />
             </HideOnPaths>
             <WhatsAppButton />
-            <OfferPopup />
+            <OfferPopup image={imageSrc("images/hero/hero-winter")} />
           </QuickViewProvider>
           <Motion />
         </StoreProvider>
