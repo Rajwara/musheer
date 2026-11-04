@@ -7,7 +7,7 @@ import type { CardProduct, Category, Product } from "./types";
 
 export const products = productsData as Product[];
 export const categories = categoriesData as Category[];
-export const home = homeData as { bestSellers: string[]; featured: string[] };
+export const home = homeData as { bestSellers: string[]; featured: string[]; newArrivals: string[] };
 
 const productMap = new Map(products.map((p) => [p.slug, p]));
 const categoryMap = new Map(categories.map((c) => [c.slug, c]));

@@ -6,10 +6,11 @@ import HeroSlider, { type Slide } from "@/components/HeroSlider";
 import MostWanted from "@/components/home/MostWanted";
 import FindYourFit from "@/components/home/FindYourFit";
 import FeaturedLooks, { type Look } from "@/components/home/FeaturedLooks";
+import NewArrivals from "@/components/home/NewArrivals";
 import { ProductGrid } from "@/components/ProductCard";
 import { COMMUNITY, HERO, HOME_VISIT_URL } from "@/lib/brand";
 import { cards, getCategory, getProduct, home } from "@/lib/catalog";
-import { imageSrc } from "@/lib/images";
+import { imageSrc, productImage } from "@/lib/images";
 
 const slides: Slide[] = [
   { eyebrow: HERO.eyebrow, title: HERO.title, text: HERO.text, cta: "Shop kanduras", href: "/category/kandura-thobes", image: imageSrc("images/hero/hero-adult") },
@@ -48,6 +49,12 @@ export default function HomePage() {
         looks={LOOKS.flatMap((l): Look[] => {
           const p = getProduct(l.slug);
           return p ? [{ ...l, photo: imageSrc(l.photo), image: imageSrc(l.image), name: p.name, price: p.price }] : [];
+        })}
+      />
+      <NewArrivals
+        items={home.newArrivals.flatMap((slug) => {
+          const p = getProduct(slug);
+          return p ? [{ slug, name: p.name, price: p.price, colour: p.colour, category: p.category, image: productImage(slug) }] : [];
         })}
       />
       <Stats />
