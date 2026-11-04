@@ -1,6 +1,3 @@
-import Link from "next/link";
-import { HomeVisit, Services, Stats, WhoWeAre } from "@/components/BrandSections";
-import Marquee from "@/components/Marquee";
 import HeroSlider, { type Slide } from "@/components/HeroSlider";
 import MostWanted from "@/components/home/MostWanted";
 import FindYourFit from "@/components/home/FindYourFit";
@@ -12,9 +9,8 @@ import MadeToMeasure from "@/components/home/MadeToMeasure";
 import { FieldwornChromeBehavior, FieldwornFooter } from "@/app/(mock)/test-mock-3/FieldwornChrome";
 import { fieldwornFonts } from "@/lib/fieldworn-fonts";
 import "./fieldworn-site.css";
-import { ProductGrid } from "@/components/ProductCard";
-import { HERO, HOME_VISIT_URL, PHONE_DISPLAY } from "@/lib/brand";
-import { cards, getCategory, getProduct, home } from "@/lib/catalog";
+import { HERO, PHONE_DISPLAY } from "@/lib/brand";
+import { getProduct, home } from "@/lib/catalog";
 import { imageSrc, productImage } from "@/lib/images";
 
 const slides: Slide[] = [
@@ -22,17 +18,6 @@ const slides: Slide[] = [
   { eyebrow: "Kids clothing", title: "Occasion wear for young gentlemen", cta: "Shop kids clothing", href: "/category/kids-clothing", image: imageSrc("images/hero/hero-kids") },
   { eyebrow: "Outerwear", title: "Warm layers for cooler evenings", cta: "Shop outerwear", href: "/category/kandura-jackets", image: imageSrc("images/hero/hero-winter") },
   { eyebrow: "New arrivals", title: "New season colours", cta: "Shop new arrivals", href: "/category/adult-thobes", image: imageSrc("images/hero/hero-new") },
-];
-
-const tiles = [
-  { slug: "kandura-thobes", label: "Kandura and Thobes" },
-  { slug: "kids-clothing", label: "Kids" },
-  { slug: "bisht", label: "Bisht" },
-  { slug: "shimagh-ghutra", label: "Headwear" },
-  { slug: "arabic-sandals", label: "Sandals" },
-  { slug: "perfumes", label: "Perfumes" },
-  { slug: "saderi", label: "Saderi" },
-  { slug: "wallets", label: "Wallets" },
 ];
 
 /** Pinned photo stack after "Find Your Fit": same photos and products as /test-mock-2, thobes first. */
@@ -76,70 +61,6 @@ export default function HomePage() {
       <WhatWeStandFor items={PROMISES.map((p) => ({ ...p, image: imageSrc(p.image) }))} />
       <BehindTheCraft />
       <MadeToMeasure image={imageSrc("images/pages/branches")} />
-      <Stats />
-      <Marquee />
-      <section>
-        <div className="wrap">
-          <div className="head">
-            <h2>Shop by category</h2>
-            <Link href="/category/kandura-thobes">View all</Link>
-          </div>
-          <div className="mosaic">
-            {tiles.map((t) => {
-              const count = getCategory(t.slug)?.products.length ?? 0;
-              return (
-                <Link className="tile" key={t.slug} href={`/category/${t.slug}`}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={imageSrc(`images/categories/${t.slug}`)} alt="" loading="lazy" />
-                  <span className="tile-caption">
-                    <small>{count} {count === 1 ? "style" : "styles"}</small>
-                    <b>{t.label}</b>
-                    <span className="tile-cta">
-                      Shop now <span aria-hidden="true">→</span>
-                    </span>
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-      <div className="ribbon">
-        <div className="wrap">
-          <a href={HOME_VISIT_URL} target="_blank" rel="noopener noreferrer">
-            <b>Home tailoring</b>
-            <small>We measure you at home or in your majlis.</small>
-          </a>
-          <Link href="/branches">
-            <b>13 branches</b>
-            <small>Across Abu Dhabi, Dubai, Sharjah, Ajman and Ras Al Khaimah.</small>
-          </Link>
-          <Link href="/about">
-            <b>Since 1998</b>
-            <small>A family craft, grown into a national name.</small>
-          </Link>
-        </div>
-      </div>
-      <section>
-        <div className="wrap">
-          <div className="head">
-            <h2>Best sellers</h2>
-            <Link href="/category/adult-thobes">View all</Link>
-          </div>
-          <ProductGrid products={cards(home.bestSellers)} />
-        </div>
-      </section>
-      <WhoWeAre />
-      <Services />
-      <HomeVisit />
-      <section>
-        <div className="wrap">
-          <div className="head">
-            <h2>Featured</h2>
-          </div>
-          <ProductGrid products={cards(home.featured)} />
-        </div>
-      </section>
       {/* The /test-mock-2 footer (the store footer is hidden on this page, see OWN_CHROME) */}
       <div className={`fwb ${fieldwornFonts}`}>
         <FieldwornFooter image={imageSrc("images/content/story")} />
