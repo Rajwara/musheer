@@ -36,7 +36,7 @@ export default function BranchesPage() {
   }));
 
   return (
-    <FieldwornShell>
+    <FieldwornShell className="fw-overlay">
       <PageBanner
         image="images/pages/branches"
         eyebrow="*13 branches · 5 Emirates"

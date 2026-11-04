@@ -74,3 +74,24 @@
 .fwb .page-banner { margin: 0 12px; border-radius: var(--fw-radius); }
 .fwb .page-banner-copy { padding-top: 72px; }
 .fwb .page-banner { width: auto; }
+
+/* ---- Transparent header over a tall banner, as on /test-mock-2 ---- */
+.fw-overlay { position: relative; }
+.fw-overlay .fw-head { position: absolute; left: 0; right: 0; top: 0; z-index: 30; }
+.fw-overlay .fw .banner { padding: 12px; }
+.fw-overlay .fw .banner-in.bar { background: transparent; border-radius: 12px; }
+.fw-overlay .fw .banner-in.bar .nav-row { padding-inline: 12px; }
+.fw-overlay .page-banner {
+  margin: 12px; min-height: 0; aspect-ratio: auto;
+  height: calc(100vh - 24px); height: calc(100svh - 24px); max-height: 980px; min-height: 620px;
+}
+.fw-overlay .page-banner::after { background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.15) 55%, rgba(0,0,0,.92) 100%); }
+.fw-overlay .page-banner img { object-position: 50% 40%; }
+.fw-overlay .page-banner-copy { padding-top: 0; padding-bottom: 56px; }
+.fw-overlay .page-banner h1 { font-size: clamp(72px, 13vw, 210px); line-height: .9; }
+@media (max-width: 767px) {
+  .fw-overlay .fw .banner { padding: 8px; }
+  .fw-overlay .page-banner { margin: 8px; height: calc(100svh - 16px); min-height: 560px; }
+  .fw-overlay .page-banner h1 { font-size: clamp(64px, 20vw, 96px); }
+  .fw-overlay .page-banner-copy { padding-bottom: 32px; }
+}
