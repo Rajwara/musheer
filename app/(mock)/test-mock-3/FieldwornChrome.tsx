@@ -21,7 +21,8 @@ const WORDMARK = "AL MUSHEER";
 
 const svgProps = { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.4", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true } as const;
 
-export function FieldwornHeader() {
+/** `cart` replaces the drawer button, e.g. with a link to the real cart. */
+export function FieldwornHeader({ cart }: { cart?: React.ReactNode } = {}) {
   return (
     <div className="fw fw-head">
     <header className="banner">
@@ -34,7 +35,9 @@ export function FieldwornHeader() {
               <li><button type="button">Pages ⌄</button><ul className="drop"><li><a href="/branches">Branches</a></li><li><a href="/blog">Blog</a></li><li><a href="/contact">Contact</a></li></ul></li>
             </ul>
             <div className="nav-end">
-              <button className="cart" type="button" aria-label="Open cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M5 8h14l1.500 13h-17zM8.500 8V6a3.500 3.500 0 0 1 7 0v2" /></svg><b>0</b></button>
+              {cart ?? (
+                <button className="cart" type="button" aria-label="Open cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M5 8h14l1.500 13h-17zM8.500 8V6a3.500 3.500 0 0 1 7 0v2" /></svg><b>0</b></button>
+              )}
               <button className="burger" type="button" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
             </div>
           </div>
@@ -110,7 +113,8 @@ export function FieldwornChromeBehavior() {
       burger.setAttribute("aria-expanded", String(o));
     });
     const cart = (o: boolean) => document.body.classList.toggle("cart-open", o);
-    on($(".fw .cart"), "click", () => cart(true));
+    const drawerBtn = document.querySelector(".fw button.cart");
+    if (drawerBtn) on(drawerBtn, "click", () => cart(true));
     on($(".fw .drawer-close"), "click", () => cart(false));
     on($(".fw .drawer-bg"), "click", () => cart(false));
     on(document, "keydown", ((e: KeyboardEvent) => {

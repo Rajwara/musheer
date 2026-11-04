@@ -3,6 +3,7 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import HideOnPaths from "@/components/HideOnPaths";
 import { StoreProvider } from "@/components/StoreProvider";
 import Motion from "@/components/Motion";
 import OfferPopup from "@/components/OfferPopup";
@@ -29,11 +30,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body id="top">
         <StoreProvider>
-          <AnnouncementBar />
+          <HideOnPaths>
+            <AnnouncementBar />
+          </HideOnPaths>
           <QuickViewProvider>
-            <Header images={categoryImages} />
+            <HideOnPaths>
+              <Header images={categoryImages} />
+            </HideOnPaths>
             <main>{children}</main>
-            <Footer />
+            <HideOnPaths>
+              <Footer />
+            </HideOnPaths>
             <WhatsAppButton />
             <OfferPopup />
           </QuickViewProvider>

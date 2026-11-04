@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import BranchLocator, { type LocatorBranch } from "@/components/BranchLocator";
-import { HomeVisit } from "@/components/BrandSections";
 import BranchMarkets, { type EmirateCard } from "@/components/branches/BranchMarkets";
 import PageBanner from "@/components/PageBanner";
+import StoreCartLink from "@/components/StoreCartLink";
+import { FieldwornChromeBehavior, FieldwornFooter, FieldwornHeader } from "../../(mock)/test-mock-3/FieldwornChrome";
 import { BRANCHES } from "@/lib/brand";
 import { imageSrc } from "@/lib/images";
 import "./branches-brand.css";
@@ -43,6 +44,7 @@ export default function BranchesPage() {
 
   return (
     <div className={`fwb ${bigShoulders.variable} ${spaceGrotesk.variable}`}>
+      <FieldwornHeader cart={<StoreCartLink />} />
       <PageBanner
         image="images/pages/branches"
         eyebrow="*13 branches · 5 Emirates"
@@ -51,7 +53,8 @@ export default function BranchesPage() {
       />
       <BranchMarkets cards={cards} total={branches.length} />
       <BranchLocator branches={branches} />
-      <HomeVisit />
+      <FieldwornFooter image={imageSrc("images/content/story")} />
+      <FieldwornChromeBehavior />
     </div>
   );
 }

@@ -83,3 +83,25 @@
 .fwb .step-icon { background: #222; color: #fff; }
 .fwb .btn.wa { background: #fff; border-color: #fff; color: var(--fw-black); }
 .fwb .btn.wa:hover { background: #e9e9e9; color: var(--fw-black); }
+
+/* /test-mock-2 header and footer on this page (the store header and footer are hidden here) */
+.fwb .fw-head { position: relative; z-index: 30; }
+.fwb .page-banner { margin: 0 12px; border-radius: var(--fw-radius); }
+.fwb .page-banner-copy { padding-top: 72px; }
+.fwb .fw-foot { margin-top: 12px; }
+.fwb .fw .cart { color: #fff; }
+/* The store stylesheet also loads on this page; undo its .nav/.logo/.drop/footer/.socials
+   rules inside the borrowed header and footer so they match /test-mock-2 exactly. */
+.fwb .fw .nav { display: block; gap: normal; margin-right: 0; font-size: inherit; background: none; padding: 0; max-height: none; overflow: visible; flex-direction: row; border: 0; box-shadow: none; }
+.fwb .fw .nav-row > a.logo { padding: 0; display: inline-block; color: inherit; margin-right: 0; flex: initial; text-transform: uppercase; }
+.fwb .fw .nav .drop { display: block; grid-template-columns: none; gap: 0; box-shadow: none; border: 0; }
+.fwb .fw .nav .drop a { display: inline; padding: 0 0 2px; color: inherit; }
+.fwb .fw footer { padding-bottom: 0; font-size: inherit; }
+.fwb .fw footer h4 { font-family: inherit; color: #fff; margin-top: 0; }
+.fwb .fw footer a { display: inline; padding: 0; }
+.fwb .fw footer .socials a { display: block; width: 22px; height: 22px; border: 0; border-radius: 0; opacity: 1; background: none; }
+.fwb .fw footer .socials a:hover { background: none; color: inherit; }
+@media (max-width: 991px) { .fwb .fw .nav .drop { position: static; } }
+.fwb .fw .banner-in.bar { display: block; height: auto; min-height: 88px; }
+@media (max-width: 767px) { .fwb .fw .banner-in.bar { min-height: 72px; } }
+.fwb .fw .banner-in.bar { padding: 0; border-bottom: 0; margin-bottom: 0; color: #fff; gap: normal; }
