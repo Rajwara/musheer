@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import FieldwornShell from "@/components/FieldwornShell";
+import "../blog/blog-brand.css";
+import "./contact-brand.css";
 import Link from "next/link";
 import BranchesMap from "@/components/blog/BranchesMap";
 import ContactForm from "@/components/blog/ContactForm";
@@ -22,6 +25,7 @@ export default function ContactPage() {
   ];
 
   return (
+    <FieldwornShell>
     <div className="bl">
       <section className="page-hero">
         <span className="eyebrow eyebrow-dot">Contact us</span>
@@ -98,5 +102,6 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
+    </FieldwornShell>
   );
 }
