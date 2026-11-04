@@ -1,0 +1,45 @@
+/* =====================================================================
+   "What We Stand For", copied from /test-mock-2 (fieldworn.css .tst /
+   .tst-track / .tst-card) and scoped to .ws. The row pins below the
+   sticky store header and travels sideways as you scroll.
+   ===================================================================== */
+.ws {
+  --ws-display: var(--font-big-shoulders), "Big Shoulders", sans-serif;
+  --ws-body: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --ws-ease: cubic-bezier(.215,.61,.355,1);
+  position: relative; height: 450vh; margin: 12px; padding-top: 100px; border-radius: 12px; background: #fff; color: #000;
+  font: 400 16px/24px var(--ws-body);
+}
+.ws-sticky { position: sticky; top: calc(var(--hdr-h, 0px) + 6vh); overflow: hidden; }
+.ws-container { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 24px; }
+.ws-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 40px; }
+.ws-label { display: block; margin-bottom: 12px; font: 500 16px/24px var(--ws-display); text-transform: uppercase; letter-spacing: .01em; color: #000; }
+.ws h2 { margin: 0; font: 500 56px/1.14 var(--ws-display); text-transform: uppercase; letter-spacing: -.04em; color: #000; }
+.ws-head p { max-width: 380px; margin: 0; color: #666; }
+
+.ws-track { display: flex; gap: 16px; width: max-content; padding-left: max(24px, calc((100% - 1152px) / 2)); padding-right: 40px; will-change: transform; }
+.ws-pair { display: contents; }
+.ws-im { flex: none; width: 220px; height: 286px; overflow: hidden; border-radius: 12px; background: #f6f6f6; }
+.ws-im img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ws-ease); }
+.ws-im:hover img { transform: scale(1.08); }
+.ws-card { flex: none; display: flex; flex-direction: column; width: 270px; height: 286px; padding: 22px 20px; border-radius: 12px; background: #f6f6f6; }
+.ws-stars { margin-bottom: 10px; color: #f5c518; font-size: 15px; letter-spacing: 3px; }
+.ws-card blockquote { margin: 0 0 auto; padding: 0; border: 0; font: 500 16px/24px var(--ws-body); font-style: normal; letter-spacing: -.02em; color: #000; }
+.ws-card hr { margin: 14px 0; border: 0; border-top: 1px solid #e4e4e4; }
+.ws-card b { display: block; font-weight: 500; }
+.ws-card small { color: #666; font-size: 14px; }
+
+@media (max-width: 767px) {
+  .ws { height: auto; margin: 8px; padding: 72px 0; }
+  .ws h2 { font-size: 40px; }
+  .ws-sticky { position: static; }
+  .ws-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .ws-track { width: auto; padding-right: 24px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; }
+  .ws-track::-webkit-scrollbar { display: none; }
+  .ws-im, .ws-card { scroll-snap-align: start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ws { height: auto; padding-bottom: 80px; }
+  .ws-sticky { position: static; }
+  .ws-track { width: auto; overflow-x: auto; }
+}

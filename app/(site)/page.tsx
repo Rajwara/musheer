@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { HomeVisit, Services, Stats, WhoWeAre } from "@/components/BrandSections";
 import Marquee from "@/components/Marquee";
-import CommunityVideos from "@/components/CommunityVideos";
 import HeroSlider, { type Slide } from "@/components/HeroSlider";
 import MostWanted from "@/components/home/MostWanted";
 import FindYourFit from "@/components/home/FindYourFit";
 import FeaturedLooks, { type Look } from "@/components/home/FeaturedLooks";
 import NewArrivals from "@/components/home/NewArrivals";
+import WhatWeStandFor from "@/components/home/WhatWeStandFor";
+import BehindTheCraft from "@/components/home/BehindTheCraft";
+import MadeToMeasure from "@/components/home/MadeToMeasure";
 import { ProductGrid } from "@/components/ProductCard";
-import { COMMUNITY, HERO, HOME_VISIT_URL } from "@/lib/brand";
+import { HERO, HOME_VISIT_URL, PHONE_DISPLAY } from "@/lib/brand";
 import { cards, getCategory, getProduct, home } from "@/lib/catalog";
 import { imageSrc, productImage } from "@/lib/images";
 
@@ -38,8 +40,19 @@ const LOOKS = [
   { photo: "images/pages/about", slug: "occasion-bisht-black", pill: "Bisht", image: "images/categories/bisht" },
 ];
 
+/** "What We Stand For" cards, same text and photos as /test-mock-2. */
+const PROMISES = [
+  { image: "images/categories/egal", quote: "Precision in fit, honesty in fabric. Every kandura is finished to the standard our name was built on.", title: "Our promise", note: "Since 1998" },
+  { image: "images/categories/ghutra", quote: "Personal attention to every client's needs has earned us a trusted name across the UAE.", title: "Customer first", note: "Our approach" },
+  { image: "images/categories/yashmagh", quote: "Our tailors bring the fabrics and the measuring tape straight to your home or majlis.", title: "Home tailoring", note: "We come to you" },
+  { image: "images/categories/kufi-caps", quote: "Kanduras cut from the finest fabrics, blending traditional design with modern craft.", title: "Bespoke kanduras", note: "Made to measure" },
+  { image: "images/categories/tarboosh", quote: "Visit any of our 13 branches across 5 Emirates to choose fabric and be measured.", title: "13 branches", note: "Across the UAE" },
+  { image: "images/categories/arabic-sandals", quote: "Uniforms held to the same exacting standard of precision as our kanduras.", title: "Uniforms", note: "Army & police" },
+  { image: "images/categories/kids-footwear", quote: "Arabic sandals and kandura accessories to complete a full traditional look.", title: "Accessories", note: "The finishing touch" },
+  { image: "images/categories/kids-headwear", quote: "Order, ask about fabric or book a fitting on WhatsApp, any time.", title: "WhatsApp", note: PHONE_DISPLAY },
+];
+
 export default function HomePage() {
-  const clips = COMMUNITY.clips.map((c) => ({ ...c, poster: imageSrc(c.poster), products: cards(c.products) }));
   return (
     <>
       <HeroSlider slides={slides} />
@@ -57,6 +70,9 @@ export default function HomePage() {
           return p ? [{ slug, name: p.name, price: p.price, colour: p.colour, category: p.category, image: productImage(slug) }] : [];
         })}
       />
+      <WhatWeStandFor items={PROMISES.map((p) => ({ ...p, image: imageSrc(p.image) }))} />
+      <BehindTheCraft />
+      <MadeToMeasure image={imageSrc("images/pages/branches")} />
       <Stats />
       <Marquee />
       <section>
@@ -121,7 +137,6 @@ export default function HomePage() {
           <ProductGrid products={cards(home.featured)} />
         </div>
       </section>
-      <CommunityVideos eyebrow={COMMUNITY.eyebrow} text={COMMUNITY.text} instagram={COMMUNITY.instagram} clips={clips} />
     </>
   );
 }

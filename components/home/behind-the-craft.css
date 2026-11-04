@@ -1,0 +1,25 @@
+/* =====================================================================
+   "Behind The Craft" heading from /test-mock-2 (.reels-section / .tst-head),
+   scoped to .btc. The reels themselves use test-mock-2/community.css (.cv).
+   ===================================================================== */
+.btc {
+  --btc-display: var(--font-big-shoulders), "Big Shoulders", sans-serif;
+  --btc-body: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  margin: 12px; padding: 100px 0 64px; border-radius: 12px; background: #fff; color: #000;
+  font: 400 16px/24px var(--btc-body);
+}
+.btc-container { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 24px; }
+.btc-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 40px; }
+.btc-label { display: block; margin-bottom: 12px; font: 500 16px/24px var(--btc-display); text-transform: uppercase; letter-spacing: .01em; color: #000; }
+.btc h2 { margin: 0; font: 500 56px/1.14 var(--btc-display); text-transform: uppercase; letter-spacing: -.04em; color: #000; }
+.btc-head p { max-width: 380px; margin: 0; color: #666; font-size: 16px; line-height: 24px; }
+.btc-head p a { color: #000; border-bottom: 1px solid currentColor; }
+/* The reels sit inside a 12px-inset panel, so line them up with its container */
+.btc .cv .clips { --edge: max(24px, calc((100% - 1152px) / 2)); }
+.btc .cv .clips-nav { margin-inline: auto; }
+@media (max-width: 767px) {
+  .btc { margin: 8px; padding: 72px 0 56px; }
+  .btc h2 { font-size: 40px; }
+  .btc-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .btc .cv .clips { --edge: 24px; }
+}
