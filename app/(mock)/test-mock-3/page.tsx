@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { imageSrc } from "@/lib/images";
+import { FieldwornChromeBehavior, FieldwornFooter, FieldwornHeader } from "./FieldwornChrome";
 import Logotype, { type LogotypeImages } from "./Logotype";
 
 /**
@@ -50,5 +51,12 @@ function findImage(slot: string) {
 
 export default function TestMock3Page() {
   const img: LogotypeImages = Object.fromEntries(SLOTS.map((s) => [s, findImage(s) ?? (ABOUT_IMAGES[s] ? imageSrc(ABOUT_IMAGES[s]) : undefined)]));
-  return <Logotype img={img} />;
+  return (
+    <>
+      <FieldwornHeader />
+      <Logotype img={img} />
+      <FieldwornFooter image={imageSrc("images/content/story")} />
+      <FieldwornChromeBehavior />
+    </>
+  );
 }

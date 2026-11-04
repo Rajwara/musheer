@@ -283,23 +283,7 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
     });
     selectTab(0);
 
-    /* ---------- Fullscreen menu ---------- */
-    const menu = $("#menu");
-    const openBtn = $("#menuOpen");
-    const closeBtn = $("#menuClose");
-    function setMenu(open: boolean) {
-      menu.classList.toggle("open", open);
-      menu.setAttribute("aria-hidden", open ? "false" : "true");
-      openBtn.setAttribute("aria-expanded", open ? "true" : "false");
-      document.body.classList.toggle("menu-open", open);
-      (open ? closeBtn : openBtn).focus({ preventScroll: true });
-    }
-    on(openBtn, "click", () => setMenu(true));
-    on(closeBtn, "click", () => setMenu(false));
-    on(document, "keydown", ((e: KeyboardEvent) => {
-      if (e.key === "Escape" && menu.classList.contains("open")) setMenu(false);
-    }) as EventListener);
-    $$(".menu-link").forEach((a) => on(a, "click", () => setMenu(false)));
+    /* The header and its menu come from /test-mock-2 (see FieldwornChrome). */
 
     return () => {
       off.forEach((f) => f());
@@ -307,52 +291,12 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
       cancelAnimationFrame(raf);
       io?.disconnect();
       html.classList.remove("hover-device");
-      document.body.classList.remove("menu-open");
     };
   }, []);
 
   return (
     <div ref={root} style={{ display: "contents" }}>
       <div className="page">
-
-        {/* NAV */}
-        <header className="nav">
-          <div className="gutter"><div className="wrap nav-row">
-            <div className="nav-left">
-              <button className="burger" id="menuOpen" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
-              <span className="nav-divider"></span>
-              <a className="cart" href="#" aria-label="Cart, 0 items">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l3 13h11l2.2-9H6"/></svg>
-                <span>0</span>
-              </a>
-            </div>
-            <a className="logo" href="/">Al Musheer</a>
-            <a className="btn nav-contact" href="/contact">Contact Us<span className="btn-lines"><i></i><i></i></span></a>
-          </div></div>
-        </header>
-
-        {/* FULLSCREEN MENU */}
-        <div className="menu" id="menu" aria-hidden="true">
-          <div className="gutter"><div className="wrap">
-            <div className="nav-row menu-top">
-              <button className="close" id="menuClose" aria-label="Close menu"><i></i><i></i></button>
-              <a className="logo" href="/">Al Musheer</a>
-              <div className="menu-social">
-                <a className="social" href="https://www.tiktok.com/@al_musheer" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 4v10a3 3 0 1 1-3-3M14 4c.5 2.5 2 4 5 4"/></svg></a>
-                <a className="social" href="https://www.instagram.com/almusheer" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="16.8" cy="7.2" r=".6" fill="currentColor"/></svg></a>
-                <a className="social" href="https://api.whatsapp.com/send/?phone=971568586987" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1-1.2 1.8.8-.3 1.4c-3.5.5-7.7-3.7-7.2-7.2l1.4-.3.8 1.8z"/></svg></a>
-              </div>
-            </div>
-            <ul className="menu-list">
-              <li><a className="menu-link" href="/">Home</a></li>
-              <li><a className="menu-link" href="#about">About</a></li>
-              <li><a className="menu-link" href="/contact">Contact</a></li>
-              <li><a className="menu-link" href="/category/kandura-thobes">Collection</a></li>
-              <li><a className="menu-link" href="#services">Services</a></li>
-              <li><a className="menu-link" href="#projects">Our story</a></li>
-            </ul>
-          </div></div>
-        </div>
 
         <main>
           {/* HERO */}
