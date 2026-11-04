@@ -30,6 +30,12 @@ const sortSizes = (a: string, b: string) => {
   return parseFloat(a) - parseFloat(b) || a.localeCompare(b);
 };
 
+/** Highlight filters: shown at the top of the filters and in the category strip. */
+const FLAGS: { id: string; label: string; short: string; icon: string; test: (p: ShopProduct) => boolean }[] = [
+  { id: "new", label: "New arrivals", short: "New In", icon: "✦", test: (p) => p.isNew },
+  { id: "best", label: "Best sellers", short: "Best Sellers", icon: "★", test: (p) => p.badge === "Best seller" },
+];
+
 const toggle = (list: string[], v: string) => (list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
 const key = (kind: string, v: string) => `${kind}:${v}`;
 
@@ -86,6 +92,8 @@ export default function ShopAll({ products, groups }: { products: ShopProduct[];
     if (c.length) setCats(c);
     const q = sp.get("q");
     if (q) setQuery(q);
+    const f = sp.getAll("filter").flatMap((v) => v.split(",")).filter((v) => v === "new" || v === "best");
+    if (f.length) setFlags(f);
   }, []);
 
   const titleOf = useMemo(() => Object.fromEntries(groups.flatMap((g) => g.categories.map((c) => [c.slug, c.title]))), [groups]);
@@ -175,11 +183,21 @@ export default function ShopAll({ products, groups }: { products: ShopProduct[];
     <>
       {/* Every category, as quick filters */}
       <div className="sa-cats" role="group" aria-label="Categories">
-        <button type="button" className={cats.length ? "sa-cat" : "sa-cat on"} onClick={() => setCats([])}>
+        <button type="button" className={cats.length || flags.length ? "sa-cat" : "sa-cat on"} onClick={() => (setCats([]), setFlags([]))}>
           <span className="sa-cat-all">All</span>
           <b>All products</b>
           <small>{products.length}</small>
         </button>
+        {FLAGS.map((f) => (
+          <button key={f.id} type="button" className={flags.includes(f.id) ? "sa-cat on" : "sa-cat"} aria-pressed={flags.includes(f.id)} onClick={() => setFlags((l) => toggle(l, f.id))}>
+            <span className="sa-cat-all sa-cat-flag">
+              <i aria-hidden="true">{f.icon}</i>
+              {f.short}
+            </span>
+            <b>{f.label}</b>
+            <small>{products.filter(f.test).length}</small>
+          </button>
+        ))}
         {groups.flatMap((g) =>
           g.categories.map((c) => (
             <button key={c.slug} type="button" className={cats.includes(c.slug) ? "sa-cat on" : "sa-cat"} aria-pressed={cats.includes(c.slug)} onClick={() => setCats((l) => toggle(l, c.slug))}>
@@ -215,6 +233,18 @@ export default function ShopAll({ products, groups }: { products: ShopProduct[];
             </svg>
             <input type="search" placeholder="Search products" aria-label="Search products" value={query} onChange={(e) => setQuery(e.target.value)} />
           </div>
+
+          <Section title="New & Best Sellers" count={flags.length}>
+            <div className="sa-flags">
+              {FLAGS.map((f) => (
+                <button key={f.id} type="button" className={flags.includes(f.id) ? "on" : undefined} aria-pressed={flags.includes(f.id)} onClick={() => setFlags((l) => toggle(l, f.id))}>
+                  <span className="sa-flag-ico" aria-hidden="true">{f.icon}</span>
+                  <span>{f.label}</span>
+                  <small>{countBy("flag", f.test)}</small>
+                </button>
+              ))}
+            </div>
+          </Section>
 
           <Section title="Category" count={cats.length}>
             {groups.map((g) => {
@@ -314,18 +344,6 @@ export default function ShopAll({ products, groups }: { products: ShopProduct[];
             </div>
           </Section>
 
-          <Section title="Highlights" count={flags.length}>
-            {[
-              ["best", "Best sellers", (p: ShopProduct) => p.badge === "Best seller"],
-              ["new", "New arrivals", (p: ShopProduct) => p.isNew],
-            ].map(([id, label, test]) => (
-              <label className="sa-check" key={id as string}>
-                <input type="checkbox" checked={flags.includes(id as string)} onChange={() => setFlags((l) => toggle(l, id as string))} />
-                <span>{label as string}</span>
-                <small>{countBy("flag", test as (p: ShopProduct) => boolean)}</small>
-              </label>
-            ))}
-          </Section>
 
           <button type="button" className="sa-show" onClick={() => setDrawer(false)}>
             Show {shown.length} {shown.length === 1 ? "product" : "products"}

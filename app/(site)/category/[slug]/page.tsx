@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import FieldwornShell from "@/components/FieldwornShell";
 import "../../shop-brand.css";
+import "@/components/shop/shop-all.css";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CategoryShop from "@/components/CategoryShop";

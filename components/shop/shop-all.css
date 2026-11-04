@@ -123,3 +123,24 @@
   .sa-cat { width: 88px; }
   .sa-cat img, .sa-cat-all { width: 60px; height: 60px; }
 }
+
+/* New In / Best Sellers: circles in the strip and toggles at the top of the filters */
+.sa-cat-flag { flex-direction: column; gap: 2px; padding: 0 6px; background: #fff; color: #000; box-shadow: inset 0 0 0 1.5px #000; font-size: 13px; line-height: 1; text-align: center; }
+.sa-cat-flag i { font-style: normal; font-size: 14px; }
+.sa-cat.on .sa-cat-flag { background: #000; color: #fff; }
+.sa-flags { display: grid; gap: 6px; }
+.sa-flags button { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid #e4e4e4; border-radius: 99px; background: #fff; color: #000; font: 500 14px/20px inherit; font-family: inherit; text-align: left; cursor: pointer; transition: .2s; }
+.sa-flags button span:nth-child(2) { flex: 1; }
+.sa-flags button small { color: #999; font-size: 12px; font-weight: 400; }
+.sa-flags button:hover { border-color: #000; }
+.sa-flags button.on { background: #000; border-color: #000; color: #fff; }
+.sa-flags button.on small { color: #bbb; }
+.sa-flag-ico { width: 16px; text-align: center; }
+
+/* Sort menu: own chevron with room around it, instead of the browser arrow */
+.sa-sort select, .shop-fw .shop .bar select {
+  -webkit-appearance: none; appearance: none; min-width: 170px; padding: 9px 40px 9px 16px; cursor: pointer;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 16px center / 12px 12px;
+}
+.sa-sort select:hover, .shop-fw .shop .bar select:hover { border-color: #000; }
+.sa-sort select:focus-visible, .shop-fw .shop .bar select:focus-visible { outline: 2px solid #000; outline-offset: 2px; }
