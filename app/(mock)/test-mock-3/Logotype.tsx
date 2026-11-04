@@ -326,8 +326,8 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
                 <span>0</span>
               </a>
             </div>
-            <a className="logo" href="#">Logotype</a>
-            <a className="btn nav-contact" href="#">Contact Us<span className="btn-lines"><i></i><i></i></span></a>
+            <a className="logo" href="/">Al Musheer</a>
+            <a className="btn nav-contact" href="/contact">Contact Us<span className="btn-lines"><i></i><i></i></span></a>
           </div></div>
         </header>
 
@@ -336,20 +336,20 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
           <div className="gutter"><div className="wrap">
             <div className="nav-row menu-top">
               <button className="close" id="menuClose" aria-label="Close menu"><i></i><i></i></button>
-              <a className="logo" href="#">Logotype</a>
+              <a className="logo" href="/">Al Musheer</a>
               <div className="menu-social">
-                <a className="social" href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
-                <a className="social" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="16.8" cy="7.2" r=".6" fill="currentColor"/></svg></a>
-                <a className="social" href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+                <a className="social" href="https://www.tiktok.com/@al_musheer" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 4v10a3 3 0 1 1-3-3M14 4c.5 2.5 2 4 5 4"/></svg></a>
+                <a className="social" href="https://www.instagram.com/almusheer" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="16.8" cy="7.2" r=".6" fill="currentColor"/></svg></a>
+                <a className="social" href="https://api.whatsapp.com/send/?phone=971568586987" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1-1.2 1.8.8-.3 1.4c-3.5.5-7.7-3.7-7.2-7.2l1.4-.3.8 1.8z"/></svg></a>
               </div>
             </div>
             <ul className="menu-list">
-              <li><a className="menu-link" href="#">Home</a></li>
+              <li><a className="menu-link" href="/">Home</a></li>
               <li><a className="menu-link" href="#about">About</a></li>
-              <li><a className="menu-link" href="#">Contact</a></li>
-              <li><a className="menu-link" href="#">Collection</a></li>
-              <li><a className="menu-link" href="#services">Service</a></li>
-              <li><a className="menu-link" href="#projects">Project</a></li>
+              <li><a className="menu-link" href="/contact">Contact</a></li>
+              <li><a className="menu-link" href="/category/kandura-thobes">Collection</a></li>
+              <li><a className="menu-link" href="#services">Services</a></li>
+              <li><a className="menu-link" href="#projects">Our story</a></li>
             </ul>
           </div></div>
         </div>
@@ -358,17 +358,17 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
           {/* HERO */}
           <section className="hero gutter"><div className="wrap" data-group="">
             <div className="hero-top">
-              <h1 className="h1 hero-title" data-r="" style={{ "--x": "-80px", "--d": "1.4s" } as React.CSSProperties}>Discover your signature style today.</h1>
+              <h1 className="h1 hero-title" data-r="" style={{ "--x": "-80px", "--d": "1.4s" } as React.CSSProperties}>The Art of the Kandura, Perfected.</h1>
               <div className="hero-intro" data-r="" style={{ "--x": "80px", "--d": "1.4s", "--w": ".3s" } as React.CSSProperties}>
-                <p>Placeholder intro copy goes here. Swap in a short line about what you offer and why it matters to the people you serve.</p>
-                <a className="btn" href="#">View collection<span className="btn-lines"><i></i><i></i></span></a>
+                <p>Since 1998, Al Musheer has dressed the men of the UAE in kanduras cut with precision and finished to a standard we have spent a generation refining.</p>
+                <a className="btn" href="/category/kandura-thobes">View collection<span className="btn-lines"><i></i><i></i></span></a>
               </div>
             </div>
             <div className="hero-bottom">
               <div className="hero-social" data-r="" style={{ "--d": "1.4s" } as React.CSSProperties}>
-                <a className="social" href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
-                <a className="social" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="16.8" cy="7.2" r=".6" fill="currentColor"/></svg></a>
-                <a className="social" href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+                <a className="social" href="https://www.tiktok.com/@al_musheer" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 4v10a3 3 0 1 1-3-3M14 4c.5 2.5 2 4 5 4"/></svg></a>
+                <a className="social" href="https://www.instagram.com/almusheer" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="16.8" cy="7.2" r=".6" fill="currentColor"/></svg></a>
+                <a className="social" href="https://api.whatsapp.com/send/?phone=971568586987" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1-1.2 1.8.8-.3 1.4c-3.5.5-7.7-3.7-7.2-7.2l1.4-.3.8 1.8z"/></svg></a>
               </div>
               <div className="hero-stage">
                 <div className="slider-wrap">
@@ -383,8 +383,8 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
                     <button className="slider-hit next" id="next" aria-label="Next slide"></button>
                   </div>
                   {/* Two stacked layers in difference mode give the dark-on-white, light-on-dark wordmark */}
-                  <div className="wordmark" aria-hidden="true"><span>L</span><span>O</span><span>G</span><span>O</span><span>T</span><span>Y</span><span>P</span><span>E</span></div>
-                  <div className="wordmark" aria-hidden="true"><span>L</span><span>O</span><span>G</span><span>O</span><span>T</span><span>Y</span><span>P</span><span>E</span></div>
+                  <div className="wordmark" aria-hidden="true"><span>M</span><span>U</span><span>S</span><span>H</span><span>E</span><span>E</span><span>R</span></div>
+                  <div className="wordmark" aria-hidden="true"><span>M</span><span>U</span><span>S</span><span>H</span><span>E</span><span>E</span><span>R</span></div>
                 </div>
                 <div className="scroll-cue" data-r="" style={{ "--d": "1.4s" } as React.CSSProperties}>
                   <svg viewBox="0 0 16 42" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M8 0v41M1 34l7 7 7-7"/></svg>
@@ -398,15 +398,15 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
           <section className="gutter" id="about"><div className="wrap pad" data-group="">
             <h2 className="h6 center about-label" data-r="">About us</h2>
             <p className="about-lines" data-r="" id="aboutLines">
-              <span className="about-line">Logotype creates considered,<span className="about-ink" aria-hidden="true">Logotype creates considered,</span></span>
-              <span className="about-line">personal clothing, offering<span className="about-ink" aria-hidden="true">personal clothing, offering</span></span>
-              <span className="about-line">tailored advice and edited collections<span className="about-ink" aria-hidden="true">tailored advice and edited collections</span></span>
-              <span className="about-line">to sharpen your everyday wardrobe and<span className="about-ink" aria-hidden="true">to sharpen your everyday wardrobe and</span></span>
-              <span className="about-line">personal look<span className="about-ink" aria-hidden="true">personal look</span></span>
+              <span className="about-line">Since 1998, Al Musheer has dressed<span className="about-ink" aria-hidden="true">Since 1998, Al Musheer has dressed</span></span>
+              <span className="about-line">the men of the UAE in kanduras<span className="about-ink" aria-hidden="true">the men of the UAE in kanduras</span></span>
+              <span className="about-line">cut with precision and finished to<span className="about-ink" aria-hidden="true">cut with precision and finished to</span></span>
+              <span className="about-line">a standard refined over a generation,<span className="about-ink" aria-hidden="true">a standard refined over a generation,</span></span>
+              <span className="about-line">piece by piece<span className="about-ink" aria-hidden="true">piece by piece</span></span>
             </p>
             <div className="about-bottom" data-r="">
               <div className="about-img"><img src={img["about-1"]} data-ph="About 1|260x150|1" alt="" /></div>
-              <a className="btn" href="#">Learn more<span className="btn-lines"><i></i><i></i></span></a>
+              <a className="btn" href="/about">Learn more<span className="btn-lines"><i></i><i></i></span></a>
               <div className="about-img"><img src={img["about-2"]} data-ph="About 2|260x150|3" alt="" /></div>
             </div>
           </div></section>
@@ -416,15 +416,15 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
             <div className="services">
               <div className="svc-left">
                 <h2 className="h2" id="svcHead">What we can do for you</h2>
-                <a className="svc-card" id="svc2" href="#"><div className="svc-img"><img src={img["service-1"]} data-ph="Service 1|449x482|2" alt="" /></div><div className="h6">Personal wardrobe edit</div></a>
-                <a className="svc-card" id="svc4" href="#"><div className="svc-img"><img src={img["service-2"]} data-ph="Service 2|449x482|4" alt="" /></div><div className="h6">Private styling session</div></a>
+                <a className="svc-card" id="svc2" href="/category/kandura-thobes"><div className="svc-img"><img src={img["service-1"]} data-ph="Service 1|449x482|2" alt="" /></div><div className="h6">Bespoke Kanduras</div></a>
+                <a className="svc-card" id="svc4" href="/contact"><div className="svc-img"><img src={img["service-2"]} data-ph="Service 2|449x482|4" alt="" /></div><div className="h6">Army &amp; Police Uniforms</div></a>
               </div>
               <div className="svc-right">
-                <a className="svc-card" id="svc1" href="#"><div className="svc-img"><img src={img["service-3"]} data-ph="Service 3|439x482|3" alt="" /></div><div className="h6">Seasonal lookbooks</div></a>
-                <a className="svc-card" id="svc3" href="#"><div className="svc-img"><img src={img["service-4"]} data-ph="Service 4|439x482|1" alt="" /></div><div className="h6">Fittings and repairs</div></a>
+                <a className="svc-card" id="svc1" href="https://api.whatsapp.com/send/?phone=971568586987&text=Hello%20Al%20Musheer%2C%20I%20would%20like%20to%20book%20a%20home%20tailoring%20visit." target="_blank" rel="noopener noreferrer"><div className="svc-img"><img src={img["service-3"]} data-ph="Service 3|439x482|3" alt="" /></div><div className="h6">Home Tailoring Visits</div></a>
+                <a className="svc-card" id="svc3" href="/category/arabic-sandals"><div className="svc-img"><img src={img["service-4"]} data-ph="Service 4|439x482|1" alt="" /></div><div className="h6">Sandals &amp; Accessories</div></a>
                 <div className="svc-text" id="svcText">
-                  <p>Placeholder service summary. Use two or three lines here to explain how your services fit together and what to do next.</p>
-                  <a className="btn" href="#">View all services<span className="btn-lines"><i></i><i></i></span></a>
+                  <p>From made-to-measure kanduras to uniforms and the finishing accessories, every piece is held to the same exacting standard, in store or at your door.</p>
+                  <a className="btn" href="https://api.whatsapp.com/send/?phone=971568586987&text=Hello%20Al%20Musheer%2C%20I%20would%20like%20to%20book%20a%20home%20tailoring%20visit." target="_blank" rel="noopener noreferrer">Book a home visit<span className="btn-lines"><i></i><i></i></span></a>
                 </div>
               </div>
             </div>
@@ -434,10 +434,10 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
           <section className="gutter" id="process"><div className="wrap pad" data-group="">
             <h2 className="h2 center process-head" data-r="">Our process</h2>
             <div className="process-list" data-r="" id="processList">
-              <div className="process-card" data-i="0"><span className="h6 num">01</span><span className="process-dot"></span><h3 className="h3">Discovery call</h3></div>
-              <div className="process-card" data-i="1"><span className="h6 num">02</span><span className="process-dot"></span><h3 className="h3">Design &amp; materials</h3></div>
-              <div className="process-card" data-i="2"><span className="h6 num">03</span><span className="process-dot"></span><h3 className="h3">Fittings and finishing</h3></div>
-              <div className="process-card" data-i="3"><span className="h6 num">04</span><span className="process-dot"></span><h3 className="h3">Final delivery</h3></div>
+              <div className="process-card" data-i="0"><span className="h6 num">01</span><span className="process-dot"></span><h3 className="h3">Request on WhatsApp</h3></div>
+              <div className="process-card" data-i="1"><span className="h6 num">02</span><span className="process-dot"></span><h3 className="h3">Home or majlis visit</h3></div>
+              <div className="process-card" data-i="2"><span className="h6 num">03</span><span className="process-dot"></span><h3 className="h3">Fabrics &amp; measurements</h3></div>
+              <div className="process-card" data-i="3"><span className="h6 num">04</span><span className="process-dot"></span><h3 className="h3">Delivered to your door</h3></div>
               <div className="process-images" aria-hidden="true">
                 <div><img src={img["process-1"]} data-ph="Process 1|400x450|4" alt="" /></div>
                 <div><img src={img["process-2"]} data-ph="Process 2|400x450|2" alt="" /></div>
@@ -450,38 +450,38 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
           {/* PROJECTS */}
           <section className="gutter" id="projects"><div className="wrap pad" data-group="">
             <div className="project-head" data-r="">
-              <h2 className="h2">Selected recent work</h2>
-              <a className="btn" href="#">View all<span className="btn-lines"><i></i><i></i></span></a>
+              <h2 className="h2">Our story since 1998</h2>
+              <a className="btn" href="/about">Our story<span className="btn-lines"><i></i><i></i></span></a>
             </div>
             <div className="project-grid">
-              <a className="project-card" data-r="" href="#"><img src={img["project-1"]} data-ph="Project 1|585x650|2" alt="" /><div className="project-info"><div><span className="pill">Category one</span><div className="h6">Placeholder project title</div></div><span>2026</span></div></a>
-              <a className="project-card" data-r="" href="#"><img src={img["project-2"]} data-ph="Project 2|585x650|4" alt="" /><div className="project-info"><div><span className="pill">Category two</span><div className="h6">Placeholder project title</div></div><span>2025</span></div></a>
-              <a className="project-card" data-r="" href="#"><img src={img["project-3"]} data-ph="Project 3|585x650|1" alt="" /><div className="project-info"><div><span className="pill">Category three</span><div className="h6">Placeholder project title</div></div><span>2024</span></div></a>
-              <a className="project-card" data-r="" href="#"><img src={img["project-4"]} data-ph="Project 4|585x650|3" alt="" /><div className="project-info"><div><span className="pill">Category four</span><div className="h6">Placeholder project title</div></div><span>2023</span></div></a>
+              <a className="project-card" data-r="" href="/about"><img src={img["project-1"]} data-ph="Project 1|585x650|2" alt="" /><div className="project-info"><div><span className="pill">Our beginning</span><div className="h6">A Tailor&apos;s Beginning</div></div><span>1998</span></div></a>
+              <a className="project-card" data-r="" href="/about"><img src={img["project-2"]} data-ph="Project 2|585x650|4" alt="" /><div className="project-info"><div><span className="pill">Our growth</span><div className="h6">Setting the Standard</div></div><span>Growth</span></div></a>
+              <a className="project-card" data-r="" href="/branches"><img src={img["project-3"]} data-ph="Project 3|585x650|1" alt="" /><div className="project-info"><div><span className="pill">Today</span><div className="h6">A Name Across the Emirates</div></div><span>Today</span></div></a>
+              <a className="project-card" data-r="" href="/branches"><img src={img["project-4"]} data-ph="Project 4|585x650|3" alt="" /><div className="project-info"><div><span className="pill">Our branches</span><div className="h6">13 Branches, 5 Emirates</div></div><span>2026</span></div></a>
             </div>
           </div></section>
 
           {/* TESTIMONIALS */}
           <section className="gutter" id="testimonials"><div className="wrap pad" data-group="">
-            <h2 className="h2 center t-head" data-r="">What clients say</h2>
+            <h2 className="h2 center t-head" data-r="">What we stand for</h2>
             <div className="t-tabs" id="tabs" role="tablist" aria-label="Client testimonials">
-              <button className="t-tab" role="tab" aria-selected="true" aria-label="Testimonial 1"><img src={img["avatar-1"]} data-ph="|50x50|2" alt="" /></button>
-              <button className="t-tab" role="tab" aria-selected="false" aria-label="Testimonial 2"><img src={img["avatar-2"]} data-ph="|50x50|4" alt="" /></button>
-              <button className="t-tab" role="tab" aria-selected="false" aria-label="Testimonial 3"><img src={img["avatar-3"]} data-ph="|50x50|1" alt="" /></button>
-              <button className="t-tab" role="tab" aria-selected="false" aria-label="Testimonial 4"><img src={img["avatar-4"]} data-ph="|50x50|3" alt="" /></button>
-              <button className="t-tab" role="tab" aria-selected="false" aria-label="Testimonial 5"><img src={img["avatar-5"]} data-ph="|50x50|2" alt="" /></button>
-              <button className="t-tab" role="tab" aria-selected="false" aria-label="Testimonial 6"><img src={img["avatar-6"]} data-ph="|50x50|4" alt="" /></button>
+              <button className="t-tab" role="tab" aria-selected="true" aria-label="Our promise"><img src={img["avatar-1"]} data-ph="|50x50|2" alt="" /></button>
+              <button className="t-tab" role="tab" aria-selected="false" aria-label="Our approach"><img src={img["avatar-2"]} data-ph="|50x50|4" alt="" /></button>
+              <button className="t-tab" role="tab" aria-selected="false" aria-label="Our growth"><img src={img["avatar-3"]} data-ph="|50x50|1" alt="" /></button>
+              <button className="t-tab" role="tab" aria-selected="false" aria-label="Home tailoring"><img src={img["avatar-4"]} data-ph="|50x50|3" alt="" /></button>
+              <button className="t-tab" role="tab" aria-selected="false" aria-label="Bespoke kanduras"><img src={img["avatar-5"]} data-ph="|50x50|2" alt="" /></button>
+              <button className="t-tab" role="tab" aria-selected="false" aria-label="Uniforms"><img src={img["avatar-6"]} data-ph="|50x50|4" alt="" /></button>
               <div className="t-panes" data-r="">
                 <div className="t-pane show fade" role="tabpanel">
                   <svg className="t-quote" viewBox="0 0 50 42" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M1 41V19C1 9 6 3 18 1v5c-5 2-7 5-7 9h10v26H1zM29 41V19c0-10 5-16 17-18v5c-5 2-7 5-7 9h10v26H29z"/></svg>
-                  <p className="h4">Placeholder testimonial one. Replace this with a real client quote about working with your team, around two or three sentences long so the layout holds.</p>
-                  <p className="h6 t-name">Client name</p>
+                  <p className="h4">Precision in fit, honesty in fabric: every kandura is finished to the standard our name was built on.</p>
+                  <p className="h6 t-name">Our promise</p>
                 </div>
-                <div className="t-pane" role="tabpanel"><svg className="t-quote" viewBox="0 0 50 42" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M1 41V19C1 9 6 3 18 1v5c-5 2-7 5-7 9h10v26H1zM29 41V19c0-10 5-16 17-18v5c-5 2-7 5-7 9h10v26H29z"/></svg><p className="h4">Placeholder testimonial two. Replace this with a real client quote about the result you delivered, around two or three sentences long.</p><p className="h6 t-name">Client name</p></div>
-                <div className="t-pane" role="tabpanel"><svg className="t-quote" viewBox="0 0 50 42" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M1 41V19C1 9 6 3 18 1v5c-5 2-7 5-7 9h10v26H1zM29 41V19c0-10 5-16 17-18v5c-5 2-7 5-7 9h10v26H29z"/></svg><p className="h4">Placeholder testimonial three. Replace this with a real client quote about your process, around two or three sentences long so the layout holds.</p><p className="h6 t-name">Client name</p></div>
-                <div className="t-pane" role="tabpanel"><svg className="t-quote" viewBox="0 0 50 42" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M1 41V19C1 9 6 3 18 1v5c-5 2-7 5-7 9h10v26H1zM29 41V19c0-10 5-16 17-18v5c-5 2-7 5-7 9h10v26H29z"/></svg><p className="h4">Placeholder testimonial four. Replace this with a real client quote about quality, around two or three sentences long so the layout holds.</p><p className="h6 t-name">Client name</p></div>
-                <div className="t-pane" role="tabpanel"><svg className="t-quote" viewBox="0 0 50 42" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M1 41V19C1 9 6 3 18 1v5c-5 2-7 5-7 9h10v26H1zM29 41V19c0-10 5-16 17-18v5c-5 2-7 5-7 9h10v26H29z"/></svg><p className="h4">Placeholder testimonial five. Replace this with a real client quote about service, around two or three sentences long so the layout holds.</p><p className="h6 t-name">Client name</p></div>
-                <div className="t-pane" role="tabpanel"><svg className="t-quote" viewBox="0 0 50 42" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M1 41V19C1 9 6 3 18 1v5c-5 2-7 5-7 9h10v26H1zM29 41V19c0-10 5-16 17-18v5c-5 2-7 5-7 9h10v26H29z"/></svg><p className="h4">Placeholder testimonial six. Replace this with a real client quote about results, around two or three sentences long so the layout holds.</p><p className="h6 t-name">Client name</p></div>
+                <div className="t-pane" role="tabpanel"><svg className="t-quote" viewBox="0 0 50 42" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M1 41V19C1 9 6 3 18 1v5c-5 2-7 5-7 9h10v26H1zM29 41V19c0-10 5-16 17-18v5c-5 2-7 5-7 9h10v26H29z"/></svg><p className="h4">Personal attention to every client&apos;s needs has earned us a trusted name across the UAE.</p><p className="h6 t-name">Our approach</p></div>
+                <div className="t-pane" role="tabpanel"><svg className="t-quote" viewBox="0 0 50 42" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M1 41V19C1 9 6 3 18 1v5c-5 2-7 5-7 9h10v26H1zM29 41V19c0-10 5-16 17-18v5c-5 2-7 5-7 9h10v26H29z"/></svg><p className="h4">What began as a single store is now a name found in almost every emirate.</p><p className="h6 t-name">Our growth</p></div>
+                <div className="t-pane" role="tabpanel"><svg className="t-quote" viewBox="0 0 50 42" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M1 41V19C1 9 6 3 18 1v5c-5 2-7 5-7 9h10v26H1zM29 41V19c0-10 5-16 17-18v5c-5 2-7 5-7 9h10v26H29z"/></svg><p className="h4">Prefer to be fitted at home? Our tailors bring the fabrics and the tape to your door.</p><p className="h6 t-name">Home tailoring</p></div>
+                <div className="t-pane" role="tabpanel"><svg className="t-quote" viewBox="0 0 50 42" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M1 41V19C1 9 6 3 18 1v5c-5 2-7 5-7 9h10v26H1zM29 41V19c0-10 5-16 17-18v5c-5 2-7 5-7 9h10v26H29z"/></svg><p className="h4">Kanduras cut from the finest fabrics, blending traditional design with modern craft.</p><p className="h6 t-name">Bespoke kanduras</p></div>
+                <div className="t-pane" role="tabpanel"><svg className="t-quote" viewBox="0 0 50 42" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M1 41V19C1 9 6 3 18 1v5c-5 2-7 5-7 9h10v26H1zM29 41V19c0-10 5-16 17-18v5c-5 2-7 5-7 9h10v26H29z"/></svg><p className="h4">Uniforms held to the same exacting standard of precision as our kanduras.</p><p className="h6 t-name">Uniforms</p></div>
               </div>
             </div>
           </div></section>

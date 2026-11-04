@@ -1,6 +1,31 @@
 import fs from "node:fs";
 import path from "node:path";
+import { imageSrc } from "@/lib/images";
 import Logotype, { type LogotypeImages } from "./Logotype";
+
+/**
+ * Image slots, filled with the store's About page photography.
+ * To use a different photo for a slot, upload a file named after the slot to
+ * public/images/test-mock-3/ (for example hero-1b.webp): it takes priority.
+ */
+const ABOUT_IMAGES: Record<string, string> = {
+  // hero slider: small / large / small portrait images on each of 3 slides
+  "hero-1a": "images/categories/traditional-kandura", "hero-1b": "images/categories/kandura-thobes", "hero-1c": "images/categories/adult-thobes",
+  "hero-2a": "images/categories/saderi", "hero-2b": "images/categories/bisht", "hero-2c": "images/categories/kandura-jackets",
+  "hero-3a": "images/categories/kids-clothing", "hero-3b": "images/categories/summer-thobes", "hero-3c": "images/categories/jalabiya",
+  // about: either side of "Learn more"
+  "about-1": "images/pages/about", "about-2": "images/content/story",
+  // services: Bespoke Kanduras, Uniforms, Home Tailoring Visits, Sandals & Accessories
+  "service-1": "images/categories/kandura-thobes", "service-2": "images/categories/kandura-jackets",
+  "service-3": "images/content/story", "service-4": "images/categories/arabic-sandals",
+  // process: the four home-tailoring steps
+  "process-1": "images/pages/contact", "process-2": "images/pages/about", "process-3": "images/content/story", "process-4": "images/hero/hero-new",
+  // our story cards
+  "project-1": "images/pages/about", "project-2": "images/hero/hero-adult", "project-3": "images/hero/hero-winter", "project-4": "images/pages/branches",
+  // round tabs in "What we stand for"
+  "avatar-1": "images/categories/egal", "avatar-2": "images/categories/ghutra", "avatar-3": "images/categories/shimagh-ghutra",
+  "avatar-4": "images/categories/kufi-caps", "avatar-5": "images/categories/kandura-thobes", "avatar-6": "images/categories/kandura-jackets",
+};
 
 /**
  * Image slots. Upload a file named after the slot to public/images/test-mock-3/
@@ -24,6 +49,6 @@ function findImage(slot: string) {
 }
 
 export default function TestMock3Page() {
-  const img: LogotypeImages = Object.fromEntries(SLOTS.map((s) => [s, findImage(s)]));
+  const img: LogotypeImages = Object.fromEntries(SLOTS.map((s) => [s, findImage(s) ?? (ABOUT_IMAGES[s] ? imageSrc(ABOUT_IMAGES[s]) : undefined)]));
   return <Logotype img={img} />;
 }

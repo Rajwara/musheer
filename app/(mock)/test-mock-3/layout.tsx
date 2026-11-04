@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./logotype.css";
 
 export const metadata: Metadata = {
-  title: "Logotype — Home",
+  title: "About | Al Musheer",
   robots: { index: false, follow: false },
 };
 
