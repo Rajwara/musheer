@@ -3,7 +3,11 @@ import { imageSrc } from "@/lib/images";
 import FitGrid, { type FitCard } from "./FitGrid";
 import "./find-your-fit.css";
 
-/** Same six categories, filters and photos as the /test-mock-2 section. */
+/**
+ * Every shop category, grouped for the filter tabs. The first six are the
+ * /test-mock-2 cards and show first under "All"; the rest appear with
+ * "View all categories" or under their own tab.
+ */
 const CARDS = [
   { slug: "adult-thobes", group: "kandura" },
   { slug: "traditional-kandura", group: "kandura" },
@@ -11,9 +15,28 @@ const CARDS = [
   { slug: "shimagh-ghutra", group: "headwear" },
   { slug: "perfumes", group: "accessories" },
   { slug: "wallets", group: "accessories" },
+  { slug: "summer-thobes", group: "kandura" },
+  { slug: "bisht", group: "outerwear" },
+  { slug: "kandura-jackets", group: "outerwear" },
+  { slug: "saderi", group: "outerwear" },
+  { slug: "shawls", group: "outerwear" },
+  { slug: "jalabiya", group: "casual" },
+  { slug: "arabian-casuals", group: "casual" },
+  { slug: "faneela", group: "casual" },
+  { slug: "wuzar", group: "casual" },
+  { slug: "trunks-salwar", group: "casual" },
+  { slug: "ghutra", group: "headwear" },
+  { slug: "yashmagh", group: "headwear" },
+  { slug: "egal", group: "headwear" },
+  { slug: "tarboosh", group: "headwear" },
+  { slug: "kufi-caps", group: "headwear" },
+  { slug: "arabic-sandals", group: "footwear" },
+  { slug: "kids-headwear", group: "kids" },
+  { slug: "kids-footwear", group: "kids" },
+  { slug: "gift-card", group: "accessories" },
 ];
 
-/** "*Category / Find Your Fit" from /test-mock-2: filter tabs over category cards. */
+/** "*Category / Find Your Fit" from /test-mock-2: filter tabs over every shop category. */
 export default function FindYourFit() {
   const cards: FitCard[] = CARDS.flatMap(({ slug, group }) => {
     const c = getCategory(slug);
