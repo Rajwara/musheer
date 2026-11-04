@@ -15,7 +15,7 @@ export type FieldwornImages = Record<string, string>;
  * the store's own images (see page.tsx), and the original script runs in the
  * effect below, using GSAP from npm instead of the inlined copy.
  */
-export default function Fieldworn({ img }: { img: FieldwornImages }) {
+export default function Fieldworn({ img, community }: { img: FieldwornImages; community?: React.ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -279,7 +279,9 @@ export default function Fieldworn({ img }: { img: FieldwornImages }) {
        <a className="blog-card" href="#"><div className="im zoom"><img src={img.b1} alt="" /></div><h3>Five Ways to Wear a Light Overshirt</h3><span className="read"><span className="roll"><span data-t="Read More">Read More</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a><a className="blog-card" href="#"><div className="im zoom"><img src={img.b2} alt="" /></div><h3>A Simple Guide to Layering in Cold Weather</h3><span className="read"><span className="roll"><span data-t="Read More">Read More</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a>
       </div></section>
 
-      <section className="section" style={{ paddingBottom: "64px" }}><div className="container"><span className="label rv">*Follow Us</span><h2 className="rv">See It On Instagram</h2><div className="follow-grid"><a className="zoom" href="#" aria-label="Instagram post 1"><img src={img.f1} alt="" /></a><a className="zoom" href="#" aria-label="Instagram post 2"><img src={img.f2} alt="" /></a><a className="zoom" href="#" aria-label="Instagram post 3"><img src={img.f3} alt="" /></a><a className="zoom" href="#" aria-label="Instagram post 4"><img src={img.f4} alt="" /></a></div></div></section>
+      {/* Follow Us: the home page "Behind the craft" reels section (see page.tsx) */}
+
+      {community}
 
       <section className="cta"><img className="cta-bg" src={img.cta} alt="" /><div className="container">
        <h2 className="rv">Build A Wardrobe That Works As Hard As You Do</h2>

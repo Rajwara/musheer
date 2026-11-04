@@ -1,4 +1,8 @@
+import CommunityVideos from "@/components/CommunityVideos";
+import { COMMUNITY } from "@/lib/brand";
+import { cards } from "@/lib/catalog";
 import { imageSrc } from "@/lib/images";
+import "./community.css";
 import Fieldworn, { type FieldwornImages } from "./Fieldworn";
 
 /**
@@ -49,5 +53,12 @@ const SLOTS: Record<string, string> = {
 
 export default function TestMock2Page() {
   const img: FieldwornImages = Object.fromEntries(Object.entries(SLOTS).map(([k, v]) => [k, imageSrc(v)]));
-  return <Fieldworn img={img} />;
+  // Same reels, wording and controls as the home page "Behind the craft" section.
+  const clips = COMMUNITY.clips.map((c) => ({ ...c, poster: imageSrc(c.poster), products: cards(c.products) }));
+  const community = (
+    <div className="cv">
+      <CommunityVideos eyebrow={COMMUNITY.eyebrow} text={COMMUNITY.text} instagram={COMMUNITY.instagram} clips={clips} />
+    </div>
+  );
+  return <Fieldworn img={img} community={community} />;
 }
