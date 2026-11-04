@@ -9,6 +9,9 @@ import NewArrivals from "@/components/home/NewArrivals";
 import WhatWeStandFor from "@/components/home/WhatWeStandFor";
 import BehindTheCraft from "@/components/home/BehindTheCraft";
 import MadeToMeasure from "@/components/home/MadeToMeasure";
+import { FieldwornChromeBehavior, FieldwornFooter } from "@/app/(mock)/test-mock-3/FieldwornChrome";
+import { fieldwornFonts } from "@/lib/fieldworn-fonts";
+import "./fieldworn-site.css";
 import { ProductGrid } from "@/components/ProductCard";
 import { HERO, HOME_VISIT_URL, PHONE_DISPLAY } from "@/lib/brand";
 import { cards, getCategory, getProduct, home } from "@/lib/catalog";
@@ -137,6 +140,11 @@ export default function HomePage() {
           <ProductGrid products={cards(home.featured)} />
         </div>
       </section>
+      {/* The /test-mock-2 footer (the store footer is hidden on this page, see OWN_CHROME) */}
+      <div className={`fwb ${fieldwornFonts}`}>
+        <FieldwornFooter image={imageSrc("images/content/story")} />
+        <FieldwornChromeBehavior />
+      </div>
     </>
   );
 }
