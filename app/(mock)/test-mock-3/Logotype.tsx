@@ -245,11 +245,33 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
     raf = requestAnimationFrame(tick);
 
     /* ---------- Process hover: unblur the row, show its tilted image ---------- */
+    /* Click (or Enter/Space) opens a step to show its details; one step open at a time. */
     const processImgs = $$(".process-images > div");
-    $$(".process-card").forEach((c) => {
+    const processCards = $$(".process-card");
+    const openStep = (card: HTMLElement | null) => {
+      processCards.forEach((c, i) => {
+        const isOpen = c === card;
+        c.classList.toggle("open", isOpen);
+        c.setAttribute("aria-expanded", String(isOpen));
+        processImgs[i].classList.toggle("on", isOpen);
+      });
+    };
+    processCards.forEach((c) => {
       const pimg = processImgs[+c.dataset.i!];
       on(c, "mouseenter", () => pimg.classList.add("on"));
-      on(c, "mouseleave", () => pimg.classList.remove("on"));
+      on(c, "mouseleave", () => {
+        if (!c.classList.contains("open")) pimg.classList.remove("on");
+      });
+      on(c, "click", (e) => {
+        if ((e.target as HTMLElement).closest("a")) return;
+        openStep(c.classList.contains("open") ? null : c);
+      });
+      on(c, "keydown", ((e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openStep(c.classList.contains("open") ? null : c);
+        }
+      }) as EventListener);
     });
 
     /* ---------- Testimonial tabs ---------- */
@@ -378,10 +400,10 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
           <section className="gutter" id="process"><div className="wrap pad" data-group="">
             <h2 className="h2 center process-head" data-r="">Our process</h2>
             <div className="process-list" data-r="" id="processList">
-              <div className="process-card" data-i="0"><span className="h6 num">01</span><span className="process-dot"></span><h3 className="h3">Request on WhatsApp</h3></div>
-              <div className="process-card" data-i="1"><span className="h6 num">02</span><span className="process-dot"></span><h3 className="h3">Home or majlis visit</h3></div>
-              <div className="process-card" data-i="2"><span className="h6 num">03</span><span className="process-dot"></span><h3 className="h3">Fabrics &amp; measurements</h3></div>
-              <div className="process-card" data-i="3"><span className="h6 num">04</span><span className="process-dot"></span><h3 className="h3">Delivered to your door</h3></div>
+              <div className="process-card" data-i="0" role="button" tabIndex={0} aria-expanded="false" aria-controls="process-desc-0"><span className="h6 num">01</span><span className="process-dot"></span><h3 className="h3">Request on WhatsApp</h3><p className="process-desc" id="process-desc-0">Send us your preferred date, time and area on <a href="https://api.whatsapp.com/send/?phone=971568586987&amp;text=Hello%20Al%20Musheer%2C%20I%20would%20like%20to%20book%20a%20home%20tailoring%20visit." target="_blank" rel="noopener noreferrer">WhatsApp</a> and we will confirm a slot and the tailor who will visit.</p></div>
+              <div className="process-card" data-i="1" role="button" tabIndex={0} aria-expanded="false" aria-controls="process-desc-1"><span className="h6 num">02</span><span className="process-dot"></span><h3 className="h3">Home or majlis visit</h3><p className="process-desc" id="process-desc-1">A tailor arrives at your chosen time, at home or in your majlis, anywhere across the Emirates we serve.</p></div>
+              <div className="process-card" data-i="2" role="button" tabIndex={0} aria-expanded="false" aria-controls="process-desc-2"><span className="h6 num">03</span><span className="process-dot"></span><h3 className="h3">Fabrics &amp; measurements</h3><p className="process-desc" id="process-desc-2">Browse our fabric swatches in person, choose your collar and cuff style, and get measured precisely on the spot.</p></div>
+              <div className="process-card" data-i="3" role="button" tabIndex={0} aria-expanded="false" aria-controls="process-desc-3"><span className="h6 num">04</span><span className="process-dot"></span><h3 className="h3">Delivered to your door</h3><p className="process-desc" id="process-desc-3">Once tailored to perfection, your kanduras are delivered straight to your door, and your measurements are kept for next time.</p></div>
               <div className="process-images" aria-hidden="true">
                 <div><img src={img["process-1"]} data-ph="Process 1|400x450|4" alt="" /></div>
                 <div><img src={img["process-2"]} data-ph="Process 2|400x450|2" alt="" /></div>

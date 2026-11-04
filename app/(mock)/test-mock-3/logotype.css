@@ -184,3 +184,13 @@ body.menu-open{overflow:hidden}
 @media (prefers-reduced-motion:reduce){
 *, *::before, *::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
 }
+
+/* Process steps open on click to show their details */
+.page .process-card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-content:center;row-gap:0}
+.page .process-card:focus-visible{outline:1px solid var(--ink);outline-offset:-1px}
+.page .process-desc{grid-column:3;max-width:560px;max-height:0;margin:0;overflow:hidden;opacity:0;color:var(--body);font-size:16px;line-height:24px;transition:max-height .45s ease,opacity .35s ease,margin .45s ease}
+.page .process-desc a{border-bottom:1px solid currentColor;color:var(--ink)}
+.page .process-card.open{height:auto;min-height:132px;padding-top:28px;padding-bottom:28px}
+.page .process-card.open .process-desc{max-height:160px;margin-top:12px;opacity:1}
+.hover-device .page .process-card.open{filter:blur(0)}
+@media (max-width:991px){.page .process-card.open{min-height:0;padding-top:24px;padding-bottom:24px}}
