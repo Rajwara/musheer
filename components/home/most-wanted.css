@@ -52,3 +52,4 @@
 @media (prefers-reduced-motion: reduce) {
   .mw-roll > span, .mw-ico, .mw-thumb img { transition: none; }
 }
+.mw-pill i { font-style: normal; margin-right: 2px; }

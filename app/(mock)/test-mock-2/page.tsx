@@ -19,7 +19,14 @@ const SLOTS: Record<string, string> = {
   s4: "images/pages/about",
   cta: "images/pages/branches",
   foot: "images/content/story",
-  // "Most Wanted" product thumbnails
+  // "Most Wanted" best sellers: product photos
+  m1: "images/products/classic-round-collar-kandura-ivory-front",
+  m2: "images/products/stand-collar-thobe-white-front",
+  m3: "images/products/tailored-tasselled-kandura-sand-front",
+  m4: "images/products/breathable-cotton-thobe-white-front",
+  m5: "images/categories/bisht",
+  m6: "images/products/tailored-layering-jacket-charcoal-front",
+  // featured-looks stack thumbnails
   g1: "images/categories/saderi",
   g2: "images/categories/kandura-jackets",
   g3: "images/categories/bisht",

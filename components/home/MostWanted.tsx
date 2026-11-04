@@ -1,22 +1,22 @@
 import Link from "next/link";
 import { getProduct } from "@/lib/catalog";
 import { money } from "@/lib/format";
-import { imageSrc } from "@/lib/images";
+import { imageSrc, productImage } from "@/lib/images";
 import "./most-wanted.css";
 
-/** Products shown, with the same category photos as the /test-mock-2 section. */
+/** Best sellers shown: mostly kanduras and thobes, with real product photos where uploaded. */
 const ITEMS = [
-  { slug: "stitched-saderi-olive", pill: "Saderi", image: "images/categories/saderi" },
-  { slug: "tailored-layering-jacket-charcoal", pill: "Jackets", image: "images/categories/kandura-jackets" },
+  { slug: "classic-round-collar-kandura-ivory", pill: "Kandura" },
+  { slug: "stand-collar-thobe-white", pill: "Thobe" },
+  { slug: "tailored-tasselled-kandura-sand", pill: "Kandura" },
+  { slug: "breathable-cotton-thobe-white", pill: "Summer Thobe" },
   { slug: "occasion-bisht-black", pill: "Bisht", image: "images/categories/bisht" },
-  { slug: "everyday-cotton-jalabiya-pale-blue", pill: "Jalabiya", image: "images/categories/jalabiya" },
-  { slug: "relaxed-short-sleeve-tunic-stone", pill: "Casuals", image: "images/categories/arabian-casuals" },
-  { slug: "breathable-cotton-thobe-white", pill: "Summer", image: "images/categories/summer-thobes" },
+  { slug: "tailored-layering-jacket-charcoal", pill: "Jacket" },
 ];
 
-/** "*Collections / Most Wanted Right Now" from /test-mock-2: a sticky heading beside a grid of product cards. */
+/** "*Best Sellers / Most Wanted Right Now", from /test-mock-2: a heading beside a grid of best-selling products. */
 export default function MostWanted() {
-  const items = ITEMS.flatMap((it) => {
+  const items = ITEMS.flatMap((it: { slug: string; pill: string; image?: string }) => {
     const p = getProduct(it.slug);
     return p ? [{ ...it, name: p.name, price: p.price }] : [];
   });
@@ -25,13 +25,13 @@ export default function MostWanted() {
     <section className="mw" aria-labelledby="mw-title">
       <div className="mw-container mw-grid">
         <div className="mw-side">
-          <span className="mw-label">*Collections</span>
+          <span className="mw-label">*Best Sellers</span>
           <h2 id="mw-title">Most Wanted Right Now</h2>
           <div className="mw-end">
-            <p>Our most-loved pieces this season, from saderi and jackets to bisht and summer thobes.</p>
+            <p>Our best-selling pieces, led by the kanduras and thobes our customers come back for season after season.</p>
             <Link className="mw-btn" href="/category/kandura-thobes">
               <span className="mw-roll">
-                <span data-t="Explore All">Explore All</span>
+                <span data-t="Shop Best Sellers">Shop Best Sellers</span>
               </span>
               <span className="mw-ico">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -44,10 +44,12 @@ export default function MostWanted() {
         <div className="mw-products">
           {items.map((it) => (
             <Link className="mw-product" key={it.slug} href={`/product/${it.slug}`}>
-              <span className="mw-pill">{it.pill}</span>
+              <span className="mw-pill">
+                <i aria-hidden="true">★</i> Best seller · {it.pill}
+              </span>
               <div className="mw-thumb">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={imageSrc(it.image)} alt="" loading="lazy" />
+                <img src={it.image ? imageSrc(it.image) : productImage(it.slug)} alt={it.name} loading="lazy" />
               </div>
               <div className="mw-name">{it.name}</div>
               <div className="mw-price">{money(it.price)}</div>
