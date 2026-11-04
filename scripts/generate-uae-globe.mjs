@@ -93,3 +93,47 @@ console.log(
   Math.round(JSON.stringify(out).length / 1024) + " KB",
   out.markers.map((m) => `${m.emirate} ${m.left},${m.top}`).join(" | "),
 );
+
+// ---------------------------------------------------------------------------
+// Pannable close-up for the scroll story: one large map layer that slides
+// behind the globe circle, with a real-position point for every branch.
+// Writes lib/data/uae-globe-pan.json.
+{
+  const pan = geoOrthographic()
+    .rotate([-55.15, -25.0])
+    .scale(13000)
+    .translate([SIZE / 2, SIZE / 2])
+    .clipExtent([[-1400, -1400], [2400, 2400]])
+    .precision(0.3);
+  const p2 = geoPath(pan);
+  const branches = [];
+  for (const m of block.matchAll(/\{ id: "([^"]+)",[^}]*?lat: ([\d.]+), lng: ([\d.]+)/g)) {
+    const [x, y] = pan([+m[3], +m[2]]);
+    branches.push({ id: m[1], x: +x.toFixed(1), y: +y.toFixed(1) });
+  }
+  if (branches.length !== 13) throw new Error(`expected 13 branches, found ${branches.length}`);
+  // Branch coordinates are approximate (placed by area) and some sit a few
+  // hundred metres apart; nudge display positions so the pins never overlap.
+  const MINP = 30;
+  for (let it = 0; it < 600; it++) {
+    for (const a of branches) for (const c of branches) {
+      if (a === c) continue;
+      const dx = c.x - a.x, dy = c.y - a.y, d = Math.hypot(dx, dy) || 0.01;
+      if (d < MINP) {
+        const push = (MINP - d) / 2, ux = dx / d, uy = dy / d;
+        a.x -= ux * push; a.y -= uy * push; c.x += ux * push; c.y += uy * push;
+      }
+    }
+  }
+  for (const b of branches) { b.x = +b.x.toFixed(1); b.y = +b.y.toFixed(1); }
+  const panOut = {
+    graticule: round(p2(geoGraticule().step([1, 1]).extent([[40, 14], [70, 36]])())),
+    land: round(p2(land)),
+    borders: round(p2(borders)),
+    uae: round(p2(uae)),
+    branches,
+  };
+  fs.writeFileSync(path.join(root, "lib/data/uae-globe-pan.json"), JSON.stringify(panOut) + "\n");
+  console.log("wrote lib/data/uae-globe-pan.json", Math.round(JSON.stringify(panOut).length / 1024) + " KB",
+    "x range", Math.min(...branches.map((b) => b.x)), Math.max(...branches.map((b) => b.x)));
+}
