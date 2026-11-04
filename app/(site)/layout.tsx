@@ -31,13 +31,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${serif.variable} ${sans.variable} ${fieldwornFonts}`}>
       <body id="top">
         <StoreProvider>
-          <HideOnPaths>
-            <AnnouncementBar />
-          </HideOnPaths>
+          <AnnouncementBar />
           <QuickViewProvider>
-            <HideOnPaths>
-              <Header images={categoryImages} />
-            </HideOnPaths>
+            <Header images={categoryImages} />
             <main>{children}</main>
             <HideOnPaths>
               <Footer />

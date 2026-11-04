@@ -80,10 +80,12 @@ export function FieldwornFooter({ image }: { image: string }) {
 /** The parts of the /test-mock-2 script that belong to the header and footer. */
 export function FieldwornChromeBehavior() {
   useEffect(() => {
-    const $ = (s: string) => document.querySelector<HTMLElement>(s)!;
+    const $ = (s: string) => document.querySelector<HTMLElement>(s);
     const $$ = (s: string) => Array.from(document.querySelectorAll<HTMLElement>(s));
     const off: (() => void)[] = [];
-    const on = (t: EventTarget, type: string, fn: EventListener) => {
+    // Pages that use the store header have no .fw header, so every target is optional.
+    const on = (t: EventTarget | null, type: string, fn: EventListener) => {
+      if (!t) return;
       t.addEventListener(type, fn);
       off.push(() => t.removeEventListener(type, fn));
     };
@@ -109,8 +111,8 @@ export function FieldwornChromeBehavior() {
     const nav = $(".fw .nav");
     const burger = $(".fw .burger");
     on(burger, "click", () => {
-      const o = nav.classList.toggle("open");
-      burger.setAttribute("aria-expanded", String(o));
+      const o = nav?.classList.toggle("open") ?? false;
+      burger?.setAttribute("aria-expanded", String(o));
     });
     const cart = (o: boolean) => document.body.classList.toggle("cart-open", o);
     const drawerBtn = document.querySelector(".fw button.cart");
@@ -124,7 +126,7 @@ export function FieldwornChromeBehavior() {
     /* Header entrance and footer animations, as on /test-mock-2 */
     const mm = gsap.matchMedia();
     mm.add("(prefers-reduced-motion:no-preference)", () => {
-      gsap.from(".fw .nav-row>*", { y: -20, opacity: 0, duration: 0.8, stagger: 0.08, delay: 0.3, ease: "power3.out" });
+      if ($(".fw .nav-row")) gsap.from(".fw .nav-row>*", { y: -20, opacity: 0, duration: 0.8, stagger: 0.08, delay: 0.3, ease: "power3.out" });
       gsap.from(".fw .foot-giant .ch", { yPercent: 100, duration: 1, ease: "power3.out", stagger: 0.04, scrollTrigger: { trigger: ".fw .foot-giant", start: "top 98%", once: true } });
       gsap.from(".fw .foot-img img", { scale: 1.2, ease: "none", scrollTrigger: { trigger: ".fw .foot-img", start: "top bottom", end: "bottom 80%", scrub: 0.5 } });
     });

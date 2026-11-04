@@ -40,6 +40,11 @@ function searchBranches(branches: GlobeBranch[], q: string): { hits: Hit[]; titl
  * a photo card that follows the cursor. Reduced motion: no pinning, the cards
  * scroll sideways and the globe stays put.
  */
+/** Height of the sticky store header, which the pinned stage sits under. */
+const headerOffset = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--hdr-h")) || 0;
+/** Height of the pinned stage (the viewport below the header). */
+const stageHeight = () => window.innerHeight - headerOffset();
+
 export default function BranchGlobe({ branches, emirates }: { branches: GlobeBranch[]; emirates: number }) {
   const section = useRef<HTMLElement>(null);
   const track = useRef<HTMLDivElement>(null);
@@ -66,7 +71,7 @@ export default function BranchGlobe({ branches, emirates }: { branches: GlobeBra
     const measure = () => {
       const vw = document.documentElement.clientWidth;
       distance = Math.max(0, row.scrollWidth - vw);
-      sec.style.height = `${window.innerHeight + distance + window.innerHeight * 0.35}px`;
+      sec.style.height = `${stageHeight() + distance + window.innerHeight * 0.35}px`;
       onScroll();
     };
     const focusFor = (p: number) => {
@@ -91,8 +96,8 @@ export default function BranchGlobe({ branches, emirates }: { branches: GlobeBra
     };
     function onScroll() {
       const r = sec.getBoundingClientRect();
-      const total = sec.offsetHeight - window.innerHeight;
-      tgt.p = total > 0 ? clamp(-r.top / total, 0, 1) : 0;
+      const total = sec.offsetHeight - stageHeight();
+      tgt.p = total > 0 ? clamp((headerOffset() - r.top) / total, 0, 1) : 0;
       if (!running) {
         running = true;
         raf = requestAnimationFrame(tick);
@@ -116,8 +121,8 @@ export default function BranchGlobe({ branches, emirates }: { branches: GlobeBra
 
   const goTo = (i: number) => {
     const sec = section.current!;
-    const total = sec.offsetHeight - window.innerHeight;
-    const top = sec.getBoundingClientRect().top + scrollY;
+    const total = sec.offsetHeight - stageHeight();
+    const top = sec.getBoundingClientRect().top + scrollY - headerOffset();
     window.scrollTo({ top: top + (total * i) / (branches.length - 1), behavior: "smooth" });
   };
 

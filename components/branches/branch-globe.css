@@ -3,7 +3,7 @@
 /* ---- "Where we tailor" scroll story ---- */
 /* overflow: clip (not hidden) so the sticky stage still sticks */
 .bg-story { position: relative; overflow: visible; overflow-x: clip; padding-top: 0; background: var(--mk-bg, #f6f6f6); }
-.bg-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; flex-direction: column; }
+.bg-sticky { position: sticky; top: var(--hdr-h, 0px); height: calc(100vh - var(--hdr-h, 0px)); height: calc(100svh - var(--hdr-h, 0px)); overflow: hidden; display: flex; flex-direction: column; }
 .bg-story .mk__head { padding-top: clamp(40px, 7vh, 80px); }
 .bg-story .mk__title { margin-bottom: 18px; }
 

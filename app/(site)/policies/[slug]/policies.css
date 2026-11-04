@@ -28,7 +28,7 @@
 
 /* Contents and sections */
 .pol-body { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 64px; padding-top: 80px; padding-bottom: 100px; }
-.pol-toc { position: sticky; top: 24px; align-self: start; }
+.pol-toc { position: sticky; top: calc(var(--hdr-h) + 24px); align-self: start; }
 .pol-toc-list { list-style: none; margin: 0 0 24px; padding: 0; border-top: 1px solid var(--pol-line); }
 .pol-toc-list a { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--pol-line); color: #888; font-size: 15px; transition: color .25s; }
 .pol-toc-list a span { min-width: 22px; font-family: var(--fw-display); font-size: 15px; }
