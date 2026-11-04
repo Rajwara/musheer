@@ -46,3 +46,15 @@
 }
 .cv .community{background:var(--tint)}
 .cv .community-text a{color:var(--ink)}
+
+/* ---- Fit the page: heading uses the Fieldworn style; reels align with its 1200px container ---- */
+.reels-head p{font-size:16px;line-height:24px}
+.reels-head p a{color:var(--black);border-bottom:1px solid currentColor}
+.cv .community{background:transparent;padding:0}
+.cv .clips{--edge:max(24px,calc((100vw - 1152px)/2))}
+.cv .clip{border-radius:12px}
+.cv .clips-nav{width:100%;max-width:1200px;padding-inline:24px;margin-top:28px}
+.cv .clips-nav button{width:40px;height:40px;border-radius:50%;background:var(--grey-bg,#f6f6f6);color:#000;transition:background .3s,color .3s}
+.cv .clips-nav button:not(:disabled):hover{background:#000;color:#fff}
+.cv .clips-progress span{background:#000}
+@media(max-width:767px){.cv .clips{--edge:24px}.cv .clip{width:72vw}}

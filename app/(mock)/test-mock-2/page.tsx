@@ -57,7 +57,7 @@ export default function TestMock2Page() {
   const clips = COMMUNITY.clips.map((c) => ({ ...c, poster: imageSrc(c.poster), products: cards(c.products) }));
   const community = (
     <div className="cv">
-      <CommunityVideos eyebrow={COMMUNITY.eyebrow} text={COMMUNITY.text} instagram={COMMUNITY.instagram} clips={clips} />
+      <CommunityVideos eyebrow={COMMUNITY.eyebrow} text={COMMUNITY.text} instagram={COMMUNITY.instagram} clips={clips} hideHead />
     </div>
   );
   return <Fieldworn img={img} community={community} />;

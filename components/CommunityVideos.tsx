@@ -116,11 +116,14 @@ export default function CommunityVideos({
   text,
   instagram,
   clips,
+  hideHead,
 }: {
   eyebrow: string;
   text: string;
   instagram: string;
   clips: Clip[];
+  /** Leave out the built-in eyebrow and text, when the page renders its own heading. */
+  hideHead?: boolean;
 }) {
   const track = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState({ start: 0, size: 1, atStart: true, atEnd: false });
@@ -152,7 +155,7 @@ export default function CommunityVideos({
 
   return (
     <section className="community">
-      <div className="wrap">
+      {!hideHead && <div className="wrap">
         <span className="eyebrow">{eyebrow}</span>
         <p className="community-text">
           {text.split("@almusheer").map((part, i) =>
@@ -168,7 +171,7 @@ export default function CommunityVideos({
             ),
           )}
         </p>
-      </div>
+      </div>}
       <div className="clips" ref={track} onScroll={measure}>
         {clips.map((c, i) => (
           <VideoCard key={c.video} clip={c} index={i} reduceMotion={reduceMotion} />

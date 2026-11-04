@@ -281,7 +281,13 @@ export default function Fieldworn({ img, community }: { img: FieldwornImages; co
 
       {/* Follow Us: the home page "Behind the craft" reels section (see page.tsx) */}
 
-      {community}
+      <section className="section reels-section" style={{ paddingBottom: "64px" }}>
+        <div className="container tst-head reels-head">
+          <div><span className="label rv">*Behind The Craft</span><h2 className="rv">See It On Instagram</h2></div>
+          <p className="rv">Follow <a href="https://www.instagram.com/almusheer" target="_blank" rel="noopener noreferrer">@almusheer</a> on Instagram for more, and tag us wearing Al Musheer to be featured in our community showcase.</p>
+        </div>
+        {community}
+      </section>
 
       <section className="cta"><img className="cta-bg" src={img.cta} alt="" /><div className="container">
        <h2 className="rv">Build A Wardrobe That Works As Hard As You Do</h2>
