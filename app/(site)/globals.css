@@ -324,3 +324,9 @@ dialog.qv{padding:0;border:0;max-width:980px;width:calc(100% - 32px);max-height:
 
 /* ---- Typography: Plus Jakarta Sans headings, Inter body (from the blog/contact design) ---- */
 h1,h2{font-weight:700;letter-spacing:-.03em;line-height:1.12}h3{font-weight:600;letter-spacing:-.02em}
+/* ---- Floating chat button (black pill, speech bubble, "Chat") ---- */
+.chat-float{position:fixed;right:20px;bottom:20px;z-index:40;display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px 0 20px;border-radius:999px;background:#151515;color:#fff;font:500 17px/1 var(--sans);letter-spacing:-.01em;box-shadow:0 10px 30px rgba(0,0,0,.22);transition:transform .25s ease,background .25s ease,box-shadow .25s ease}
+.chat-float:hover{background:#000;transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.28)}
+.chat-float:focus-visible{outline:2px solid #fff;outline-offset:3px;box-shadow:0 0 0 5px #151515}
+body:has(.sticky.on) .chat-float{bottom:84px}
+@media(max-width:720px){.chat-float{right:16px;bottom:16px;height:48px;padding:0 20px 0 16px;font-size:16px}}
