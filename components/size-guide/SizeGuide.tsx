@@ -105,16 +105,16 @@ export default function SizeGuideDialog({ ref }: { ref: Ref<HTMLDialogElement> }
         if (e.target === e.currentTarget) e.currentTarget.close();
       }}
     >
-      <button type="button" className="sg-close" aria-label="Close size guide" onClick={(e) => e.currentTarget.closest("dialog")?.close()}>
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-          <path d="M1 1l11 11M12 1 1 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-        <span className="sg-close-label">Close</span>
-      </button>
       <div className="sg-header">
         <h3 className="sg-title" id="sg-title">
           Size Guide
         </h3>
+        <button type="button" className="sg-close" aria-label="Close size guide" onClick={(e) => e.currentTarget.closest("dialog")?.close()}>
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+            <path d="M1 1l11 11M12 1 1 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+          <span className="sg-close-label">Close</span>
+        </button>
       </div>
       <div className="sg-content">
         <SizeChart />

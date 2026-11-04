@@ -46,3 +46,52 @@ dialog.sg-modal::backdrop { background: rgba(0,0,0,.6); }
 .kandura-size-chart-header h2 { font-family: inherit; font-weight: 700; line-height: 1.2; margin-top: 0; }
 .kandura-size-chart-header p { margin: 0; }
 .kandura-image-wrap img { display: inline-block; }
+
+/* =====================================================================
+   /test-mock-2 branding: black, white and #f6f6f6, Big Shoulders uppercase
+   headings, Space Grotesk text, 12px corners, black pill close button.
+   ===================================================================== */
+dialog.sg-modal {
+  --sg-display: var(--font-big-shoulders), "Big Shoulders", sans-serif;
+  --sg-body: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  border-radius: 12px; color: #000; font-family: var(--sg-body); box-shadow: 0 40px 100px rgba(0,0,0,.3);
+}
+dialog.sg-modal::backdrop { background: rgba(0,0,0,.7); backdrop-filter: blur(2px); }
+dialog.sg-modal[open] { animation: sg-in .4s cubic-bezier(.215,.61,.355,1); }
+dialog.sg-modal .sg-close { top: 50%; margin-top: -20px; right: 14px; width: 40px; height: 40px; border-radius: 50%; background: #000; color: #fff; transition: background .3s; }
+dialog.sg-modal .sg-close:hover { background: #2b2b2b; }
+dialog.sg-modal .sg-close:hover svg { transform: rotate(90deg); }
+dialog.sg-modal .sg-close svg { transition: transform .3s; }
+dialog.sg-modal .sg-header { border-bottom: 1px solid #ececec; }
+dialog.sg-modal .sg-title { padding: 18px 72px 18px 28px; border-bottom: 0; font: 500 28px/1.2 var(--sg-display); text-transform: uppercase; letter-spacing: -.02em; color: #000; }
+dialog.sg-modal .sg-content { padding: 12px; }
+
+dialog.sg-modal .kandura-size-chart { max-width: none; padding: 32px 24px 24px; border: 0; border-radius: 12px; background: #f6f6f6; font-family: var(--sg-body); color: #000; }
+dialog.sg-modal .kandura-size-chart-header { margin-bottom: 28px; }
+dialog.sg-modal .kandura-size-chart-header h2 { font: 500 clamp(40px, 5vw, 64px)/1 var(--sg-display); text-transform: uppercase; letter-spacing: -.04em; color: #000; margin-bottom: 10px; }
+dialog.sg-modal .kandura-size-chart-header p { font-size: 16px; line-height: 24px; color: #666; }
+dialog.sg-modal .kandura-sections { gap: 12px; }
+dialog.sg-modal .kandura-section-full { margin-top: 12px; }
+dialog.sg-modal .kandura-card { padding: 24px; border: 0; border-radius: 12px; background: #fff; box-shadow: none; }
+dialog.sg-modal .kandura-card-title { margin-bottom: 16px; font: 500 24px/1.1 var(--sg-display); text-transform: uppercase; letter-spacing: -.02em; color: #000; gap: 12px; }
+dialog.sg-modal .kandura-card-title span { flex: none; padding: 4px 12px; border-radius: 99px; background: #f6f6f6; font: 400 13px/20px var(--sg-body); letter-spacing: 0; text-transform: none; color: #555; }
+dialog.sg-modal .kandura-size-table { font-size: 15px; border-collapse: separate; border-spacing: 0; }
+dialog.sg-modal .kandura-size-table thead th { padding: 12px 8px; border-bottom: 0; background: #000; color: #fff; font: 500 15px/1 var(--sg-display); letter-spacing: .04em; }
+dialog.sg-modal .kandura-size-table thead th:first-child { border-radius: 99px 0 0 99px; }
+dialog.sg-modal .kandura-size-table thead th:last-child { border-radius: 0 99px 99px 0; }
+dialog.sg-modal .kandura-size-table tbody td { padding: 11px 8px; border-bottom: 1px solid #ececec; color: #222; font-weight: 400; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+dialog.sg-modal .kandura-size-table tbody tr:nth-child(even) td { background: transparent; }
+dialog.sg-modal .kandura-size-table tbody tr:hover td { background: #f6f6f6; }
+dialog.sg-modal .kandura-size-table tbody td:first-child { font-weight: 500; color: #000; }
+dialog.sg-modal .kandura-helper-text { margin-top: 14px; font-size: 14px; line-height: 21px; color: #777; }
+dialog.sg-modal .kandura-image-wrap { margin-top: 16px; }
+dialog.sg-modal .kandura-image-wrap img { border: 0; border-radius: 12px; box-shadow: none; background: #f6f6f6; }
+@media (max-width: 767px) {
+  dialog.sg-modal .sg-title { padding: 16px 64px 16px 20px; font-size: 24px; }
+  dialog.sg-modal .sg-content { padding: 8px; }
+  dialog.sg-modal .kandura-size-chart { padding: 24px 12px 12px; }
+  dialog.sg-modal .kandura-card { padding: 16px; }
+  dialog.sg-modal .kandura-card-title { flex-wrap: wrap; font-size: 22px; }
+  dialog.sg-modal .kandura-size-table { font-size: 14px; }
+}
+dialog.sg-modal .sg-header { z-index: 2; }
