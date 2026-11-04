@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./logotype.css";
 
-// Fonts of the /test-mock-2 header and footer used on this page.
+// /test-mock-2 fonts, used for the whole page (headings, text, header and footer).
 const bigShoulders = localFont({ src: "../test-mock-2/fonts/big-shoulders.woff2", weight: "100 900", display: "swap", variable: "--font-big-shoulders" });
 const spaceGrotesk = localFont({ src: "../test-mock-2/fonts/space-grotesk.woff2", weight: "300 700", display: "swap", variable: "--font-space-grotesk" });
 
@@ -22,9 +22,6 @@ export default function LogotypeLayout({ children }: { children: React.ReactNode
     <html lang="en" className={`${bigShoulders.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-        <link rel="preconnect" href="https://api.fontshare.com" />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500&display=swap" />
       </head>
       <body>{children}</body>
     </html>

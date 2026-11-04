@@ -327,7 +327,7 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
               <h1 className="h1 hero-title" data-r="" style={{ "--x": "-80px", "--d": "1.4s" } as React.CSSProperties}>The Art of the Kandura, Perfected.</h1>
               <div className="hero-intro" data-r="" style={{ "--x": "80px", "--d": "1.4s", "--w": ".3s" } as React.CSSProperties}>
                 <p>Since 1998, Al Musheer has dressed the men of the UAE in kanduras cut with precision and finished to a standard we have spent a generation refining.</p>
-                <a className="btn" href="/category/kandura-thobes">View collection<span className="btn-lines"><i></i><i></i></span></a>
+                <a className="btn" href="/category/kandura-thobes"><span className="roll"><span data-t="View collection">View collection</span></span><span className="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a>
               </div>
             </div>
             <div className="hero-bottom">
@@ -372,7 +372,7 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
             </p>
             <div className="about-bottom" data-r="">
               <div className="about-img"><img src={img["about-1"]} data-ph="About 1|260x150|1" alt="" /></div>
-              <a className="btn" href="/about">Learn more<span className="btn-lines"><i></i><i></i></span></a>
+              <a className="btn" href="/about"><span className="roll"><span data-t="Learn more">Learn more</span></span><span className="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a>
               <div className="about-img"><img src={img["about-2"]} data-ph="About 2|260x150|3" alt="" /></div>
             </div>
           </div></section>
@@ -390,7 +390,7 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
                 <a className="svc-card" id="svc3" href="/category/arabic-sandals"><div className="svc-img"><img src={img["service-4"]} data-ph="Service 4|439x482|1" alt="" /></div><div className="h6">Sandals &amp; Accessories</div></a>
                 <div className="svc-text" id="svcText">
                   <p>From made-to-measure kanduras to uniforms and the finishing accessories, every piece is held to the same exacting standard, in store or at your door.</p>
-                  <a className="btn" href="https://api.whatsapp.com/send/?phone=971568586987&text=Hello%20Al%20Musheer%2C%20I%20would%20like%20to%20book%20a%20home%20tailoring%20visit." target="_blank" rel="noopener noreferrer">Book a home visit<span className="btn-lines"><i></i><i></i></span></a>
+                  <a className="btn" href="https://api.whatsapp.com/send/?phone=971568586987&text=Hello%20Al%20Musheer%2C%20I%20would%20like%20to%20book%20a%20home%20tailoring%20visit." target="_blank" rel="noopener noreferrer"><span className="roll"><span data-t="Book a home visit">Book a home visit</span></span><span className="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a>
                 </div>
               </div>
             </div>
@@ -417,7 +417,7 @@ export default function Logotype({ img }: { img: LogotypeImages }) {
           <section className="gutter" id="projects"><div className="wrap pad" data-group="">
             <div className="project-head" data-r="">
               <h2 className="h2">Our story since 1998</h2>
-              <a className="btn" href="/about">Our story<span className="btn-lines"><i></i><i></i></span></a>
+              <a className="btn" href="/about"><span className="roll"><span data-t="Our story">Our story</span></span><span className="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a>
             </div>
             <div className="project-grid">
               <a className="project-card" data-r="" href="/about"><img src={img["project-1"]} data-ph="Project 1|585x650|2" alt="" /><div className="project-info"><div><span className="pill">Our beginning</span><div className="h6">A Tailor&apos;s Beginning</div></div><span>1998</span></div></a>
