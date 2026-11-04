@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import FieldwornShell from "@/components/FieldwornShell";
+import "../../shop-brand.css";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CategoryShop from "@/components/CategoryShop";
@@ -37,13 +39,13 @@ export default async function CategoryPage({ params }: Props) {
   );
 
   return (
-    <>
+    <FieldwornShell className="shop-fw">
       <div className="cat-hero">
         <div className="cat-hero-copy">
           <div className="crumb">
             <Link href="/">Home</Link> / {category.group} / {category.title}
           </div>
-          <span className="eyebrow">{category.group}</span>
+          <span className="eyebrow">*{category.group}</span>
           <h1>{category.title}</h1>
           <p>
             {category.products.length} {category.products.length === 1 ? "style" : "styles"}, tailored by Al Musheer since 1998.
@@ -57,6 +59,6 @@ export default async function CategoryPage({ params }: Props) {
       <div className="wrap">
         <CategoryShop products={cards(category.products)} sidebar={sidebar} />
       </div>
-    </>
+    </FieldwornShell>
   );
 }

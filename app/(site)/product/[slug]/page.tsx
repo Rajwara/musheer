@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import FieldwornShell from "@/components/FieldwornShell";
+import "../../shop-brand.css";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductGrid } from "@/components/ProductCard";
@@ -27,6 +29,7 @@ export default async function ProductPage({ params }: Props) {
   const related = cards(p.related);
 
   return (
+    <FieldwornShell className="shop-fw">
     <div className="wrap">
       <div className="crumb">
         <Link href="/">Home</Link> / <Link href={`/category/${p.categorySlug}`}>{p.category}</Link> / {p.name}
@@ -43,12 +46,17 @@ export default async function ProductPage({ params }: Props) {
         {related.length > 0 && (
           <section style={{ paddingTop: 20 }}>
             <div className="head">
-              <h2>You may also like</h2>
+              <div>
+                <span className="shop-label">*Complete the look</span>
+                <h2>You may also like</h2>
+              </div>
+              <Link href={`/category/${p.categorySlug}`}>View all</Link>
             </div>
             <ProductGrid products={related} />
           </section>
         )}
       </ProductDetail>
     </div>
+    </FieldwornShell>
   );
 }
