@@ -3,7 +3,7 @@ import Link from "next/link";
 import FieldwornShell from "@/components/FieldwornShell";
 import ShopAll, { type ShopGroup, type ShopProduct } from "@/components/shop/ShopAll";
 import { categories, getCategory, home, products, toCard } from "@/lib/catalog";
-import { imageSrc } from "@/lib/images";
+import { imageSrc, productImage } from "@/lib/images";
 import "../shop-brand.css";
 
 export const metadata: Metadata = {
@@ -46,7 +46,11 @@ export default function ShopAllPage() {
         </div>
       </div>
       <div className="wrap">
-        <ShopAll products={list} groups={groups} />
+        <ShopAll
+          products={list}
+          groups={groups}
+          art={{ all: imageSrc("images/hero/hero-new"), new: productImage(home.newArrivals[0]), best: productImage(home.bestSellers[0]) }}
+        />
       </div>
     </FieldwornShell>
   );

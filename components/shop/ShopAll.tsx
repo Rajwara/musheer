@@ -71,7 +71,10 @@ function Section({ title, count, open: start = true, children }: { title: string
  * department), price, size (by kind), colour and highlights. Filters,
  * sort and search can be combined; active ones show as removable chips.
  */
-export default function ShopAll({ products, groups }: { products: ShopProduct[]; groups: ShopGroup[] }) {
+/** On a category page: that category and its sister categories, shown as links instead of tick-boxes. */
+export type ShopScope = { current: string; group: string; siblings: { slug: string; title: string; count: number }[] };
+
+export default function ShopAll({ products, groups, scope, art = {} }: { products: ShopProduct[]; groups: ShopGroup[]; scope?: ShopScope; art?: Record<"all" | "new" | "best", string | undefined> | Record<string, never> }) {
   const [query, setQuery] = useState("");
   const [cats, setCats] = useState<string[]>([]);
   const [colours, setColours] = useState<string[]>([]);
@@ -123,10 +126,23 @@ export default function ShopAll({ products, groups }: { products: ShopProduct[];
   // Counts next to each option reflect the other filters already chosen.
   const countBy = (skip: "cat" | "colour" | "size" | "flag", test: (p: ShopProduct) => boolean) => products.filter((p) => matches(p, skip) && test(p)).length;
 
+  const usedFlags = useMemo(() => FLAGS.filter((f) => products.some(f.test)), [products]);
+  const quickRanges = useMemo(
+    () =>
+      ([
+        [0, 249, "Under AED 250"],
+        [250, 499, "AED 250 – 499"],
+        [500, 999, "AED 500 – 999"],
+        [1000, Infinity, "AED 1,000+"],
+      ] as [number, number, string][])
+        .filter(([a, b]) => products.some((p) => p.price >= a && p.price <= b))
+        .map(([a, b, l]): [number, number, string] => [Math.max(a, floor), Math.min(b, ceil), l]),
+    [products, floor, ceil],
+  );
   const allColours = useMemo(() => [...new Set(products.map((p) => p.colour))].sort(), [products]);
   const sizeGroups = useMemo(
     () =>
-      SIZE_KINDS.map((k) => ({ ...k, values: [...new Set(products.flatMap(sizesOf).filter((s) => s.startsWith(k.id + ":")).map((s) => s.slice(k.id.length + 1)))].sort(sortSizes) })).filter((k) => k.values.length),
+      SIZE_KINDS.map((k) => ({ ...k, values: [...new Set(products.flatMap(sizesOf).filter((s) => s.startsWith(k.id + ":")).map((s) => s.slice(k.id.length + 1)))].sort(sortSizes) })).filter((k) => k.values.length > 1),
     [products],
   );
 
@@ -181,18 +197,27 @@ export default function ShopAll({ products, groups }: { products: ShopProduct[];
 
   return (
     <>
-      {/* Every category, as quick filters */}
+      {/* Every category, as quick filters (on /shop only) */}
+      {!scope && (
       <div className="sa-cats" role="group" aria-label="Categories">
         <button type="button" className={cats.length || flags.length ? "sa-cat" : "sa-cat on"} onClick={() => (setCats([]), setFlags([]))}>
-          <span className="sa-cat-all">All</span>
+          <span className="sa-cat-all sa-cat-photo">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            {art.all && <img src={art.all} alt="" loading="lazy" />}
+            <em>All</em>
+          </span>
           <b>All products</b>
           <small>{products.length}</small>
         </button>
         {FLAGS.map((f) => (
           <button key={f.id} type="button" className={flags.includes(f.id) ? "sa-cat on" : "sa-cat"} aria-pressed={flags.includes(f.id)} onClick={() => setFlags((l) => toggle(l, f.id))}>
-            <span className="sa-cat-all sa-cat-flag">
-              <i aria-hidden="true">{f.icon}</i>
-              {f.short}
+            <span className="sa-cat-all sa-cat-flag sa-cat-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              {art[f.id as "new" | "best"] && <img src={art[f.id as "new" | "best"]} alt="" loading="lazy" />}
+              <em>
+                <i aria-hidden="true">{f.icon}</i>
+                {f.short}
+              </em>
             </span>
             <b>{f.label}</b>
             <small>{products.filter(f.test).length}</small>
@@ -209,8 +234,9 @@ export default function ShopAll({ products, groups }: { products: ShopProduct[];
           )),
         )}
       </div>
+      )}
 
-      <div className="sa">
+      <div className={scope ? "sa sa-scoped" : "sa"}>
         <aside className={drawer ? "sa-side open" : "sa-side"} aria-label="Filters">
           <div className="sa-side-head">
             <b>Filters</b>
@@ -234,9 +260,10 @@ export default function ShopAll({ products, groups }: { products: ShopProduct[];
             <input type="search" placeholder="Search products" aria-label="Search products" value={query} onChange={(e) => setQuery(e.target.value)} />
           </div>
 
+          {usedFlags.length > 0 && (
           <Section title="New & Best Sellers" count={flags.length}>
             <div className="sa-flags">
-              {FLAGS.map((f) => (
+              {usedFlags.map((f) => (
                 <button key={f.id} type="button" className={flags.includes(f.id) ? "on" : undefined} aria-pressed={flags.includes(f.id)} onClick={() => setFlags((l) => toggle(l, f.id))}>
                   <span className="sa-flag-ico" aria-hidden="true">{f.icon}</span>
                   <span>{f.label}</span>
@@ -245,7 +272,23 @@ export default function ShopAll({ products, groups }: { products: ShopProduct[];
               ))}
             </div>
           </Section>
+          )}
 
+          {scope ? (
+            <Section title={scope.group}>
+              <div className="sa-links">
+                {scope.siblings.map((c) => (
+                  <Link key={c.slug} href={`/category/${c.slug}`} className={c.slug === scope.current ? "on" : undefined} aria-current={c.slug === scope.current ? "page" : undefined}>
+                    <span>{c.title}</span>
+                    <small>{c.count}</small>
+                  </Link>
+                ))}
+                <Link href="/shop" className="sa-links-all">
+                  Shop all categories →
+                </Link>
+              </div>
+            </Section>
+          ) : (
           <Section title="Category" count={cats.length}>
             {groups.map((g) => {
               const all = groupSlugs(g);
@@ -278,6 +321,9 @@ export default function ShopAll({ products, groups }: { products: ShopProduct[];
             })}
           </Section>
 
+          )}
+
+          {ceil > floor && (
           <Section title="Price" count={priceOn ? 1 : 0}>
             <div className="sa-price">
               <div className="sa-range" style={{ "--a": `${((min - floor) / (ceil - floor)) * 100}%`, "--b": `${((max - floor) / (ceil - floor)) * 100}%` } as React.CSSProperties}>
@@ -295,21 +341,18 @@ export default function ShopAll({ products, groups }: { products: ShopProduct[];
                   <input type="number" min={min} max={ceil} value={max} onChange={(e) => setMax(Math.min(ceil, Math.max(Number(e.target.value) || ceil, min)))} />
                 </label>
               </div>
-              <div className="sa-chips">
-                {[
-                  [floor, 249, "Under AED 250"],
-                  [250, 499, "AED 250 – 499"],
-                  [500, 999, "AED 500 – 999"],
-                  [1000, ceil, "AED 1,000+"],
-                ].map(([a, b, l]) => (
-                  <button key={l} type="button" className={min === a && max === b ? "on" : undefined} onClick={() => (setMin(Number(a)), setMax(Number(b)))}>
+              {quickRanges.length > 1 && <div className="sa-chips">
+                {quickRanges.map(([a, b, l]) => (
+                  <button key={l} type="button" className={min === a && max === b ? "on" : undefined} onClick={() => (setMin(a), setMax(b))}>
                     {l}
                   </button>
                 ))}
-              </div>
+              </div>}
             </div>
           </Section>
+          )}
 
+          {sizeGroups.length > 0 && (
           <Section title="Size" count={sizes.length}>
             {sizeGroups.map((k) => (
               <div className="sa-sizes" key={k.id}>
@@ -328,7 +371,9 @@ export default function ShopAll({ products, groups }: { products: ShopProduct[];
               </div>
             ))}
           </Section>
+          )}
 
+          {allColours.length > 1 && (
           <Section title="Colour" count={colours.length}>
             <div className="sa-swatches">
               {allColours.map((c) => {
@@ -343,7 +388,7 @@ export default function ShopAll({ products, groups }: { products: ShopProduct[];
               })}
             </div>
           </Section>
-
+          )}
 
           <button type="button" className="sa-show" onClick={() => setDrawer(false)}>
             Show {shown.length} {shown.length === 1 ? "product" : "products"}

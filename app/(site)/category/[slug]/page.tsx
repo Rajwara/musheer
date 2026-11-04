@@ -4,8 +4,8 @@ import "../../shop-brand.css";
 import "@/components/shop/shop-all.css";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import CategoryShop from "@/components/CategoryShop";
-import { cards, categories, getCategory } from "@/lib/catalog";
+import ShopAll, { type ShopProduct } from "@/components/shop/ShopAll";
+import { cards, categories, getCategory, home } from "@/lib/catalog";
 import { imageSrc } from "@/lib/images";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -25,19 +25,13 @@ export default async function CategoryPage({ params }: Props) {
   const category = getCategory((await params).slug);
   if (!category) notFound();
 
-  const sidebar = (
-    <div>
-      <h4>{category.group}</h4>
-      {category.siblings.map((s) => {
-        const sib = getCategory(s);
-        return sib ? (
-          <Link key={s} className={s === category.slug ? "on" : undefined} href={`/category/${s}`}>
-            {sib.title}
-          </Link>
-        ) : null;
-      })}
-    </div>
-  );
+  // Same filters as /shop, limited to this category; filters it can't use are hidden.
+  const isNew = new Set(home.newArrivals);
+  const list: ShopProduct[] = cards(category.products).map((p) => ({ ...p, group: category.group, isNew: isNew.has(p.slug) }));
+  const siblings = category.siblings.flatMap((s) => {
+    const sib = getCategory(s);
+    return sib ? [{ slug: s, title: sib.title, count: sib.products.length }] : [];
+  });
 
   return (
     <FieldwornShell className="shop-fw">
@@ -58,7 +52,7 @@ export default async function CategoryPage({ params }: Props) {
         </div>
       </div>
       <div className="wrap">
-        <CategoryShop products={cards(category.products)} sidebar={sidebar} />
+        <ShopAll products={list} groups={[]} scope={{ current: category.slug, group: category.group, siblings }} />
       </div>
     </FieldwornShell>
   );

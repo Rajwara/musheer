@@ -144,3 +144,23 @@
 }
 .sa-sort select:hover, .shop-fw .shop .bar select:hover { border-color: #000; }
 .sa-sort select:focus-visible, .shop-fw .shop .bar select:focus-visible { outline: 2px solid #000; outline-offset: 2px; }
+
+/* Photo behind the All / New In / Best Sellers circles */
+.sa-cat-photo { position: relative; overflow: hidden; padding: 0; }
+.sa-cat-photo img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 0; object-fit: cover; object-position: 50% 20%; }
+.sa-cat-photo::after { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.45); transition: background .3s; }
+.sa-cat-photo em { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; font-style: normal; color: #fff; text-align: center; line-height: 1; }
+.sa-cat.sa-cat .sa-cat-flag.sa-cat-photo { background: #000; box-shadow: none; }
+.sa-cat:hover .sa-cat-photo::after { background: rgba(0,0,0,.3); }
+.sa-cat.on .sa-cat-photo::after { background: rgba(0,0,0,.6); }
+.sa-cat:hover .sa-cat-photo img { transform: none; }
+
+/* Category pages: sister categories as links */
+.sa-links { display: grid; gap: 2px; }
+.sa-links a { display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; border-radius: 99px; color: #555; font-size: 14px; line-height: 20px; }
+.sa-links a small { color: #999; font-size: 12px; }
+.sa-links a:hover { background: #fff; color: #000; }
+.sa-links a.on { background: #000; color: #fff; font-weight: 500; }
+.sa-links a.on small { color: #bbb; }
+.sa-links .sa-links-all { margin-top: 6px; color: #000; font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+.sa-scoped { padding-top: 48px; }
