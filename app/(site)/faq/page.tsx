@@ -48,7 +48,7 @@ export default function FaqPage() {
             <span className="faq-label">*Frequently asked</span>
             <h2>How can we help?</h2>
           </div>
-          <p>{total} answers across {groups.length} topics. Pick a topic, then click a question to open it.</p>
+          <p>{total} answers across {groups.length} topics. Browse them all, or pick a topic; click a question to open it.</p>
         </div>
         <FaqList groups={groups} />
       </div>

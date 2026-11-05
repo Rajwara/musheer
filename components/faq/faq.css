@@ -79,3 +79,9 @@
   .faq-row, .faq-images div, .faq-plus::after { transition: none; }
   .faq-row.open .faq-a { animation: none; }
 }
+
+/* "All questions": each topic under its own heading */
+.faq-group + .faq-group { margin-top: 56px; }
+.faq-wrap .faq-group-title { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; font: 500 28px/1 var(--faq-display); text-transform: uppercase; letter-spacing: -.02em; color: #000; }
+.faq-wrap .faq-group-title small { min-width: 22px; padding: 0 7px; border-radius: 99px; background: #000; color: #fff; font: 500 12px/22px var(--faq-body); text-align: center; letter-spacing: 0; }
+@media (max-width: 767px) { .faq-group + .faq-group { margin-top: 40px; } .faq-wrap .faq-group-title { font-size: 24px; } }
