@@ -9,7 +9,7 @@ import type { CardProduct } from "@/lib/types";
 import QuickViewArea from "../QuickViewArea";
 import "./featured-looks.css";
 
-export type Look = { photo: string; slug: string; pill: string; name: string; price: number; image: string; card: CardProduct };
+export type Look = { photo: string; focus?: string; slug: string; pill: string; name: string; price: number; image: string; card: CardProduct };
 
 /**
  * Pinned photo stack from /test-mock-2 ("Featured looks"): as you scroll,
@@ -47,7 +47,7 @@ export default function FeaturedLooks({ looks }: { looks: Look[] }) {
         {looks.map((l) => (
           <div className="fl-panel" key={l.slug}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={l.photo} alt="" loading="lazy" />
+            <img src={l.photo} alt="" loading="lazy" style={l.focus ? { objectPosition: l.focus } : undefined} />
           </div>
         ))}
         <div className="fl-card-wrap">

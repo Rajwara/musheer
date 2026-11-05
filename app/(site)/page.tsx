@@ -24,10 +24,10 @@ const slides: Slide[] = [
  * or .png) and they replace these automatically (see the README there).
  */
 const LOOKS = [
-  { photo: "images/hero/hero-adult", slug: "breathable-cotton-thobe-white", pill: "Thobes", image: "images/categories/summer-thobes" },
-  { photo: "images/hero/hero-new", slug: "stitched-saderi-olive", pill: "Saderi", image: "images/categories/saderi" },
-  { photo: "images/hero/hero-kids", slug: "tailored-layering-jacket-charcoal", pill: "Jackets", image: "images/categories/kandura-jackets" },
-  { photo: "images/pages/about", slug: "occasion-bisht-black", pill: "Bisht", image: "images/categories/bisht" },
+  { photo: "images/hero/hero-adult", focus: "28% 40%", slug: "breathable-cotton-thobe-white", pill: "Thobes", image: "images/categories/summer-thobes" },
+  { photo: "images/hero/hero-new", focus: "42% 40%", slug: "stitched-saderi-olive", pill: "Saderi", image: "images/categories/saderi" },
+  { photo: "images/hero/hero-kids", focus: "22% 45%", slug: "tailored-layering-jacket-charcoal", pill: "Jackets", image: "images/categories/kandura-jackets" },
+  { photo: "images/pages/about", focus: "84% 45%", slug: "occasion-bisht-black", pill: "Bisht", image: "images/categories/bisht" },
 ];
 
 /** "What We Stand For" cards, same text and photos as /test-mock-2. */
