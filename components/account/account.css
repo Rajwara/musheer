@@ -1,0 +1,29 @@
+/* Account page in the /test-mock-2 branding: sign-in card beside quick links. */
+.ac { --ac-display: var(--font-big-shoulders), "Big Shoulders", sans-serif; display: grid; grid-template-columns: minmax(0, 480px) minmax(0, 1fr); gap: 32px; align-items: start; padding: 48px 0 96px; color: #000; font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif; }
+.ac-card { padding: 28px; border-radius: 12px; background: #f6f6f6; }
+.ac-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 24px; padding: 4px; border-radius: 99px; background: #fff; }
+.ac-tabs button { padding: 10px; border: 0; border-radius: 99px; background: none; color: #555; font: 500 15px/1 inherit; font-family: inherit; cursor: pointer; transition: .25s; }
+.ac-tabs button.on { background: #000; color: #fff; }
+.ac-card h2, .ac-links h2 { margin: 0 0 8px; font: 500 40px/1 var(--ac-display); text-transform: uppercase; letter-spacing: -.04em; }
+.ac-sub { margin: 0 0 22px; color: #666; }
+.ac-form { display: grid; gap: 14px; }
+.ac-form label { display: grid; gap: 6px; }
+.ac-form label span { color: #555; font-size: 14px; }
+.ac-form input { width: 100%; padding: 13px 18px; border: 1px solid #e4e4e4; border-radius: 99px; background: #fff; font: 400 15px/1 inherit; font-family: inherit; color: #000; }
+.ac-form input:focus { outline: 0; border-color: #000; }
+.ac-form .am-btn { width: 100%; margin-top: 4px; }
+.ac-link { justify-self: end; margin-top: -4px; padding: 0; border: 0; background: none; color: #000; font: 500 14px/1 inherit; font-family: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.ac-note { margin: 0; padding: 12px 14px; border-radius: 10px; background: #fff; color: #555; font-size: 14px; line-height: 20px; }
+
+.ac-links > p { margin: 0 0 20px; color: #666; }
+.ac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ac-tile { position: relative; display: flex; flex-direction: column; gap: 6px; min-height: 168px; padding: 22px; border: 1px solid #ececec; border-radius: 12px; background: #fff; color: #000; transition: border-color .3s, transform .3s; }
+.ac-tile:hover { border-color: #000; transform: translateY(-2px); }
+.ac-ico { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: auto; border-radius: 50%; background: #000; color: #fff; }
+.ac-tile b { font-size: 18px; font-weight: 500; letter-spacing: -.02em; }
+.ac-tile small { padding-right: 44px; color: #777; font-size: 14px; line-height: 20px; }
+.ac-tile .ac-count { position: absolute; top: 22px; right: 22px; min-width: 24px; padding: 0 8px; border-radius: 99px; background: #f6f6f6; font: 500 13px/24px inherit; font-family: inherit; text-align: center; }
+.ac-go { position: absolute; right: 18px; bottom: 18px; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #f6f6f6; transform: rotate(-45deg); transition: transform .45s cubic-bezier(.215,.61,.355,1), background .3s, color .3s; }
+.ac-tile:hover .ac-go { transform: none; background: #000; color: #fff; }
+@media (max-width: 900px) { .ac { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .ac-grid { grid-template-columns: 1fr; } .ac-card { padding: 20px; } }
