@@ -13,11 +13,6 @@
 .site-header .mega .mega-feature { color: #000 !important; }
 .site-header .mega .mega-pic { border-radius: 12px; background: #f6f6f6; aspect-ratio: 4 / 5; }
 .site-header .mega-title { font: 500 32px/1 var(--mm-display); text-transform: uppercase; letter-spacing: -.03em; color: #000; }
-.site-header .mega .mega-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px; border: 0; border-radius: 99px; background: #000; color: #fff; font: 500 15px/1.2 var(--mm-body); letter-spacing: -.02em; text-transform: none; }
-.site-header .mega .mega-btn::before { display: none; }
-.site-header .mega-feature:hover .mega-btn { background: #2b2b2b; }
-.site-header .mega-btn svg { flex: none; transition: transform .3s; }
-.site-header .mega-feature:hover .mega-btn svg { transform: translate(2px, -2px); }
 
 /* Desktop: a floating rounded panel below the header bar */
 @media (min-width: 1021px) {
@@ -48,3 +43,12 @@
   .site-header .mega .mega-cols > div:only-child { min-width: 200px; }
   .site-header .mega:has(.mega-cols > div:only-child) .mega-feature { width: 220px; }
 }
+
+
+/* Explore button: the home page pill (components/ui/btn.css), sized to its
+   label; hovering anywhere on the photo card plays its roll and arrow turn. */
+.site-header .mega .mega-caption { align-items: flex-start; }
+.site-header .mega .mega-btn.am-btn { width: auto; align-self: flex-start; text-align: left; }
+.site-header .mega-feature:hover .mega-btn .am-roll > span { transform: translateY(-100%); }
+.site-header .mega-feature:hover .mega-btn .am-ico { transform: rotate(-45deg); }
+.site-header .mega-feature:hover .mega-btn.am-btn { background: #2b2b2b; border-color: #2b2b2b; }
