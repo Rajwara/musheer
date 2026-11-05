@@ -74,8 +74,24 @@ function Section({ title, count, open: start = true, children }: { title: string
 /** On a category page: that category and its sister categories, shown as links instead of tick-boxes. */
 export type ShopScope = { current: string; group: string; siblings: { slug: string; title: string; count: number }[] };
 
-export default function ShopAll({ products, groups, scope, art = {} }: { products: ShopProduct[]; groups: ShopGroup[]; scope?: ShopScope; art?: Record<"all" | "new" | "best", string | undefined> | Record<string, never> }) {
-  const [query, setQuery] = useState("");
+export default function ShopAll({
+  products,
+  groups,
+  scope,
+  art = {},
+  strip = true,
+  initialQuery = "",
+}: {
+  products: ShopProduct[];
+  groups: ShopGroup[];
+  scope?: ShopScope;
+  art?: Record<"all" | "new" | "best", string | undefined> | Record<string, never>;
+  /** Show the row of category circles (on /shop). */
+  strip?: boolean;
+  /** Start with this search text (the search page passes the ?q= value). */
+  initialQuery?: string;
+}) {
+  const [query, setQuery] = useState(initialQuery);
   const [cats, setCats] = useState<string[]>([]);
   const [colours, setColours] = useState<string[]>([]);
   const [sizes, setSizes] = useState<string[]>([]);
@@ -198,7 +214,7 @@ export default function ShopAll({ products, groups, scope, art = {} }: { product
   return (
     <>
       {/* Every category, as quick filters (on /shop only) */}
-      {!scope && (
+      {!scope && strip && (
       <div className="sa-cats" role="group" aria-label="Categories">
         <button type="button" className={cats.length || flags.length ? "sa-cat" : "sa-cat on"} onClick={() => (setCats([]), setFlags([]))}>
           <span className="sa-cat-all sa-cat-photo">
