@@ -29,14 +29,32 @@
 .ws-card b { display: block; font-weight: 500; }
 .ws-card small { color: #666; font-size: 14px; }
 
-@media (max-width: 767px) {
-  .ws { height: auto; margin: 8px; padding: 72px 0; }
-  .ws h2 { font-size: 40px; }
-  .ws-sticky { position: static; }
-  .ws-head { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .ws-track { width: auto; padding-right: 24px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; }
+.ws-nav { display: none; }
+
+/* Phones and tablets: a swipe carousel, one review per card (photo above the
+   quote), with the next one peeking in, plus arrows, dots and a counter. */
+@media (max-width: 1023px) {
+  .ws { height: auto; padding: 72px 0 56px; }
+  .ws-sticky { position: static; overflow: visible; }
+  .ws-head { flex-direction: column; align-items: flex-start; gap: 14px; margin-bottom: 28px; }
+  .ws-track { width: auto; gap: 12px; padding: 0 24px 4px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 24px; scrollbar-width: none; overscroll-behavior-x: contain; }
   .ws-track::-webkit-scrollbar { display: none; }
-  .ws-im, .ws-card { scroll-snap-align: start; }
+  .ws-pair { display: flex; flex-direction: column; flex: none; width: min(78vw, 340px); scroll-snap-align: start; border-radius: 12px; overflow: hidden; background: #f6f6f6; }
+  .ws-im { width: 100%; height: auto; aspect-ratio: 4 / 3; border-radius: 0; }
+  .ws-card { width: 100%; height: auto; flex: 1; min-height: 220px; border-radius: 0; padding: 20px; }
+  .ws-nav { display: flex; align-items: center; gap: 10px; padding: 20px 24px 0; }
+  .ws-count { margin-right: auto; font: 500 18px/1 var(--ws-display); letter-spacing: .04em; color: #999; }
+  .ws-dots { display: flex; gap: 6px; margin-right: 6px; }
+  .ws-dots button { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 99px; background: #d4d4d4; cursor: pointer; transition: width .3s, background .3s; }
+  .ws-dots button.on { width: 22px; background: #000; }
+  .ws-arrow { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; background: #000; color: #fff; cursor: pointer; transition: background .3s, opacity .3s; }
+  .ws-arrow:disabled { opacity: .25; cursor: default; }
+}
+@media (max-width: 767px) {
+  .ws { margin: 8px; }
+  .ws h2 { font-size: 40px; }
+  .ws-track { padding: 0 20px 4px; scroll-padding-left: 20px; }
+  .ws-nav { padding: 20px 20px 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .ws { height: auto; padding-bottom: 80px; }
