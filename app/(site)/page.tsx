@@ -1,5 +1,6 @@
 import HeroSlider, { type Slide } from "@/components/HeroSlider";
 import MostWanted from "@/components/home/MostWanted";
+import WhyUs from "@/components/home/WhyUs";
 import FindYourFit from "@/components/home/FindYourFit";
 import FeaturedLooks, { type Look } from "@/components/home/FeaturedLooks";
 import NewArrivals from "@/components/home/NewArrivals";
@@ -41,6 +42,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSlider slides={slides} />
+      <WhyUs />
       <MostWanted />
       <FindYourFit />
       <FeaturedLooks
