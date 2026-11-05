@@ -1,15 +1,11 @@
-import Link from "next/link";
-import TextPage from "@/components/TextPage";
+import NotFoundContent from "@/components/not-found/NotFoundContent";
+import { fieldwornFonts } from "@/lib/fieldworn-fonts";
 
+/** Missing product, category or post: shown inside the store layout (header and footer included). */
 export default function NotFound() {
   return (
-    <TextPage title="Page not found">
-      <p>
-        That page does not exist.{" "}
-        <Link href="/" style={{ borderBottom: "1px solid" }}>
-          Back to the shop
-        </Link>
-      </p>
-    </TextPage>
+    <div className={fieldwornFonts}>
+      <NotFoundContent />
+    </div>
   );
 }

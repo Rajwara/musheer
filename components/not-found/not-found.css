@@ -1,0 +1,42 @@
+/* 404 page in the /test-mock-2 branding: black photo panel, giant outlined 404,
+   Big Shoulders headline, pill search and buttons. Scoped to .nf. */
+.nf {
+  --nf-display: var(--font-big-shoulders), "Big Shoulders", sans-serif;
+  --nf-body: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  position: relative; display: flex; align-items: center; min-height: calc(100svh - var(--hdr-h, 72px) - 38px - 24px);
+  margin: 12px; padding: 56px 0; overflow: hidden; border-radius: 12px; background: #000; color: #fff;
+  font: 400 16px/24px var(--nf-body);
+}
+.nf-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .35; }
+.nf::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.55) 55%, rgba(0,0,0,.2) 100%); }
+.nf-in { position: relative; z-index: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.nf-label { display: block; margin-bottom: 4px; font: 500 16px/24px var(--nf-display); text-transform: uppercase; letter-spacing: .01em; }
+.nf-code { margin: 0 0 -8px; font: 600 clamp(120px, 16vw, 220px)/.85 var(--nf-display); letter-spacing: -.03em; color: transparent; -webkit-text-stroke: 2px rgba(255,255,255,.7); }
+.nf h1 { max-width: 760px; margin: 0 0 16px; font: 500 clamp(44px, 5vw, 72px)/.95 var(--nf-display); text-transform: uppercase; letter-spacing: -.04em; color: #fff; }
+.nf-text { max-width: 520px; margin: 0 0 28px; color: rgba(255,255,255,.8); font-size: 18px; line-height: 27px; }
+
+.nf-search { display: flex; align-items: center; gap: 10px; max-width: 520px; margin-bottom: 20px; padding: 5px 5px 5px 18px; border-radius: 99px; background: #fff; color: #888; }
+.nf-search input { flex: 1; min-width: 0; padding: 10px 0; border: 0; outline: 0; background: none; font: 400 15px/1 var(--nf-body); color: #000; }
+.nf-search button { padding: 12px 20px; border: 0; border-radius: 99px; background: #000; color: #fff; font: 500 15px/1 var(--nf-body); cursor: pointer; }
+.nf-search button:hover { background: #2b2b2b; }
+
+.nf-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+.nf-btn { display: inline-flex; align-items: center; gap: 12px; padding: 8px 8px 8px 20px; border: 1px solid #fff; border-radius: 99px; background: #fff; color: #000; font-weight: 500; letter-spacing: -.02em; transition: background .3s, color .3s; }
+.nf-ico { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #000; color: #fff; transition: transform .45s cubic-bezier(.215,.61,.355,1); }
+.nf-ico svg { width: 15px; height: 15px; }
+.nf-btn:hover .nf-ico { transform: rotate(-45deg); }
+.nf-btn-line { background: transparent; color: #fff; }
+.nf-btn-line .nf-ico { background: #fff; color: #000; }
+.nf-btn-line:hover { background: rgba(255,255,255,.1); }
+
+.nf-popular { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.nf-popular small { margin-right: 4px; font: 500 15px/1 var(--nf-display); text-transform: uppercase; letter-spacing: .04em; color: rgba(255,255,255,.7); }
+.nf-popular a { padding: 6px 14px; border: 1px solid rgba(255,255,255,.35); border-radius: 99px; color: #fff; font-size: 14px; line-height: 20px; transition: background .2s, border-color .2s; }
+.nf-popular a:hover { border-color: #fff; background: rgba(255,255,255,.12); }
+
+@media (max-width: 767px) {
+  .nf { margin: 8px; padding: 48px 0; min-height: 0; }
+  .nf::after { background: rgba(0,0,0,.7); }
+  .nf-in { padding: 0 20px; }
+  .nf-text { font-size: 16px; line-height: 24px; }
+}
