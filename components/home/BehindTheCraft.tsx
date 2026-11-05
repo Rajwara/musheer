@@ -13,14 +13,23 @@ export default function BehindTheCraft() {
       <div className="btc-container btc-head">
         <div>
           <span className="btc-label">*Behind The Craft</span>
-          <h2 id="btc-title">See It On Instagram</h2>
+          <h2 id="btc-title">
+            See It On{" "}
+            <a className="btc-ig" href={COMMUNITY.instagram} target="_blank" rel="noopener noreferrer">
+              Instagram
+            </a>
+          </h2>
         </div>
         <p>
           Follow{" "}
           <a href={COMMUNITY.instagram} target="_blank" rel="noopener noreferrer">
             @almusheer
           </a>{" "}
-          on Instagram for more, and tag us wearing Al Musheer to be featured in our community showcase.
+          on{" "}
+          <a href={COMMUNITY.instagram} target="_blank" rel="noopener noreferrer">
+            Instagram
+          </a>{" "}
+          for more, and tag us wearing Al Musheer to be featured in our community showcase.
         </p>
       </div>
       <div className="cv">

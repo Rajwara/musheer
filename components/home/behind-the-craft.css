@@ -23,3 +23,6 @@
   .btc-head { flex-direction: column; align-items: flex-start; gap: 14px; }
   .btc .cv .clips { --edge: 24px; }
 }
+/* "Instagram" in the heading links to the profile */
+.btc h2 .btc-ig { color: inherit; text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; transition: opacity .2s; }
+.btc h2 .btc-ig:hover { opacity: .65; }
