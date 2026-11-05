@@ -34,3 +34,17 @@
   .site-header .mega-cols a.on::before { transform: scale(0); }
   .site-header .mega-cols a:hover { color: #000; }
 }
+
+/* Single-column menus (Kandura and Thobe, Kids): a compact panel under their
+   own nav item instead of the full width; multi-column menus stay wide. */
+@media (min-width: 1021px) {
+  .site-header .hdr-item:has(.mega-cols > div:only-child) { position: relative; }
+  .site-header .hdr-item .mega:has(.mega-cols > div:only-child) {
+    left: -24px; right: auto; width: max-content; max-width: calc(100vw - 48px);
+  }
+  .site-header .mega:has(.mega-cols > div:only-child) .mega-inner {
+    display: flex; justify-content: flex-start; gap: 40px; max-width: none; padding: 28px;
+  }
+  .site-header .mega .mega-cols > div:only-child { min-width: 200px; }
+  .site-header .mega:has(.mega-cols > div:only-child) .mega-feature { width: 220px; }
+}
