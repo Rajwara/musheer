@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { OFFER } from "@/lib/brand";
 import "./offer-popup.css";
+import BtnContent from "./ui/BtnContent";
 
 const KEY = "offer-popup";
 const TEASER_OFF = "offer-teaser-off";
@@ -34,12 +35,6 @@ function teaserDismissed() {
 }
 
 const pad = (n: number) => String(n).padStart(2, "0");
-
-const Arrow = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-    <path d="M7 17 17 7M8 7h9v9" />
-  </svg>
-);
 
 const Cross = ({ size = 14 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">
@@ -180,8 +175,8 @@ export default function OfferPopup({ image }: { image: string }) {
               <p>
                 Your exclusive discount is on its way to <b>{email}</b>.
               </p>
-              <button className="op-btn" type="button" onClick={close}>
-                Continue shopping <Arrow />
+              <button className="op-btn am-btn" type="button" onClick={close}>
+                <BtnContent label="Continue shopping" />
               </button>
             </div>
           ) : (
@@ -210,8 +205,8 @@ export default function OfferPopup({ image }: { image: string }) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <button className="op-btn" type="submit" disabled={status === "sending"}>
-                  {status === "sending" ? "Sending…" : "Claim offer"} <Arrow />
+                <button className="op-btn am-btn" type="submit" disabled={status === "sending"}>
+                  <BtnContent label={status === "sending" ? "Sending…" : "Claim offer"} />
                 </button>
               </form>
               {status === "error" && <p className="op-error">Something went wrong. Please try again.</p>}

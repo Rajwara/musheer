@@ -1,3 +1,4 @@
+import BtnContent from "@/components/ui/BtnContent";
 import Link from "next/link";
 import { imageSrc } from "@/lib/images";
 import "./not-found.css";
@@ -10,12 +11,6 @@ const POPULAR = [
   { label: "Branches", href: "/branches" },
   { label: "Contact", href: "/contact" },
 ];
-
-const Arrow = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M4 12h16M14 6l6 6-6 6" />
-  </svg>
-);
 
 /** 404 message in the /test-mock-2 branding, used for unknown addresses and missing products or posts. */
 export default function NotFoundContent() {
@@ -37,21 +32,17 @@ export default function NotFoundContent() {
             <path d="m20 20-3.5-3.5" />
           </svg>
           <input name="q" type="search" placeholder="Search kanduras, ghutra, sandals…" aria-label="Search products" />
-          <button type="submit">Search</button>
+          <button type="submit" className="am-btn am-sm">
+            <BtnContent label="Search" icon="search" />
+          </button>
         </form>
 
         <div className="nf-btns">
-          <Link className="nf-btn" href="/">
-            Back to home
-            <span className="nf-ico">
-              <Arrow />
-            </span>
+          <Link className="am-btn am-light" href="/">
+            <BtnContent label="Back to home" />
           </Link>
-          <Link className="nf-btn nf-btn-line" href="/shop">
-            Shop all categories
-            <span className="nf-ico">
-              <Arrow />
-            </span>
+          <Link className="am-btn am-line am-dark" href="/shop">
+            <BtnContent label="Shop all categories" />
           </Link>
         </div>
 

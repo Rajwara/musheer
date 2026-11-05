@@ -1,5 +1,6 @@
 "use client";
 
+import BtnContent from "@/components/ui/BtnContent";
 import Link from "next/link";
 import { useState } from "react";
 import type { NavItem } from "@/lib/navigation";
@@ -50,9 +51,8 @@ export default function MegaMenu({ item, images }: Props) {
             </span>
             <span className="mega-caption">
               <span className="mega-title">{show.label}</span>
-              <span className="btn mega-btn">
-                Explore {show.label}
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+              <span className="btn am-btn mega-btn">
+                <BtnContent label="Explore now" />
               </span>
             </span>
           </Link>

@@ -1,3 +1,4 @@
+import BtnContent from "@/components/ui/BtnContent";
 import Link from "next/link";
 import {
   HOME_VISIT,
@@ -123,8 +124,8 @@ export function HomeVisit() {
           ))}
         </ol>
         <div style={{ textAlign: "center" }}>
-          <a className="btn wa" href={HOME_VISIT_URL} target="_blank" rel="noopener noreferrer">
-            <Icon name="whatsapp" size={18} /> Book your home visit on WhatsApp
+          <a className="btn am-btn am-light wa" href={HOME_VISIT_URL} target="_blank" rel="noopener noreferrer">
+            <BtnContent label="Book your home visit on WhatsApp" icon="whatsapp" />
           </a>
           <p className="small-note">
             Or call or WhatsApp us directly at <a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a>

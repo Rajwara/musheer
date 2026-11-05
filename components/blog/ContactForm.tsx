@@ -1,5 +1,6 @@
 "use client";
 
+import BtnContent from "@/components/ui/BtnContent";
 import { useState } from "react";
 import { PHONE_DISPLAY, whatsapp } from "@/lib/brand";
 import DIcon from "./Icons";
@@ -85,8 +86,8 @@ export default function ContactForm() {
         <textarea {...field("message")} name="message" required placeholder="Tell us a little more..." />
         {error("message")}
       </div>
-      <button className="btn form-submit" type="submit">
-        Send message
+      <button className="btn am-btn form-submit" type="submit">
+        <BtnContent label="Send message" icon="whatsapp" />
       </button>
       <div className="form-privacy">
         <DIcon name="lock" />

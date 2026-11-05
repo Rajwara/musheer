@@ -1,9 +1,9 @@
+import BtnContent from "@/components/ui/BtnContent";
 import type { Metadata } from "next";
 import FieldwornShell from "@/components/FieldwornShell";
 import "../blog-brand.css";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import DIcon from "@/components/blog/Icons";
 import PostCard, { Avatar } from "@/components/blog/PostCard";
 import { AUTHOR, POSTS, formatDate, getPost, readTime, type Block } from "@/lib/blog";
 import { imageSrc } from "@/lib/images";
@@ -105,8 +105,8 @@ export default async function BlogPostPage({ params }: Props) {
               </dl>
             </aside>
 
-            <Link className="btn article-back" href="/blog">
-              All articles <DIcon name="upRight" small />
+            <Link className="btn am-btn article-back" href="/blog">
+              <BtnContent label="All articles" />
             </Link>
           </article>
         </div>
@@ -119,8 +119,8 @@ export default async function BlogPostPage({ params }: Props) {
               <span className="eyebrow">Keep reading</span>
               <h2>More From the Blog</h2>
             </div>
-            <Link className="btn" href="/blog">
-              View All Articles <DIcon name="upRight" small />
+            <Link className="btn am-btn" href="/blog">
+              <BtnContent label="View All Articles" />
             </Link>
           </div>
           <div className="post-grid">

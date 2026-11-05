@@ -1,3 +1,4 @@
+import BtnContent from "@/components/ui/BtnContent";
 import type { Metadata } from "next";
 import { ProductGrid } from "@/components/ProductCard";
 import { allCards } from "@/lib/catalog";
@@ -24,7 +25,7 @@ export default async function SearchPage({ searchParams }: Props) {
           aria-label="Search products"
           style={{ flex: 1, padding: 11, border: "1px solid var(--line)", background: "#fff" }}
         />
-        <button className="btn">Search</button>
+        <button className="btn am-btn"><BtnContent label="Search" icon="search" /></button>
       </form>
       {!q ? (
         <p className="empty">Type a product or category name.</p>

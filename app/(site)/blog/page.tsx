@@ -1,9 +1,9 @@
+import BtnContent from "@/components/ui/BtnContent";
 import type { Metadata } from "next";
 import FieldwornShell from "@/components/FieldwornShell";
 import "./blog-brand.css";
 import Link from "next/link";
 import BlogList from "@/components/blog/BlogList";
-import DIcon from "@/components/blog/Icons";
 import { Avatar, type PostSummary } from "@/components/blog/PostCard";
 import { AUTHOR, CATEGORIES, POSTS, formatDate, readTime } from "@/lib/blog";
 import { imageSrc } from "@/lib/images";
@@ -59,8 +59,8 @@ export default function BlogPage() {
                     <div className="author-date">{f.date}</div>
                   </div>
                 </div>
-                <Link className="btn" href={`/blog/${f.slug}`}>
-                  Read Blog <DIcon name="upRight" small />
+                <Link className="btn am-btn" href={`/blog/${f.slug}`}>
+                  <BtnContent label="Read Blog" />
                 </Link>
               </div>
             </div>

@@ -1,7 +1,7 @@
 "use client";
 
+import BtnContent from "@/components/ui/BtnContent";
 import { useMemo, useRef, useState } from "react";
-import DIcon from "./Icons";
 import PostCard, { type PostSummary } from "./PostCard";
 
 const POSTS_PER_PAGE = 6;
@@ -49,11 +49,11 @@ export default function BlogList({ posts, categories, author }: { posts: PostSum
         No posts in this category yet.
       </p>
       <div className="pager">
-        <button className="btn" type="button" hidden={current === 0} onClick={() => changePage(-1)}>
-          <DIcon name="left" small /> Previous
+        <button className="btn am-btn am-line am-back" type="button" hidden={current === 0} onClick={() => changePage(-1)}>
+          <BtnContent label="Previous" icon="back" />
         </button>
-        <button className="btn" type="button" hidden={current >= pages - 1} onClick={() => changePage(1)}>
-          Next Blog <DIcon name="right" small />
+        <button className="btn am-btn" type="button" hidden={current >= pages - 1} onClick={() => changePage(1)}>
+          <BtnContent label="Next Blog" />
         </button>
       </div>
     </>

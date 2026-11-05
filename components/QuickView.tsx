@@ -6,6 +6,7 @@ import { whatsapp } from "@/lib/brand";
 import { money } from "@/lib/format";
 import type { CardProduct } from "@/lib/types";
 import Icon from "./Icon";
+import BtnContent from "./ui/BtnContent";
 import { useStore } from "./StoreProvider";
 
 const Ctx = createContext<(p: CardProduct) => void>(() => {});
@@ -98,23 +99,23 @@ function QuickViewBody({ p, close }: { p: CardProduct; close: () => void }) {
             </button>
           </div>
           <button
-            className="btn"
+            className="btn am-btn"
             type="button"
             onClick={() => {
               addToCart(p.slug, summary, qty);
               setAdded(true);
             }}
           >
-            Add to cart
+            <BtnContent label="Add to cart" icon="bag" />
           </button>
         </div>
         <a
-          className="btn wa-line"
+          className="btn am-btn am-line wa-line"
           href={whatsapp(`Hello Al Musheer, I would like to order: ${p.name} (${summary}) x${qty}`)}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Icon name="whatsapp" size={17} /> Order on WhatsApp
+          <BtnContent label="Order on WhatsApp" icon="whatsapp" />
         </a>
         {added && (
           <p className="notice">

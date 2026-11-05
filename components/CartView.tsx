@@ -1,5 +1,6 @@
 "use client";
 
+import BtnContent from "@/components/ui/BtnContent";
 import Link from "next/link";
 import { useState } from "react";
 import { money } from "@/lib/format";
@@ -59,8 +60,8 @@ export default function CartView({ products }: { products: CardProduct[] }) {
         <span>Subtotal</span>
         <span>{money(total)}</span>
       </div>
-      <button className="btn" type="button" onClick={() => setCheckout(true)}>
-        Checkout
+      <button className="btn am-btn" type="button" onClick={() => setCheckout(true)}>
+        <BtnContent label="Checkout" />
       </button>
       <p className="notice" hidden={!checkout}>
         Checkout is not active yet. Connect a payment provider before launch.

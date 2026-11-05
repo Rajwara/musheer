@@ -1,3 +1,4 @@
+import BtnContent from "@/components/ui/BtnContent";
 import type { Metadata } from "next";
 import Link from "next/link";
 import FieldwornShell from "@/components/FieldwornShell";
@@ -58,11 +59,11 @@ export default function FaqPage() {
           <p>WhatsApp is the quickest way to reach our team, or book a tailor to come to you.</p>
         </div>
         <div className="faq-cta-btns">
-          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-            Message us on WhatsApp
+          <a className="am-btn am-light" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+            <BtnContent label="Message us on WhatsApp" icon="whatsapp" />
           </a>
-          <a href={HOME_VISIT_URL} target="_blank" rel="noopener noreferrer">
-            Book a home visit
+          <a className="am-btn am-line am-dark" href={HOME_VISIT_URL} target="_blank" rel="noopener noreferrer">
+            <BtnContent label="Book a home visit" />
           </a>
         </div>
       </div>

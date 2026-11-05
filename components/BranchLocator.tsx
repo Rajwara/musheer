@@ -1,5 +1,6 @@
 "use client";
 
+import BtnContent from "@/components/ui/BtnContent";
 import "leaflet/dist/leaflet.css";
 import type { Map as LeafletMap, Marker } from "leaflet";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -240,8 +241,8 @@ export default function BranchLocator({ branches }: { branches: LocatorBranch[] 
             placeholder="Area or city, e.g. Mirdif, Al Nahda, Khalifa City"
             aria-label="Search for an area or city"
           />
-          <button className="btn" type="submit">
-            Search
+          <button className="btn am-btn am-sm" type="submit">
+            <BtnContent label="Search" icon="search" />
           </button>
         </form>
         <div className="locator-tools">
@@ -281,12 +282,12 @@ export default function BranchLocator({ branches }: { branches: LocatorBranch[] 
                 )}
               </button>
               <div className="locator-actions">
-                <a className="btn" href={directions(b, origin ?? undefined)} target="_blank" rel="noopener noreferrer">
-                  Get directions
+                <a className="btn am-btn am-sm" href={directions(b, origin ?? undefined)} target="_blank" rel="noopener noreferrer">
+                  <BtnContent label="Get directions" />
                 </a>
                 {b.phone && (
-                  <a className="btn ghost" href={`tel:${b.phone.replace(/\s/g, "")}`}>
-                    Call
+                  <a className="btn am-btn am-line am-sm ghost" href={`tel:${b.phone.replace(/\s/g, "")}`}>
+                    <BtnContent label="Call" />
                   </a>
                 )}
               </div>

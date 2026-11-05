@@ -1,5 +1,6 @@
 "use client";
 
+import BtnContent from "@/components/ui/BtnContent";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { HOME_VISIT_URL, whatsapp } from "@/lib/brand";
@@ -117,17 +118,17 @@ export default function ProductDetail({ slug, name, price, description, options,
                 +
               </button>
             </div>
-            <button className="btn" type="button" onClick={add}>
-              Add to cart
+            <button className="btn am-btn" type="button" onClick={add}>
+              <BtnContent label="Add to cart" icon="bag" />
             </button>
           </div>
           <a
-            className="btn wa-line"
+            className="btn am-btn am-line wa-line"
             href={whatsapp(`Hello Al Musheer, I would like to order: ${name} (${choices.join(" / ")}) x${parseInt(qty, 10) || 1}`)}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon name="whatsapp" size={17} /> Order on WhatsApp
+            <BtnContent label="Order on WhatsApp" icon="whatsapp" />
           </a>
           <p className="notice" hidden={!added}>
             Added to your cart.{" "}
@@ -171,8 +172,8 @@ export default function ProductDetail({ slug, name, price, description, options,
         <span>
           {name} &middot; {money(price)}
         </span>
-        <button className="btn" type="button" onClick={add}>
-          Add to cart
+        <button className="btn am-btn am-light" type="button" onClick={add}>
+          <BtnContent label="Add to cart" icon="bag" />
         </button>
       </div>
       {sizeGuide && <SizeGuideDialog ref={chartRef} />}
