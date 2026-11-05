@@ -6,9 +6,6 @@ import NewArrivals from "@/components/home/NewArrivals";
 import WhatWeStandFor from "@/components/home/WhatWeStandFor";
 import BehindTheCraft from "@/components/home/BehindTheCraft";
 import MadeToMeasure from "@/components/home/MadeToMeasure";
-import { FieldwornChromeBehavior, FieldwornFooter } from "@/app/(mock)/test-mock-3/FieldwornChrome";
-import { fieldwornFonts } from "@/lib/fieldworn-fonts";
-import "./fieldworn-site.css";
 import { HERO, PHONE_DISPLAY } from "@/lib/brand";
 import { getProduct, home, toCard } from "@/lib/catalog";
 import { imageSrc, productImage } from "@/lib/images";
@@ -61,11 +58,6 @@ export default function HomePage() {
       <WhatWeStandFor items={PROMISES.map((p) => ({ ...p, image: imageSrc(p.image) }))} />
       <BehindTheCraft />
       <MadeToMeasure image={imageSrc("images/pages/branches")} />
-      {/* The /test-mock-2 footer (the store footer is hidden on this page, see OWN_CHROME) */}
-      <div className={`fwb ${fieldwornFonts}`}>
-        <FieldwornFooter image={imageSrc("images/content/story")} />
-        <FieldwornChromeBehavior />
-      </div>
     </>
   );
 }

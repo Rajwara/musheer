@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import AnnouncementBar from "@/components/AnnouncementBar";
-import Footer from "@/components/Footer";
+import SiteFooter from "@/components/SiteFooter";
 import Header from "@/components/Header";
-import HideOnPaths from "@/components/HideOnPaths";
 import { StoreProvider } from "@/components/StoreProvider";
 import Motion from "@/components/Motion";
 import OfferPopup from "@/components/OfferPopup";
@@ -37,9 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <QuickViewProvider>
             <Header images={categoryImages} />
             <main>{children}</main>
-            <HideOnPaths>
-              <Footer />
-            </HideOnPaths>
+            <SiteFooter />
             <WhatsAppButton />
             <OfferPopup image={imageSrc("images/hero/hero-winter")} />
           </QuickViewProvider>
