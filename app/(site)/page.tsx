@@ -19,6 +19,10 @@ const slides: Slide[] = [
 ];
 
 /** Pinned photo stack after "Find Your Fit": same photos and products as /test-mock-2, thobes first. */
+/**
+ * Background photos: upload public/images/home/looks/look-1 … look-4 (.webp, .jpg
+ * or .png) and they replace these automatically (see the README there).
+ */
 const LOOKS = [
   { photo: "images/hero/hero-adult", slug: "breathable-cotton-thobe-white", pill: "Thobes", image: "images/categories/summer-thobes" },
   { photo: "images/hero/hero-new", slug: "stitched-saderi-olive", pill: "Saderi", image: "images/categories/saderi" },
@@ -38,6 +42,12 @@ const PROMISES = [
   { image: "images/categories/kids-headwear", quote: "Order, ask about fabric or book a fitting on WhatsApp, any time.", title: "WhatsApp", note: PHONE_DISPLAY },
 ];
 
+/** The uploaded designer photo for look n, or the current photo until one is uploaded. */
+const lookPhoto = (i: number, fallback: string) => {
+  const own = imageSrc(`images/home/looks/look-${i + 1}`);
+  return own.endsWith(".svg") ? imageSrc(fallback) : own;
+};
+
 export default function HomePage() {
   return (
     <>
@@ -45,9 +55,9 @@ export default function HomePage() {
       <MostWanted />
       <FindYourFit />
       <FeaturedLooks
-        looks={LOOKS.flatMap((l): Look[] => {
+        looks={LOOKS.flatMap((l, i): Look[] => {
           const p = getProduct(l.slug);
-          return p ? [{ ...l, photo: imageSrc(l.photo), image: imageSrc(l.image), name: p.name, price: p.price, card: toCard(p) }] : [];
+          return p ? [{ ...l, photo: lookPhoto(i, l.photo), image: imageSrc(l.image), name: p.name, price: p.price, card: toCard(p) }] : [];
         })}
       />
       <NewArrivals
