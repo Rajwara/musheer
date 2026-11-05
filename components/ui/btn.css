@@ -52,3 +52,11 @@ body .am-btn.am-btn.am-sm { min-height: 38px; padding: 5px 5px 5px 16px; gap: 10
 @media (prefers-reduced-motion: reduce) {
   .am-btn .am-roll > span, .am-btn .am-ico { transition: none; }
 }
+
+/* Small phones: long labels wrap instead of pushing the button off screen */
+@media (max-width: 480px) {
+  body .am-btn.am-btn.am-btn { max-width: 100%; white-space: normal; text-align: left; }
+  .am-btn .am-roll { height: auto; overflow: visible; }
+  .am-btn .am-roll > span::after { display: none; }
+  .am-btn:hover .am-roll > span { transform: none; }
+}
