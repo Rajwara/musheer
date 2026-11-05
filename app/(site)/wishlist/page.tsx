@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
+import FieldwornShell from "@/components/FieldwornShell";
+import PhotoHero from "@/components/search/PhotoHero";
 import WishlistView from "@/components/WishlistView";
 import { allCards } from "@/lib/catalog";
+import { imageSrc } from "@/lib/images";
+import "../shop-brand.css";
 
 export const metadata: Metadata = { title: "Saved products" };
 
 export default function WishlistPage() {
   return (
-    <div className="wrap" style={{ paddingTop: 30, paddingBottom: 70 }}>
-      <h1 style={{ marginBottom: 20 }}>Saved products</h1>
-      <WishlistView products={allCards()} />
-    </div>
+    <FieldwornShell className="shop-fw">
+      <PhotoHero label="Saved" title="Saved pieces" text="Everything you've hearted, in one place. Open quick view to choose a size and add to your cart." image={imageSrc("images/pages/about")} position="50% 30%" />
+      <div className="wrap">
+        <WishlistView products={allCards()} />
+      </div>
+    </FieldwornShell>
   );
 }
