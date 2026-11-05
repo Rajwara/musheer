@@ -42,7 +42,6 @@ export default function HomePage() {
   return (
     <>
       <HeroSlider slides={slides} />
-      <WhyUs />
       <MostWanted />
       <FindYourFit />
       <FeaturedLooks
@@ -60,6 +59,7 @@ export default function HomePage() {
       <WhatWeStandFor items={PROMISES.map((p) => ({ ...p, image: imageSrc(p.image) }))} />
       <BehindTheCraft />
       <MadeToMeasure image={imageSrc("images/pages/branches")} />
+      <WhyUs />
     </>
   );
 }
