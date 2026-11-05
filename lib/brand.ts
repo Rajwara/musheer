@@ -174,7 +174,7 @@ export const OFFER = {
 /** Rotating messages in the bar above the header. */
 export const ANNOUNCEMENTS: { icon: string; text: string; href?: string }[] = [
   { icon: "check", text: "Kandura tailoring since 1998" },
-  { icon: "home", text: "Home tailoring: we come to you", href: "/#home-tailoring" },
+  { icon: "home", text: "Home tailoring: we come to you", href: "/about#home-tailoring" },
   { icon: "pin", text: "13 branches across 5 Emirates", href: "/branches" },
   { icon: "whatsapp", text: `Order on WhatsApp ${PHONE_DISPLAY}`, href: WHATSAPP_URL },
 ];

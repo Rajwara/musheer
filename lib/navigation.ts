@@ -5,6 +5,8 @@ export type NavItem = { label: string; href: string; columns?: Column[]; button?
 const cat = (slug: string) => `/category/${slug}`;
 
 export const mainNav: NavItem[] = [
+  { label: "Branches", href: "/branches" },
+  { label: "Home Tailoring", href: "/about#home-tailoring" },
   {
     label: "Kandura and Thobe",
     href: cat("kandura-thobes"),
@@ -78,8 +80,6 @@ export const mainNav: NavItem[] = [
       },
     ],
   },
-  { label: "Home Tailoring", href: "/#home-tailoring" },
-  { label: "Branches", href: "/branches" },
   { label: "Shop All Categories", href: "/shop", button: true },
 ];
 
@@ -100,7 +100,7 @@ export const footerNav: Column[] = [
     links: [
       { label: "About", href: "/about" },
       { label: "Branches", href: "/branches" },
-      { label: "Home Tailoring", href: "/#home-tailoring" },
+      { label: "Home Tailoring", href: "/about#home-tailoring" },
       { label: "Gift Card", href: "/product/digital-gift-card-ivory" },
       { label: "Blog", href: "/blog" },
       { label: "Contact", href: "/contact" },
