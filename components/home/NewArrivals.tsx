@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { money } from "@/lib/format";
 import type { CardProduct } from "@/lib/types";
 import QuickViewArea from "../QuickViewArea";
+import BtnContent from "../ui/BtnContent";
 import "./new-arrivals.css";
 
 export type Arrival = { slug: string; name: string; price: number; colour: string; category: string; image: string; card: CardProduct };
@@ -54,6 +55,9 @@ export default function NewArrivals({ items }: { items: Arrival[] }) {
       <div className="na-container">
         <span className="na-label">*New Arrivals</span>
         <h2 id="na-title">Dressed For Every Occasion</h2>
+        <Link className="am-btn am-light na-cta" href="/shop?filter=new">
+          <BtnContent label="Shop New Arrivals" />
+        </Link>
       </div>
       <div className="na-stage" ref={stage}>
         <div className="na-marquee" aria-hidden="true">

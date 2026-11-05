@@ -53,3 +53,4 @@
 }
 .qva.na-area { position: absolute; inset: 0; }
 .na-card::after { pointer-events: none; }
+.na .na-cta { margin-top: 24px; position: relative; z-index: 4; }
