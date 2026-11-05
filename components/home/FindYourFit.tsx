@@ -50,7 +50,7 @@ export default function FindYourFit() {
       <div className="fyf-container">
         <div className="fyf-head">
           <div>
-            <span className="fyf-label">*Category</span>
+            <span className="fyf-label">*Shop by Category</span>
             <h2 id="fyf-title">Find Your Fit</h2>
           </div>
           <p>Shop by what you need, from everyday kanduras to kids&apos; wear, headwear and accessories.</p>
