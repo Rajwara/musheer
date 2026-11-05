@@ -75,3 +75,15 @@ body .announce button { color: #fff; }
 @media (max-width: 1199px) {
   .site-header.hb .hdr-item-btn > a { justify-content: center; margin: 16px 0 4px; padding: 14px 16px; border-bottom: 0; }
 }
+
+/* Branches and Home Tailoring sit to the right of the logo, before the search
+   (desktop); in the phone menu they stay in the main list. */
+.hdr-nav-right { display: none; }
+@media (min-width: 1200px) {
+  .site-header.hb .hdr-item-mobile { display: none; }
+  .hdr-nav-right { display: flex; align-items: center; gap: 22px; margin-right: 18px; font: 500 14px/1 var(--hb-body); letter-spacing: -.02em; white-space: nowrap; }
+  .hdr-nav-right a { padding: 28px 0; color: #000; background-image: linear-gradient(currentColor, currentColor); background-size: 0 1px; background-repeat: no-repeat; background-position: 0 calc(50% + 11px); transition: background-size .25s; }
+  .hdr-nav-right a:hover { background-size: 100% 1px; }
+}
+@media (min-width: 1200px) and (max-width: 1439px) { .hdr-nav-right { gap: 16px; margin-right: 8px; } }
+@media (min-width: 1600px) { .hdr-nav-right { gap: 28px; font-size: 15px; } }

@@ -60,7 +60,7 @@ export default function Header({ images }: { images: Record<string, string> }) {
           }}
         >
           {mainNav.map((item) => (
-            <div className={item.button ? "hdr-item hdr-item-btn" : "hdr-item"} key={item.label}>
+            <div className={["hdr-item", item.button && "hdr-item-btn", item.side === "right" && "hdr-item-mobile"].filter(Boolean).join(" ")} key={item.label}>
               <Link href={item.href}>
                 {item.label}
                 {item.columns && <Icon name="chevron" size={14} />}
@@ -75,6 +75,15 @@ export default function Header({ images }: { images: Record<string, string> }) {
         </Link>
 
         <div className="hdr-icons">
+          <nav className="hdr-nav-right" aria-label="Visit us">
+            {mainNav
+              .filter((item) => item.side === "right")
+              .map((item) => (
+                <Link key={item.label} href={item.href}>
+                  {item.label}
+                </Link>
+              ))}
+          </nav>
           <form className="hb-search" action="/search" role="search">
             <Icon name="search" size={18} />
             <input name="q" type="search" placeholder="I'm looking for…" aria-label="Search products" />

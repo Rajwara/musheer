@@ -1,41 +1,11 @@
 type Link = { label: string; href: string };
 type Column = { heading: string; links: Link[] };
-export type NavItem = { label: string; href: string; columns?: Column[]; button?: boolean };
+/** `side: "right"` items sit to the right of the logo on desktop (in the phone menu everything is one list). */
+export type NavItem = { label: string; href: string; columns?: Column[]; button?: boolean; side?: "right" };
 
 const cat = (slug: string) => `/category/${slug}`;
 
 export const mainNav: NavItem[] = [
-  { label: "Branches", href: "/branches" },
-  { label: "Home Tailoring", href: "/about#home-tailoring" },
-  {
-    label: "Kandura and Thobe",
-    href: cat("kandura-thobes"),
-    columns: [
-      {
-        heading: "Kandura and Thobe",
-        links: [
-          { label: "All Kandura and Thobes", href: cat("kandura-thobes") },
-          { label: "Adult Thobes", href: cat("adult-thobes") },
-          { label: "Traditional Kandura", href: cat("traditional-kandura") },
-          { label: "Summer Thobes", href: cat("summer-thobes") },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Kids",
-    href: cat("kids-clothing"),
-    columns: [
-      {
-        heading: "Kids",
-        links: [
-          { label: "Kids Clothing", href: cat("kids-clothing") },
-          { label: "Kids Shimagh and Ghutra", href: cat("kids-headwear") },
-          { label: "Kids Footwear", href: cat("kids-footwear") },
-        ],
-      },
-    ],
-  },
   {
     label: "Traditional Wear",
     href: cat("kandura-jackets"),
@@ -80,7 +50,38 @@ export const mainNav: NavItem[] = [
       },
     ],
   },
+  {
+    label: "Kandura and Thobe",
+    href: cat("kandura-thobes"),
+    columns: [
+      {
+        heading: "Kandura and Thobe",
+        links: [
+          { label: "All Kandura and Thobes", href: cat("kandura-thobes") },
+          { label: "Adult Thobes", href: cat("adult-thobes") },
+          { label: "Traditional Kandura", href: cat("traditional-kandura") },
+          { label: "Summer Thobes", href: cat("summer-thobes") },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Kids",
+    href: cat("kids-clothing"),
+    columns: [
+      {
+        heading: "Kids",
+        links: [
+          { label: "Kids Clothing", href: cat("kids-clothing") },
+          { label: "Kids Shimagh and Ghutra", href: cat("kids-headwear") },
+          { label: "Kids Footwear", href: cat("kids-footwear") },
+        ],
+      },
+    ],
+  },
   { label: "Shop All Categories", href: "/shop", button: true },
+  { label: "Branches", href: "/branches", side: "right" },
+  { label: "Home Tailoring", href: "/about#home-tailoring", side: "right" },
 ];
 
 export const footerNav: Column[] = [
