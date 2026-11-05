@@ -2,7 +2,6 @@
 
 import BtnContent from "@/components/ui/BtnContent";
 import Link from "next/link";
-import { useState } from "react";
 import { whatsapp } from "@/lib/brand";
 import { money } from "@/lib/format";
 import type { CardProduct } from "@/lib/types";
@@ -12,7 +11,6 @@ import "./cart/cart.css";
 /** Cart lines, order summary and empty state, in the /test-mock-2 branding. */
 export default function CartView({ products }: { products: CardProduct[] }) {
   const { cart, changeQty, removeLine } = useStore();
-  const [checkout, setCheckout] = useState(false);
   const bySlug = new Map(products.map((p) => [p.slug, p]));
   const lines = cart.map((line, index) => ({ line, index, p: bySlug.get(line.slug)! })).filter((l) => l.p);
 
@@ -115,14 +113,13 @@ export default function CartView({ products }: { products: CardProduct[] }) {
           <b>{money(total)}</b>
         </div>
         <div className="ct-btns">
-          <button className="am-btn" type="button" onClick={() => setCheckout(true)}>
+          <Link className="am-btn" href="/checkout">
             <BtnContent label="Checkout" />
-          </button>
+          </Link>
           <a className="am-btn am-line" href={whatsapp(message)} target="_blank" rel="noopener noreferrer">
             <BtnContent label="Order on WhatsApp" icon="whatsapp" />
           </a>
         </div>
-        {checkout && <p className="ct-note">Checkout is not active yet. Connect a payment provider before launch. For now, order on WhatsApp.</p>}
         <ul className="ct-trust">
           <li>Free fit adjustments within 14 days</li>
           <li>Returns on ready-made items within 7 days</li>
