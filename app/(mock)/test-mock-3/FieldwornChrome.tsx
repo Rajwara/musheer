@@ -57,7 +57,7 @@ export function FieldwornFooter({ image }: { image: string }) {
           <div>
             <div className="foot-cols">
               <div><h4>Shop</h4><ul><li><a href="/">Home</a></li><li><a href="/category/kandura-thobes">Kandura and Thobe</a></li><li><a href="/category/kids-clothing">Kids</a></li><li><a href="/blog">Blog</a></li><li><a href="/about">About Us</a></li></ul></div>
-              <div><h4>Help</h4><ul><li><a href="/branches">Branches</a></li><li><a href="/policies/shipping">Shipping</a></li><li><a href="/policies/refund">Returns</a></li><li><a href="/policies/privacy">Privacy Policy</a></li><li><a href="/contact">Contact</a></li></ul></div>
+              <div><h4>Help</h4><ul><li><a href="/branches">Branches</a></li><li><a href="/policies/shipping">Shipping</a></li><li><a href="/policies/refund">Returns</a></li><li><a href="/policies/privacy">Privacy Policy</a></li><li><a href="/faq">FAQ</a></li><li><a href="/contact">Contact</a></li></ul></div>
               <div><h4>Contact</h4><ul><li><a href={`tel:${TEL}`}>{PHONE}</a></li><li><a href={WA} target="_blank" rel="noopener noreferrer">WhatsApp us</a></li><li><address>13 branches across<br />5 Emirates, UAE</address></li></ul></div>
             </div>
             <div className="foot-end"><span>© {new Date().getFullYear()} Al Musheer. All rights reserved.</span><div className="socials">
