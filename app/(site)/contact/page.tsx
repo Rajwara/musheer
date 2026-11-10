@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
 import FieldwornShell from "@/components/FieldwornShell";
 import "../blog/blog-brand.css";
 import "./contact-brand.css";
@@ -12,6 +13,7 @@ import { HOME_VISIT_URL, PHONE_DISPLAY, PHONE_TEL, SOCIALS, WHATSAPP_URL } from 
 export const metadata: Metadata = {
   title: "Contact",
   description: "Contact Al Musheer on WhatsApp or by phone, visit one of 13 branches across the UAE, or book a home tailoring visit.",
+  ...share("Contact", "Contact Al Musheer on WhatsApp or by phone, visit one of 13 branches across the UAE, or book a home tailoring visit.", "contact"),
 };
 
 const SOCIAL_ICON: Record<string, IconName> = { instagram: "instagram", tiktok: "tiktok", whatsapp: "whatsapp" };

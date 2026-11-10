@@ -1,5 +1,6 @@
 import BtnContent from "@/components/ui/BtnContent";
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
 import Link from "next/link";
 import FieldwornShell from "@/components/FieldwornShell";
 import FaqList, { type FaqGroup } from "@/components/faq/FaqList";
@@ -12,6 +13,7 @@ import "@/components/faq/faq.css";
 export const metadata: Metadata = {
   title: "FAQ",
   description: "Answers to common questions about Al Musheer: made-to-measure kanduras, home tailoring visits, delivery, returns and our 13 branches.",
+  ...share("FAQ", "Answers to common questions about Al Musheer: made-to-measure kanduras, home tailoring visits, delivery, returns and our 13 branches.", "faq"),
 };
 
 export default function FaqPage() {

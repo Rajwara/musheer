@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
 import AccountForms from "@/components/account/AccountForms";
 import AccountLinks from "@/components/account/AccountLinks";
 import FieldwornShell from "@/components/FieldwornShell";
@@ -7,7 +8,7 @@ import { imageSrc } from "@/lib/images";
 import "../shop-brand.css";
 import "@/components/account/account.css";
 
-export const metadata: Metadata = { title: "Account" };
+export const metadata: Metadata = { title: "Account", ...share("Account", "Al Musheer: kandura tailoring in the UAE since 1998.", "account") };
 
 export default function AccountPage() {
   return (

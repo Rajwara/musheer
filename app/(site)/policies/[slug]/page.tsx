@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import FieldwornShell from "@/components/FieldwornShell";
@@ -17,7 +18,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = getPolicy((await params).slug);
-  return p ? { title: p.title, description: p.intro } : {};
+  return p ? { title: p.title, description: p.intro, ...share(p.title, p.intro, "default") } : {};
 }
 
 const ICONS: Record<Policy["points"][number]["icon"], React.ReactNode> = {

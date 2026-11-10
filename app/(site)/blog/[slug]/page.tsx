@@ -1,5 +1,6 @@
 import BtnContent from "@/components/ui/BtnContent";
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
 import FieldwornShell from "@/components/FieldwornShell";
 import "../blog-brand.css";
 import Link from "next/link";
@@ -18,7 +19,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = getPost((await params).slug);
-  return p ? { title: p.title, description: p.excerpt } : {};
+  return p ? { title: p.title, description: p.excerpt, ...share(p.title, p.excerpt, `blog-${p.slug}`, "article") } : {};
 }
 
 function Content({ block }: { block: Block }) {

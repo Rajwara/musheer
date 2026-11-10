@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
+import { money } from "@/lib/format";
 import FieldwornShell from "@/components/FieldwornShell";
 import "../../shop-brand.css";
 import Link from "next/link";
@@ -18,7 +20,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = getProduct((await params).slug);
-  return p ? { title: p.name, description: p.metaDescription || `${p.name} at Al Musheer.` } : {};
+  if (!p) return {};
+  const description = p.metaDescription || `${p.name} at Al Musheer.`;
+  return { title: p.name, description, ...share(`${p.name} · ${money(p.price)}`, description, `product-${p.slug}`) };
 }
 
 export default async function ProductPage({ params }: Props) {

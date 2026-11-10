@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
 import Link from "next/link";
 import FieldwornShell from "@/components/FieldwornShell";
 import ShopAll, { type ShopGroup, type ShopProduct } from "@/components/shop/ShopAll";
@@ -9,6 +10,7 @@ import "../shop-brand.css";
 export const metadata: Metadata = {
   title: "Shop all categories",
   description: "Every Al Musheer piece in one place: kanduras and thobes, outerwear, headwear, footwear, kids' wear and accessories, with filters for category, price, size and colour.",
+  ...share("Shop all categories", "Every Al Musheer piece in one place: kanduras and thobes, outerwear, headwear, footwear, kids' wear and accessories, with filters for category, price, size and colour.", "shop"),
 };
 
 /** Departments in the order shoppers expect, then any others from the catalogue. */

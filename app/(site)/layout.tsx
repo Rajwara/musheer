@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL, share } from "@/lib/og";
 import { Inter, Noto_Kufi_Arabic, Plus_Jakarta_Sans } from "next/font/google";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import SiteFooter from "@/components/SiteFooter";
@@ -21,9 +22,11 @@ const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const arabic = Noto_Kufi_Arabic({ subsets: ["arabic"], weight: ["400", "500", "700"], variable: "--font-arabic", preload: false });
 
 export const metadata: Metadata = {
+  metadataBase: SITE_URL,
   title: { default: "Al Musheer | Kandura Tailoring Since 1998", template: "%s | Al Musheer" },
   description:
     "Al Musheer: the UAE's trusted name in kandura textile and tailoring since 1998. Bespoke kanduras, home tailoring visits, headwear, sandals and accessories across 13 branches in 5 Emirates.",
+  ...share("Al Musheer | Kandura Tailoring Since 1998", "Al Musheer: the UAE's trusted name in kandura textile and tailoring since 1998. Bespoke kanduras, home tailoring visits, headwear, sandals and accessories across 13 branches in 5 Emirates.", "home"),
 };
 
 const categoryImages = Object.fromEntries(categories.map((c) => [c.slug, imageSrc(`images/categories/${c.slug}`)]));

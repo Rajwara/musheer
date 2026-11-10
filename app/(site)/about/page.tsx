@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
 import { HomeVisit, Services, Stats, Story, WhoWeAre } from "@/components/BrandSections";
 import FieldwornShell from "@/components/FieldwornShell";
 import PageBanner from "@/components/PageBanner";
@@ -7,6 +8,7 @@ import "./about-brand.css";
 export const metadata: Metadata = {
   title: "About",
   description: "Since 1998, Al Musheer has dressed the men of the UAE in precisely tailored kanduras.",
+  ...share("About", "Since 1998, Al Musheer has dressed the men of the UAE in precisely tailored kanduras.", "about"),
 };
 
 export default function AboutPage() {

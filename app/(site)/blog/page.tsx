@@ -1,5 +1,6 @@
 import BtnContent from "@/components/ui/BtnContent";
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
 import FieldwornShell from "@/components/FieldwornShell";
 import "./blog-brand.css";
 import Link from "next/link";
@@ -11,6 +12,7 @@ import { imageSrc } from "@/lib/images";
 export const metadata: Metadata = {
   title: "Blog",
   description: "Style guides, fabric care and tailoring notes from Al Musheer, kandura tailors since 1998.",
+  ...share("Blog", "Style guides, fabric care and tailoring notes from Al Musheer, kandura tailors since 1998.", "blog"),
 };
 
 const summary = (p: (typeof POSTS)[number]): PostSummary => ({

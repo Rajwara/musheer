@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
 import Link from "next/link";
 import FieldwornShell from "@/components/FieldwornShell";
 import ShopAll, { type ShopGroup, type ShopProduct } from "@/components/shop/ShopAll";
@@ -8,7 +9,7 @@ import { imageSrc } from "@/lib/images";
 import "../shop-brand.css";
 import "@/components/search/search.css";
 
-export const metadata: Metadata = { title: "Search" };
+export const metadata: Metadata = { title: "Search", ...share("Search", "Al Musheer: kandura tailoring in the UAE since 1998.", "search") };
 
 const POPULAR = ["Kandura", "Thobe", "Bisht", "Ghutra", "Sandals", "Perfume", "Kids"];
 const ORDER = ["Kandura and Thobe", "Outerwear", "Casual and underwear", "Headwear", "Footwear", "Kids", "Accessories", "Gifts"];

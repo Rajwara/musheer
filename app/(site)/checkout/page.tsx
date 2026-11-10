@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
 import Link from "next/link";
 import Checkout from "@/components/checkout/Checkout";
 import FieldwornShell from "@/components/FieldwornShell";
@@ -6,7 +7,7 @@ import { BRANCHES } from "@/lib/brand";
 import { allCards, categories } from "@/lib/catalog";
 import "../shop-brand.css";
 
-export const metadata: Metadata = { title: "Checkout", robots: { index: false } };
+export const metadata: Metadata = { title: "Checkout", robots: { index: false }, ...share("Checkout", "Al Musheer: kandura tailoring in the UAE since 1998.", "cart") };
 
 export default function CheckoutPage() {
   const branches = BRANCHES.flatMap((e) => e.branches.map((b) => ({ id: b.id, name: b.name, area: b.area, emirate: e.emirate })));

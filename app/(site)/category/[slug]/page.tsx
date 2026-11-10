@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
 import FieldwornShell from "@/components/FieldwornShell";
 import "../../shop-brand.css";
 import "@/components/shop/shop-all.css";
@@ -18,7 +19,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = getCategory((await params).slug);
-  return c ? { title: c.title, description: `Shop ${c.title} at Al Musheer.` } : {};
+  if (!c) return {};
+  const description = `Shop ${c.title} at Al Musheer: ${c.products.length} styles, tailored in the UAE since 1998.`;
+  return { title: c.title, description, ...share(c.title, description, `cat-${c.slug}`) };
 }
 
 export default async function CategoryPage({ params }: Props) {

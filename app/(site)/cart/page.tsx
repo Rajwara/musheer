@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
 import CartView from "@/components/CartView";
 import FieldwornShell from "@/components/FieldwornShell";
 import PhotoHero from "@/components/search/PhotoHero";
@@ -6,7 +7,7 @@ import { allCards } from "@/lib/catalog";
 import { imageSrc } from "@/lib/images";
 import "../shop-brand.css";
 
-export const metadata: Metadata = { title: "Your cart" };
+export const metadata: Metadata = { title: "Your cart", ...share("Your cart", "Al Musheer: kandura tailoring in the UAE since 1998.", "cart") };
 
 export default function CartPage() {
   return (

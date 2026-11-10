@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
 import FieldwornShell from "@/components/FieldwornShell";
 import PhotoHero from "@/components/search/PhotoHero";
 import WishlistView from "@/components/WishlistView";
@@ -6,7 +7,7 @@ import { allCards } from "@/lib/catalog";
 import { imageSrc } from "@/lib/images";
 import "../shop-brand.css";
 
-export const metadata: Metadata = { title: "Saved products" };
+export const metadata: Metadata = { title: "Saved products", ...share("Saved products", "Al Musheer: kandura tailoring in the UAE since 1998.", "cart") };
 
 export default function WishlistPage() {
   return (

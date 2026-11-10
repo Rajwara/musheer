@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { share } from "@/lib/og";
 import BranchGlobe, { type GlobeBranch } from "@/components/branches/BranchGlobe";
 import PageBanner from "@/components/PageBanner";
 import FieldwornShell from "@/components/FieldwornShell";
@@ -9,6 +10,7 @@ import "./branches-brand.css";
 export const metadata: Metadata = {
   title: "Branches",
   description: "Find your nearest Al Musheer branch: 13 kandura tailoring stores across Abu Dhabi, Dubai, Sharjah, Ajman and Ras Al Khaimah.",
+  ...share("Branches", "Find your nearest Al Musheer branch: 13 kandura tailoring stores across Abu Dhabi, Dubai, Sharjah, Ajman and Ras Al Khaimah.", "branches"),
 };
 
 export default function BranchesPage() {
