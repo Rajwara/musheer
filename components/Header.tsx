@@ -86,7 +86,6 @@ export default function Header({ images }: { images: Record<string, string> }) {
                 </Link>
               ))}
           </nav>
-          <LanguageToggle />
           <form className="hb-search" action="/search" role="search">
             <Icon name="search" size={18} />
             <input name="q" type="search" placeholder="I'm looking for…" aria-label="Search products" />
@@ -94,6 +93,7 @@ export default function Header({ images }: { images: Record<string, string> }) {
           <button className="hdr-icon hb-search-btn" type="button" aria-label="Search" aria-expanded={searching} onClick={() => setSearching((s) => !s)}>
             <Icon name="search" size={21} />
           </button>
+          <LanguageToggle />
           <Link className="hdr-icon hide-sm" href="/account" aria-label="Account">
             <Icon name="user" size={21} />
           </Link>

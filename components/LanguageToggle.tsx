@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const COOKIE = "googtrans";
 
@@ -31,23 +31,61 @@ declare global {
  */
 export default function LanguageToggle() {
   const [ar, setAr] = useState(false);
+  const [open, setOpen] = useState(false);
+  const box = useRef<HTMLDivElement>(null);
   useEffect(() => setAr(isArabic()), []);
 
-  const toggle = () => {
-    setLang(!ar);
+  // Close on outside click or Escape.
+  useEffect(() => {
+    if (!open) return;
+    const off = (e: Event) => {
+      if (e instanceof KeyboardEvent ? e.key === "Escape" : !box.current?.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", off);
+    document.addEventListener("keydown", off);
+    return () => {
+      document.removeEventListener("pointerdown", off);
+      document.removeEventListener("keydown", off);
+    };
+  }, [open]);
+
+  const choose = (toAr: boolean) => {
+    setOpen(false);
+    if (toAr === ar) return;
+    setLang(toAr);
     location.reload();
   };
 
   return (
     <>
-      <button type="button" className="lang-toggle notranslate" translate="no" onClick={toggle} aria-label={ar ? "Switch to English" : "التبديل إلى العربية (Switch to Arabic)"} lang={ar ? "en" : "ar"}>
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z" />
-        </svg>
-        <span className="lang-long">{ar ? "English" : "العربية"}</span>
-        <span className="lang-short" aria-hidden="true">{ar ? "EN" : "ع"}</span>
-      </button>
+      <div className="lang notranslate" translate="no" ref={box}>
+        <button type="button" className="lang-btn" aria-haspopup="listbox" aria-expanded={open} aria-label={`Language: ${ar ? "Arabic" : "English"}`} onClick={() => setOpen((o) => !o)}>
+          {ar ? "AR" : "EN"}
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
+        {open && (
+          <ul className="lang-menu" role="listbox" aria-label="Language">
+            {[
+              [false, "EN", "English"],
+              [true, "AR", "العربية"],
+            ].map(([v, code, name]) => (
+              <li key={code as string} role="option" aria-selected={ar === v}>
+                <button type="button" className={ar === v ? "on" : undefined} onClick={() => choose(v as boolean)}>
+                  <b>{code as string}</b>
+                  <span lang={v ? "ar" : "en"}>{name as string}</span>
+                  {ar === v && (
+                    <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                      <path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
       {ar && (
         <>
           <div id="google_translate_element" hidden />

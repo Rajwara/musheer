@@ -1,10 +1,17 @@
 /* Language switch in the header, and clean-up of Google Translate's own UI. */
-.lang-toggle { display: inline-flex; align-items: center; gap: 6px; height: 36px; margin-right: 8px; padding: 0 12px; border: 1px solid #e4e4e4; border-radius: 99px; background: #fff; color: #000; font: 500 14px/1 var(--font-space-grotesk), "Space Grotesk", var(--font-arabic), "Noto Kufi Arabic", sans-serif; cursor: pointer; white-space: nowrap; transition: border-color .2s, background .2s; }
-.lang-toggle:hover { border-color: #000; }
-.lang-short { display: none; }
-@media (max-width: 480px) { .lang-long { display: none; } .lang-short { display: inline; } .lang-toggle { min-width: 34px; justify-content: center; padding: 0 8px; } }
-.lang-toggle span:lang(ar) { font-family: var(--font-arabic), "Noto Kufi Arabic", "Segoe UI", Tahoma, sans-serif; font-size: 14px; }
-@media (max-width: 1199px) { .lang-toggle { height: 34px; padding: 0 10px; margin-right: 2px; } .lang-toggle svg { display: none; } }
+.lang { position: relative; }
+.lang-btn { display: inline-flex; align-items: center; gap: 4px; height: 42px; padding: 0 8px; border: 0; border-radius: 99px; background: none; color: #000; font: 500 14px/1 var(--font-space-grotesk), "Space Grotesk", sans-serif; letter-spacing: .02em; cursor: pointer; transition: background .2s; }
+.lang-btn:hover, .lang-btn[aria-expanded="true"] { background: #f2f2f2; }
+.lang-btn svg { transition: transform .2s; }
+.lang-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+.lang-menu { position: absolute; z-index: 40; top: calc(100% + 8px); right: 0; min-width: 170px; margin: 0; padding: 6px; border-radius: 12px; background: #fff; list-style: none; box-shadow: 0 18px 40px rgba(0,0,0,.14), 0 0 0 1px rgba(0,0,0,.05); animation: lang-in .18s ease-out; }
+@keyframes lang-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.lang-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; border: 0; border-radius: 8px; background: none; color: #000; font: 400 14px/1 var(--font-space-grotesk), "Space Grotesk", sans-serif; text-align: left; cursor: pointer; }
+.lang-menu button:hover { background: #f6f6f6; }
+.lang-menu button.on { font-weight: 500; }
+.lang-menu b { width: 24px; font-weight: 500; letter-spacing: .02em; }
+.lang-menu span { flex: 1; }
+.lang-menu span:lang(ar) { font-family: var(--font-arabic), "Noto Kufi Arabic", "Segoe UI", Tahoma, sans-serif; }
 
 /* Hide Google's toolbar, tooltip and highlight; keep the page where it was */
 .goog-te-banner-frame, iframe.skiptranslate, .skiptranslate > iframe, #goog-gt-tt, .goog-te-balloon-frame, .VIpgJd-ZVi9od-ORHb-OEVmcd, .VIpgJd-ZVi9od-aZ2wEe-wOHMyf, .VIpgJd-yAWNEb-L7lbkb { display: none !important; }
