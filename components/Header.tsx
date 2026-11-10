@@ -7,6 +7,8 @@ import { BRAND } from "@/lib/brand";
 import { mainNav } from "@/lib/navigation";
 import Icon from "./Icon";
 import MegaMenu from "./MegaMenu";
+import LanguageToggle from "./LanguageToggle";
+import "./language-toggle.css";
 import "./header-brand.css";
 import { useStore } from "./StoreProvider";
 
@@ -70,7 +72,7 @@ export default function Header({ images }: { images: Record<string, string> }) {
           ))}
         </nav>
 
-        <Link className="hdr-logo" href="/" aria-label={`${BRAND} home`}>
+        <Link className="hdr-logo notranslate" translate="no" href="/" aria-label={`${BRAND} home`}>
           AL MUSHEER
         </Link>
 
@@ -84,6 +86,7 @@ export default function Header({ images }: { images: Record<string, string> }) {
                 </Link>
               ))}
           </nav>
+          <LanguageToggle />
           <form className="hb-search" action="/search" role="search">
             <Icon name="search" size={18} />
             <input name="q" type="search" placeholder="I'm looking for…" aria-label="Search products" />

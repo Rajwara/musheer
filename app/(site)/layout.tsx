@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Noto_Kufi_Arabic, Plus_Jakarta_Sans } from "next/font/google";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import SiteFooter from "@/components/SiteFooter";
 import Header from "@/components/Header";
@@ -17,6 +17,8 @@ import "./blog-layout.css";
 
 const serif = Plus_Jakarta_Sans({ subsets: ["latin"], style: ["normal", "italic"], variable: "--font-serif" });
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
+// Arabic typeface for the Arabic version of the site (Google-translated pages).
+const arabic = Noto_Kufi_Arabic({ subsets: ["arabic"], weight: ["400", "500", "700"], variable: "--font-arabic", preload: false });
 
 export const metadata: Metadata = {
   title: { default: "Al Musheer | Kandura Tailoring Since 1998", template: "%s | Al Musheer" },
@@ -28,7 +30,7 @@ const categoryImages = Object.fromEntries(categories.map((c) => [c.slug, imageSr
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${serif.variable} ${sans.variable} ${fieldwornFonts}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${serif.variable} ${sans.variable} ${arabic.variable} ${fieldwornFonts}`}>
       <body id="top">
         <ScrollToTop />
         <StoreProvider>
