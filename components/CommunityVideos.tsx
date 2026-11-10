@@ -79,12 +79,16 @@ function VideoCard({ clip, index, reduceMotion }: { clip: Clip; index: number; r
 
       {n > 0 && (
         <button className="clip-shop" type="button" onClick={() => setShopping(true)} aria-expanded={shopping}>
-          Shop the Look [{n}]
+          <span>Shop the Look</span>
+          <b className="clip-count" aria-label={`${n} products`}>
+            {n}
+          </b>
         </button>
       )}
 
-      {shopping && (
-        <div className="clip-panel" role="dialog" aria-label="Shop the look">
+      {/* Always in the page (hidden until opened) so a translated page translates it too. */}
+      {n > 0 && (
+        <div className="clip-panel" role="dialog" aria-label="Shop the look" hidden={!shopping}>
           <div className="clip-panel-head">
             <b>Shop the Look</b>
             <button type="button" aria-label="Close" onClick={() => setShopping(false)}>

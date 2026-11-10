@@ -58,3 +58,7 @@
 .cv .clips-nav button:not(:disabled):hover{background:#000;color:#fff}
 .cv .clips-progress span{background:#000}
 @media(max-width:767px){.cv .clips{--edge:24px}.cv .clip{width:72vw}}
+/* Shop the look button: label plus a round count badge (no brackets, so it reads right in Arabic too) */
+.cv .clip-shop { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.cv .clip-count { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 99px; background: #000; color: #fff; font-size: 11px; font-weight: 600; line-height: 1; }
+.cv .clip-panel[hidden] { display: none; }
