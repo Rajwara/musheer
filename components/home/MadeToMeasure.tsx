@@ -39,7 +39,7 @@ export default function MadeToMeasure({ image }: { image: string }) {
             </span>
           </Link>
           <div className="mtm-tag">
-            AL MUSHEER
+            <span className="notranslate" translate="no">AL MUSHEER</span>
             <br />
             TAILORING SINCE 1998
           </div>

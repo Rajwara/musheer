@@ -29,7 +29,7 @@ export function FieldwornHeader({ cart }: { cart?: React.ReactNode } = {}) {
       <div className="banner-in bar">
         <nav className="nav" aria-label="Main">
           <div className="container nav-row">
-            <a className="logo" href="/">AL MUSHEER</a>
+            <a className="logo notranslate" translate="no" href="/">AL MUSHEER</a>
             <ul className="links">
               <li><a href="/">Home</a></li><li><a href="/category/kandura-thobes">Collections</a></li><li><a href="/about">About Us</a></li>
               <li><button type="button">Pages ⌄</button><ul className="drop"><li><a href="/branches">Branches</a></li><li><a href="/blog">Blog</a></li><li><a href="/contact">Contact</a></li></ul></li>
@@ -67,7 +67,7 @@ export function FieldwornFooter({ image }: { image: string }) {
             </div></div>
           </div>
         </div>
-        <div className="foot-giant"><span className="giant"><span className="fit" style={{ display: "inline-block" }} aria-label={WORDMARK}>{WORDMARK.split("").map((c, i) => <span className="ch" aria-hidden="true" key={i}>{c === " " ? "\u00a0" : c}</span>)}</span></span></div>
+        <div className="foot-giant notranslate" translate="no"><span className="giant"><span className="fit" style={{ display: "inline-block" }} aria-label={WORDMARK}>{WORDMARK.split("").map((c, i) => <span className="ch" aria-hidden="true" key={i}>{c === " " ? "\u00a0" : c}</span>)}</span></span></div>
       </div></footer></div>
       <div className="fw">
         <div className="drawer-bg"></div>

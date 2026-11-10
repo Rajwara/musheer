@@ -153,7 +153,7 @@ export default function OfferPopup({ image }: { image: string }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={image} alt="" loading="lazy" />
           <span className="op-media-tag">*Est. 1998 · UAE</span>
-          <span className="op-media-mark" aria-hidden="true">
+          <span className="op-media-mark notranslate" translate="no" aria-hidden="true">
             AL MUSHEER
           </span>
         </div>

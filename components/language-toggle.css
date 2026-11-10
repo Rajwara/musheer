@@ -19,7 +19,7 @@ body { top: 0 !important; }
 .goog-text-highlight, font[style] { background: none !important; box-shadow: none !important; }
 
 /* Arabic text: a proper Arabic typeface everywhere */
-html.translated-rtl body, html.translated-rtl body *:not(svg):not(path):not(.notranslate) { font-family: var(--font-arabic), "Noto Kufi Arabic", "Segoe UI", Tahoma, sans-serif !important; letter-spacing: 0 !important; }
+html.translated-rtl body, html.translated-rtl body *:not(svg):not(path):not(.notranslate):not(.notranslate *) { font-family: var(--font-arabic), "Noto Kufi Arabic", "Segoe UI", Tahoma, sans-serif !important; letter-spacing: 0 !important; }
 
 /* =====================================================================
    Arabic typography. The English design uses Big Shoulders, a very tall,

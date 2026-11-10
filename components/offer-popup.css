@@ -99,3 +99,9 @@ dialog.op h2 { margin: 0 0 14px; font: 500 clamp(44px, 5vw, 64px)/.95 var(--op-d
   .op-media img { transition: none; transform: none; }
   .op-live::after { animation: none; }
 }
+/* Phones: keep the reopen tab clear of the Chat button (longer in Arabic) */
+@media (max-width: 600px) {
+  .op-teaser { max-width: calc(100vw - 24px - 132px); }
+  .op-teaser-open { min-width: 0; overflow: hidden; }
+  .op-teaser-open font, .op-teaser-open { white-space: nowrap; text-overflow: ellipsis; }
+}
