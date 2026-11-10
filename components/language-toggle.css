@@ -20,3 +20,44 @@ body { top: 0 !important; }
 
 /* Arabic text: a proper Arabic typeface everywhere */
 html.translated-rtl body, html.translated-rtl body *:not(svg):not(path):not(.notranslate) { font-family: var(--font-arabic), "Noto Kufi Arabic", "Segoe UI", Tahoma, sans-serif !important; letter-spacing: 0 !important; }
+
+/* =====================================================================
+   Arabic typography. The English design uses Big Shoulders, a very tall,
+   narrow display face, at huge sizes with line-height under 1. Arabic
+   letters are wider and need more height, so in Arabic:
+   - display headings shrink (zoom) and get room between lines;
+   - small uppercase labels lose the caps/tracking styling;
+   - body text gets a looser line height;
+   - the rolling button label stops clipping the taller glyphs.
+   Breakpoint-specific sizes still apply first, then these scale them.
+   ===================================================================== */
+html.translated-rtl :is(h1, h2, .hb-title) {
+  zoom: .72; font-weight: 700 !important; line-height: 1.35 !important; text-transform: none !important;
+}
+html.translated-rtl :is(h3, .mw-name, .na-txt b, .ct-name, .faq-text, .co-item b, .fl-name) {
+  font-weight: 600 !important; line-height: 1.55 !important;
+}
+html.translated-rtl :is(.hb-eyebrow, .mw-label, .fyf-label, .na-label, .ws-label, .btc-label, .wu-label, .faq-label, .co-label, .srch-label, .nf-label, .eyebrow, .label, .shop-label, .pcard-cat, .ct-cat, .sa-sub, .sa-sec-head, .side h4) {
+  text-transform: none !important; font-weight: 600 !important; line-height: 1.6 !important;
+}
+html.translated-rtl :is(p, li, blockquote, small, label, .pcard-row, .hb-text, .srch-count, .co-hint) { line-height: 1.75 !important; }
+html.translated-rtl :is(button, a, input, select, textarea) { line-height: 1.5; }
+html.translated-rtl .am-btn .am-roll { height: auto; overflow: visible; }
+html.translated-rtl .am-btn .am-roll > span::after { display: none; }
+html.translated-rtl .am-btn:hover .am-roll > span { transform: none; }
+html.translated-rtl .hdr-nav, html.translated-rtl .hdr-nav-right { font-weight: 500; }
+html.translated-rtl .wu-img > p { line-height: 1.5 !important; }
+
+/* Phones: headings scale a little less so they stay readable */
+@media (max-width: 767px) {
+  html.translated-rtl :is(h1, h2, .hb-title) { zoom: .82; }
+  html.translated-rtl :is(p, li, blockquote) { font-size: max(1em, 14px); }
+}
+/* The very largest English titles need a little more scaling in Arabic */
+html.translated-rtl :is(.page-banner h1, .nf h1, .srch h1) { zoom: .55; }
+html.translated-rtl .shop-fw .info h1 { zoom: .6; }
+@media (max-width: 767px) {
+  html.translated-rtl :is(.page-banner h1, .nf h1, .srch h1) { zoom: .7; }
+  html.translated-rtl .shop-fw .info h1 { zoom: .62; }
+}
+html.translated-rtl .buy .am-btn, html.translated-rtl .qv .am-btn { white-space: nowrap !important; padding-left: 16px !important; }
